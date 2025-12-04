@@ -1,0 +1,53 @@
+
+.stats{
+    height: auto;
+    width: 100%;
+}
+.stat{
+    height: 10vh;
+    border-radius: 20px;
+    margin: 1%;
+    width: 30%;
+    background-color: rgb(12, 161, 52);
+}
+.nbr{
+    width: 20%;
+    height: 100%;
+}
+.text{
+    width: 80%;
+    height: 100%;
+    border-left: solid 1px rgb(242, 242, 219);
+}
+.historique{
+    height: 55vh;
+    width: 100%;
+    border-radius: 10px;
+    box-shadow: 0 0 3px gray;
+}
+.liste{
+    height: 40vh;
+    width: 100%;
+    overflow-y: scroll;
+    background-color: white;
+}
+.filtre-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px; /* Espacement entre les champs */
+    align-items: center;
+    justify-content: space-between; /* Alignement uniforme */
+}
+
+.filtre-input, .filtre-select {
+    flex: 1; /* Permet aux éléments de s'adapter à la largeur */
+    min-width: 150px; /* Taille minimale pour éviter qu'ils deviennent trop petits */
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.filtre-input:focus, .filtre-select:focus {
+    border-color: #28a745;
+    outline: none;
+}

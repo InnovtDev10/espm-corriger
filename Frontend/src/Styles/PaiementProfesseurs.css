@@ -1,0 +1,225 @@
+.filtre {
+    display: flex;
+    gap: 10px;
+}
+
+.paiement-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.paiement-table th, .paiement-table td {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+.statut-payé {
+    color: green;
+    font-weight: bold;
+}
+
+.statut-non-payé {
+    color: red;
+    font-weight: bold;
+}
+
+.paiement-container {
+    background: #f8f9fa;
+    padding: 15px;
+    border-radius: 5px;
+}
+
+.btn-payer, .btn-valider {
+    background: #28a745;
+    color: white;
+    padding: 5px 10px;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-valider:hover {
+    background: #218838;
+}
+/* Style général pour le conteneur de tableau */
+
+  
+  /* Style pour les statuts de paiement */
+  .statut-payé {
+    color: green;
+    font-weight: bold;
+  }
+  
+  .statut-non-payé {
+    color: red;
+    font-weight: bold;
+  }
+  
+  /* Style pour les boutons */
+  .btn-payer,
+  .btn-details {
+    background-color: #4CAF50;
+    color: white;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .btn-payer:hover,
+  .btn-details:hover {
+    background-color: #45a049;
+  }
+  
+  .btn-details {
+    background-color: #007BFF;
+  }
+  
+  .btn-details:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Styles spécifiques au tableau des paiements */
+  .paiement-table .btn-payer {
+    background-color: #ff9800;
+  }
+  
+  .paiement-table .btn-payer:hover {
+    background-color: #e68900;
+  }
+  
+  /* Conteneur pour les actions */
+  .paiement-table td button {
+    margin-right: 8px;
+  }
+  
+  /* Adaptation pour les petits écrans */
+  @media (max-width: 768px) {
+    .paiement-table th,
+    .paiement-table td {
+      font-size: 12px;
+      padding: 8px;
+    }
+  
+    .btn-payer,
+    .btn-details {
+      padding: 6px 12px;
+      font-size: 12px;
+    }
+  }
+  /* Style général pour le conteneur de tableau */
+.table-container {
+    padding: 10px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow-x: auto;
+    max-height: 400px; /* Limite la hauteur du tableau, ajustez si nécessaire */
+}
+
+/* Style du tableau */
+.paiement-table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: auto;
+    overflow-y: auto;
+}
+
+/* Limite de la hauteur du tableau avec scroll si plus de 10 lignes */
+.paiement-table-wrapper {
+    max-height: 400px; /* La hauteur du conteneur avec scroll */
+    overflow-y: auto;
+}
+
+/* Style des en-têtes */
+.paiement-table th,
+.paiement-table td {
+    padding: 12px;
+    text-align: center;
+    border: 1px solid #ddd;
+    font-size: 14px;
+}
+
+/* Style pour les en-têtes */
+.paiement-table th {
+    background: #198754;
+    color: white;
+    font-weight: bold;
+}
+
+/* Couleurs des lignes du tableau */
+.paiement-table tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+/* Style des colonnes */
+.paiement-table td {
+    vertical-align: middle;
+}
+
+/* Style pour les statuts de paiement */
+.statut-payé {
+    color: green;
+    font-weight: bold;
+}
+
+.statut-non-payé {
+    color: red;
+    font-weight: bold;
+}
+
+/* Style pour les boutons */
+.btn-payer,
+.btn-details {
+    background-color: #4CAF50;
+    color: white;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+}
+
+.btn-payer:hover,
+.btn-details:hover {
+    background-color: #45a049;
+}
+
+.btn-details {
+    background-color: #007BFF;
+}
+
+.btn-details:hover {
+    background-color: #0056b3;
+}
+
+/* Styles spécifiques au tableau des paiements */
+.paiement-table .btn-payer {
+    background-color: #ff9800;
+}
+
+.paiement-table .btn-payer:hover {
+    background-color: #e68900;
+}
+
+/* Conteneur pour les actions */
+.paiement-table td button {
+    margin-right: 8px;
+}
+
+/* Adaptation pour les petits écrans */
+@media (max-width: 768px) {
+    .paiement-table th,
+    .paiement-table td {
+        font-size: 12px;
+        padding: 8px;
+    }
+
+    .btn-payer,
+    .btn-details {
+        padding: 6px 12px;
+        font-size: 12px;
+    }
+}

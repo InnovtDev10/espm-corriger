@@ -1,0 +1,266 @@
+/* Style global */
+.paiement-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    
+    margin-top: 10px;
+  }
+  
+  .paiement-form {
+    flex: 1;
+
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
+  }
+  
+  .h5{
+    margin-bottom: 15px;
+    font-weight: bold;
+  }
+  .paiement-form h5 {
+    margin-bottom: 15px;
+    font-weight: bold;
+  }
+  
+  .paiement-form .form-control {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+  }
+  
+  .paiement-form button {
+    width: 100%;
+    padding: 10px;
+    background: #28a745;
+    color: white;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .paiement-form button:hover {
+    background: #218838;
+  }
+  
+/* Carte d'écolage */
+.carte-ecolage-container {
+    flex: 1;
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Alignement du contenu à gauche */
+    position: relative;
+  }
+  
+  /* Titre de la carte en gras et en haut à gauche */
+  .carte-ecolage-container h5 {
+    font-weight: bold;
+    margin-bottom: 15px;
+    position: absolute;
+    top: 10px;
+    left: 15px;
+  }
+  
+  /* Conteneur infos étudiant */
+  .etudiant-info {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding: 15px;
+    background: #f1f1f1;
+    border-radius: 8px;
+    margin-top: 35px; /* Ajout d'un espace sous le titre */
+    font-size: 14px;
+  }
+  
+  /* Alignement des infos de l’étudiant à droite */
+  .etudiant-details {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    font-size: 15px;
+    color: #555;
+  }
+  
+  /* Grille des mois */
+  .mois-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 8px;
+    width: 100%;
+    padding: 10px;
+    background: #f9f9f9;
+    border-radius: 8px;
+    margin-top: 45px;
+  }
+  
+  /* Styles des mois payés et non payés */
+  .mois {
+    padding: 22px;
+    text-align: center;
+    font-size: 14px;
+    border-radius: 5px;
+    font-weight: bold;
+    color: white;
+  }
+  
+  .paye {
+    background: #28a745; /* Vert pour les paiements effectués */
+    color: black;
+  }
+  
+  .non-paye {
+    background: #007bff; /* Bleu pour les paiements non effectués */
+  }
+  .restant {
+    background: #e55e5e;
+    color: White;
+    /* Bleu pour les paiements non effectués */
+  }
+  
+  
+  /* Historique des paiements */
+  .paiement-historique {
+    margin-top: 30px;
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 50px rgba(0, 0, 0, 0.1);
+  }
+  
+  .paiement-historique h5 {
+    margin-bottom: 15px;
+    font-weight: bold;
+  }
+  
+  .filters {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+  }
+  
+  .filters .form-control {
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    flex: 1;
+  }
+  
+  .paiement-historique table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .paiement-historique table th,
+  .paiement-historique table td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: left;
+  }
+  
+  .paiement-historique table th {
+    background: #198754; 
+    color: white;
+  }
+  
+  .paiement-historique table tbody tr:nth-child(even) {
+    background: #f9f9f9;
+  }
+  
+  .paiement-historique table tbody tr:hover {
+    background: #f1f1f1;
+  }
+  
+
+  .header-section {
+    display: flex;
+    justify-content: space-between; /* Aligner les éléments à gauche et à droite */
+    align-items: center; /* Centrer verticalement */
+  }
+  
+  .payment-btn {
+    background-color: #28a745; /* Couleur verte */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px; /* Espace entre l'icône et le texte */
+  }
+  
+  .payment-btn i {
+    font-size: 18px;
+  }
+  
+  .payment-btn:hover {
+    background-color: #218838; /* Légèrement plus foncé au survol */
+  }
+  .payment-btn2 {
+    background-color: #28a745; /* Couleur verte */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px; /* Espace entre l'icône et le texte */
+  }
+  
+  .payment2-btn i {
+    font-size: 18px;
+  }
+  
+  .payment2-btn:hover {
+    background-color: #218838; /* Légèrement plus foncé au survol */
+  }
+  .d-flex.justify-content-between select,
+.d-flex.justify-content-between button {
+  max-width: 49%;
+}
+
+.d-flex.justify-content-between {
+  gap: 2px; /* Augmente l'espacement */
+}
+.mois.restant:hover,
+.mois.non-paye:hover {
+  transform: scale(1.05);
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+  opacity: 0.9;
+}
+
+.list-group {
+  max-height: 200px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ccc;
+}
+
+.list-group-item {
+  cursor: pointer;
+}
+
+.list-group-item:hover {
+  background: #f0f0f0;
+}
+.clignote {
+  animation: clignoter 1s infinite;
+  background-color: #ffe6e6; /* fond légèrement rouge pour signaler */
+}
+
+@keyframes clignoter {
+  0% { background-color: #ffe6e6; }
+  50% { background-color: #ffb3b3; }
+  100% { background-color: #ffe6e6; }
+}

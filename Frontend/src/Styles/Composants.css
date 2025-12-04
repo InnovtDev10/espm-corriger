@@ -1,0 +1,74 @@
+.header{
+    height: 10vh;
+    width: 100%;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 0 5px gray;
+}
+
+.sidebar{
+    max-height: 85vh;
+    width: 100%;
+    background-color: white;
+    border-radius: 5px;
+    overflow-y: auto;
+    position: relative; 
+}
+
+
+
+.article{
+    width: 100%;
+    background-color: white;
+    height: 85vh;
+    border-radius: 10px;
+}
+.Note{
+    width: 100%;
+    background-color: white;
+    height: 80vh;
+    border-radius: 10px;   
+}
+
+.header .logo{
+    float: left !important;
+    width: auto;
+    padding-left: 2%;
+}
+.header .compte{
+    float: right !important;
+    width: auto;
+    padding-right: 2% !important;
+}
+
+.pdc{
+    height: 10vh;
+    width: 100%;
+    border-radius: 10px;
+    background-color: rgb(12, 161, 52);
+}
+.pdp {
+    height: 3cm;
+    width: 3cm;
+    border-radius: 50%;
+    box-shadow: 0 0 5px gray;
+
+    margin-top: -11vh;
+    background-color: white;
+ margin-bottom: 20px;
+    overflow: hidden; 
+  
+    margin-left: 85px;
+}
+
+.profile-pic {
+    width: 100%; 
+    height: 100%;
+    object-fit: cover; 
+    
+}
+
+.menu button{
+    width: 100%;
+    text-align: left !important;
+}

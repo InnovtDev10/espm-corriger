@@ -1,0 +1,139 @@
+.contenu2 {
+    background: #fff;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.btnAjout {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.filtre {
+    display: flex;
+    gap: 10px;
+}
+
+.filtre input, .filtre select {
+    max-width: 200px;
+}
+
+
+.table-container {
+    max-height: 30vh !important;  /* Hauteur du conteneur ajustable */
+    overflow-y: auto;  /* Permet le scroll vertical quand le contenu dépasse la hauteur */
+    padding: 20px;
+    background-color: #fff; /* Pour une meilleure visibilité */
+    border-radius: 8px; /* Arrondir les coins du conteneur */
+}
+
+.custom-table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: auto;
+}
+
+.custom-table th,
+.custom-table td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+    border: none; /* Supprime toutes les bordures */
+    padding: 10px;
+    text-align: left;
+}
+
+.custom-table th {
+    background: #28a745;
+    color: white;
+}
+
+.status.active {
+    color: green;
+}
+
+.status.inactive {
+    color: red;
+}
+
+.btn-edit,
+.btn-delete {
+    margin: 5px;
+    padding: 5px 10px;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.btn-edit {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.btn-delete {
+    background-color: #f44336;
+    color: white;
+}
+/* Stylisation des champs de saisie dans le modal */
+.custom-input {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 15px;
+    font-size: 16px;
+    width: 100%;
+}
+
+.custom-input:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.modal-body {
+    padding: 20px;
+}
+
+.modal-footer {
+    display: flex;
+    justify-content: space-between;
+}
+
+.btn-edit,
+.btn-delete {
+    margin: 0 5px;
+}
+.action-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.btn-icon {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-edit {
+    color: #007bff;
+}
+
+.btn-delete {
+    color: #dc3545;
+}
+
+.btn-icon:hover {
+    opacity: 0.7;
+}
+
+.user-photo {
+    width: 50px; 
+    height: 50px; 
+    object-fit: cover; 
+    border-radius: 50%; 
+}
+

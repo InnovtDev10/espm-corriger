@@ -1,0 +1,159 @@
+
+  /* Carte étudiant avec hauteur réduite */
+  .student-card {
+    display: flex;
+    align-items: center;
+    background: #fff;
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 15px;
+    min-height: 60px;
+    margin-top: 5px;
+  }
+
+  
+  .student-details p {
+    margin: 0;
+    font-size: 14px;
+    color: #333;
+  }
+  
+  /* Tableau des notes */
+  .table-wrapper {
+    max-width: 100%;
+    overflow-x: auto;
+  }
+  
+  .note-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 5px;
+    min-width: 600px;
+  }
+  
+  .note-table th, 
+  .note-table td {
+    border: 1px solid #ddd;
+    
+    text-align: left;
+    white-space: nowrap;
+  }
+  
+  .note-table th {
+    background: #198754; 
+    color: white;
+    font-weight: bold;
+  }
+  
+  .stage-name {
+    font-weight: bold;
+  }
+  
+  .note-duration {
+    text-align: center;
+    color: #555;
+  }
+  
+  /* Champs de note */
+  .note-input {
+   width: 70%;
+    text-align: center;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 5px;
+ 
+  }
+   
+  .note-input:focus {
+    border-color: #007bff;
+    outline: none;
+  }
+  
+  /* Boutons */
+  .btn-container {
+    margin-top: 20px;
+    display: flex;
+    justify-content: flex-end;
+  }
+  
+  .btn-lg {
+    padding: 8px 16px;
+    font-size: 14px;
+  }
+  
+  .btn-success {
+    background-color: #28a745;
+    border: none;
+  }
+  
+  .btn-danger {
+    background-color: #b1abac;
+    border: none;
+  }
+  
+  .btn-success:hover, 
+  .btn-danger:hover {
+    opacity: 0.85;
+  }
+  
+
+  .note-table td, 
+.note-table th {
+  padding: 5px; /* Réduit l'espace intérieur */
+  line-height: 1; /* Ajuste la hauteur de ligne */
+  font-size: 14px; /* Optionnel : réduit la taille du texte */
+  height: 30px; /* Définit une hauteur spécifique */
+}
+
+
+
+/* Réduire la taille des cellules pour les rapports */
+.table1 th, .table1 td {
+  padding: 8px; /* Réduire la taille du padding */
+  text-align: center; /* Centrer le texte dans les cellules */
+}
+
+.table1 td {
+  max-width: 250px; /* Limiter la largeur des cellules de rapport */
+}
+
+/* Agrandir la taille des checkboxes */
+.form-check-input {
+  transform: scale(1.5); /* Augmenter la taille du checkbox */
+  margin-left: auto; /* Centrer horizontalement */
+  margin-right: auto; /* Centrer horizontalement */
+}
+
+/* Centrer le contenu des cases à cocher */
+.table1 td input[type="checkbox"] {
+  display: block;
+  margin: 0 auto;
+}
+
+/* Centrer le texte dans les cellules de la table */
+.table1 .stage-name {
+  text-align: center;
+}
+
+
+
+
+/* Ajuster la taille des checkboxes */
+.table1 td input[type="checkbox"] {
+  transform: scale(1.5); /* Agrandir le checkbox */
+  display: block;
+  margin: 0 auto; /* Centrer horizontalement */
+}
+.total-moyenne-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%; /* Prend toute la largeur */
+  margin-top: 20px;
+}
+
+.total-moyenne-actions {
+  display: flex;
+  gap: 10px; /* Espace entre les boutons */
+}

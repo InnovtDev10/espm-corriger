@@ -1,0 +1,457 @@
+
+/* Activer le scroll lorsque plus de 3 natures sont ajoutées */
+.modal-body-scroll {
+  max-height: 600px;
+  overflow-y: auto;
+}
+
+/* Améliorer la disposition des boutons */
+button {
+  min-width: 160px;
+}
+
+button + button {
+  margin-left: 10px;
+}
+
+/* Aligner les boutons sur la même ligne */
+.d-flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+button.me-2 {
+  margin-right: 10px;
+}
+
+
+
+
+
+
+/* Conteneur principal */
+.gestion-container {
+    display: flex;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+/* Formulaire d'affectation */
+.affectation-form {
+    flex: 1;
+    padding: 20px;
+    border-radius: 8px;
+    background: white;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.affectation-form h5 {
+    margin-bottom: 15px;
+    font-weight: bold;
+}
+
+.affectation-form .form-control {
+    margin-bottom: 10px;
+}
+
+.affectation-form .btn {
+    width: 100%;
+}
+
+/* Formulaire d'ajout de notes */
+.note-form {
+    flex: 1;
+    padding: 20px;
+    border-radius: 8px;
+    background: white;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.note-form h5 {
+    margin-bottom: 15px;
+    font-weight: bold;
+}
+
+.note-form .form-control {
+    margin-bottom: 10px;
+}
+select.form-control {
+  width: 100%;
+}
+
+
+.note-form .btn {
+    width: 100%;
+}
+
+/* Tableau des affectations et notes */
+.historique-container {
+    margin-top: 20px;
+    padding: 20px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    overflow-x: auto;
+}
+
+.historique-container h5 {
+    margin-bottom: 15px;
+    font-weight: bold;
+}
+
+/* Tableau stylisé */
+.historique-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.historique-table th, .historique-table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.historique-table thead {
+    background: #198754;
+    color: white;
+}
+
+.historique-table tbody tr:hover {
+    background: rgba(40, 167, 69, 0.1);
+}
+
+/* Boutons d'action */
+.edit-btn, .delete-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    margin-right: 5px;
+}
+
+.edit-btn i {
+    color: #007bff;
+}
+
+.delete-btn i { 
+    color: red;
+}
+
+.edit-btn:hover i {
+    color: #0056b3;
+}
+
+.delete-btn:hover i {
+    color: darkred;
+}
+/* Conteneur principal */
+.gestion-etudiants-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Section des formulaires */
+.form-section {
+    display: flex;
+    gap: 20px;
+}
+
+/* Formulaires */
+.affectation-form, .note-form {
+    flex: 1;
+    padding: 20px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Titre des formulaires */
+.affectation-form h5, .note-form h5 {
+    margin-bottom: 15px;
+    font-weight: bold;
+}
+
+/* Disposition des champs dans l'affectation */
+.affectation-content {
+    display: flex;
+    gap: 20px;
+}
+
+.affectation-left, .affectation-right {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* Bouton dans le formulaire d'affectation */
+.affectation-right .btn {
+    margin-top: auto;
+}
+
+/* Tableau d'historique */
+.historique-table {
+    padding: 20px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    overflow-x: auto;
+}
+
+.historique-table table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.historique-table th, .historique-table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.historique-table thead {
+    background: #198754;
+    color: white;
+}
+
+.historique-table tbody tr:hover {
+    background: rgba(40, 167, 69, 0.1);
+}
+.note-form {
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  .note-content {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+  }
+  
+  .note-left, .note-right {
+    width: 48%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  /* Responsive: une seule colonne en mobile */
+  @media (max-width: 768px) {
+    .note-content {
+      flex-direction: column;
+    }
+    
+    .note-left, .note-right {
+      width: 100%;
+    }
+  }
+  .filters {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+  
+  .filters input {
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+
+
+  /* Ajoute un grand espace avant le tableau */
+.historique-container {
+    margin-top: 10px; /* Ajuste l’espace selon ton besoin */
+}
+
+
+.note-button-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 20px; /* Espace avant le bouton */
+}
+
+.btn-primary {
+  padding: 10px 20px;
+  font-size: 16px;
+}
+
+
+  
+  /* Organisation des notes */
+  .note-container {
+    display: grid;
+    grid-template-rows: auto auto auto;
+    gap: 15px;
+    padding: 15px;
+    background: #f8f9fa;
+    border-radius: 8px;
+  }
+  
+  .note-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 10px;
+  }
+  
+  .note-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    width: 32%;
+    min-width: 250px;
+  }
+  
+  .note-input {
+    width: 70px;
+    text-align: center;
+  }
+  
+  .stage-name {
+    font-weight: bold;
+    flex: 1;
+  }
+  
+  .btn-enregistrer {
+    text-align: center;
+    margin-top: 10px;
+  }
+
+  .note-footer {
+    text-align: center;  /* Centre le bouton */
+    margin-top: 15px;    /* Espacement avec le formulaire */
+  }
+
+  .obs {
+    color: #198754;
+    width: 2rem;
+    height: 2rem;
+    cursor: pointer;
+  }
+
+  .obs:hover {
+    color: #26d885;
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+
+  .obsbtn {
+    background-color: #ccc;
+    border: none;
+    border-radius: 10%;
+  }
+  
+  .stage-name {
+    font-weight: bold;
+  }
+
+
+  .historique-table {
+    max-width: 100%;
+    overflow-x: auto;
+  }
+  
+  .table-niveaus {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .table-niveaus th, 
+  .table-niveaus td {
+    padding: 6px;
+    font-size: 14px;
+    white-space: nowrap;
+    text-align: center;
+    border: 1px solid #ddd;
+  }
+  
+  .table-niveaus td {
+    max-height: 40px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  
+  .table-niveaus td.observation-cell {
+    max-height: 40px;
+    overflow-y: auto;
+  }
+  .filters {
+    display: flex;
+    justify-content: flex-end; /* Aligner les filtres à droite */
+    gap: 10px; /* Espacement entre les filtres */
+    margin-bottom: 15px;
+  }
+  
+  .filter-input,
+  .filter-select {
+    height: 40px; /* Hauteur uniforme */
+    width: 200px; /* Largeur uniforme */
+    padding: 5px 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+  }
+  
+  .filter-input {
+    width: 250px; /* Un peu plus large pour la recherche */
+  }
+  
+  .filter-select {
+    background-color: #fff;
+    cursor: pointer;
+  }
+  
+  /* Style au survol */
+  .filter-select:hover,
+  .filter-input:hover {
+    border-color: #007bff;
+  }
+  .table-container {
+  max-height: 200px; /* Ajustable selon la hauteur de tes lignes */
+  overflow-y: auto;
+  border: 1px solid #ddd;
+}
+
+.table-niveaus {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table-niveaus thead {
+  position: sticky;
+  top: 0;
+  background-color: white;
+  z-index: 2;
+}
+
+.table-niveaus tbody {
+  display: block;
+  max-height: 150px; /* Limite à environ 3 lignes */
+  overflow-y: auto;
+}
+
+.table-niveaus tr {
+  display: table;
+  width: 100%;
+  table-layout: fixed;
+}
+
+.table-niveaus th, 
+.table-niveaus td {
+  padding: 8px;
+  border: 1px solid #ddd;
+  text-align: left;
+}
+
+
+
+.button-container{
+  align-self: flex-end; /* Aligne le bouton en bas */
+  margin-top: 10px; /* Un peu d’espace au-dessus du bouton */
+  width: 100%; /* Ajuste la largeur du bouton */
+  max-width: 100%; /* Taille maximale du bouton */
+}

@@ -1,0 +1,885 @@
+import React, { useState, useEffect } from "react";
+import "../Styles/ClasseTable.css";
+import Swal from "sweetalert2";
+import { Modal, Button } from "react-bootstrap";
+import axios from "axios";
+import { FaMoneyBillTrendUp } from "react-icons/fa6";
+import jsPDF from "jspdf";
+import Logo from "../assets/logo1.png";
+
+function FraisTable() {
+  const [searchNom, setSearchNom] = useState("");
+  const [searchPrenom, setSearchPrenom] = useState("");
+  const [searchNiveau, setSearchNiveau] = useState("");
+  const [searchSpecialite, setSearchSpecialite] = useState("");
+  const [showModal, setShowModal] = useState(false);
+  const [showModalEdit, setShowModalEdit] = useState(false);
+  const [students, setStudents] = useState([]);
+  const [frais, setFrais] = useState([]);
+  const [payments, setPayments] = useState([]);
+
+  const [matricule, setMatricule] = useState("");
+  const [nom, setNom] = useState("");
+  const [prenom, setPrenom] = useState("");
+  const [niveau, setNiveau] = useState("");
+  const [filiere, setFiliere] = useState("");
+  const [nomFrais, setNomFrais] = useState("");
+  const [montantFrais, setMontantFrais] = useState("");
+  const [montantPaye, setMontantPaye] = useState("");
+  const [montantReste, setMontantReste] = useState("");
+  const [anneeUniv, setAnneeUniv] = useState("");
+  const [modePaiement, setModePaiement] = useState("");
+  const [editPaymentId, setEditPaymentId] = useState(null);
+  const [filteredStudents, setFilteredStudents] = useState([]);
+  const [fraisData, setFraisData] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:5000/api/paiement/frais/all")
+      .then((res) => setPayments(res.data));
+    axios
+      .get("http://localhost:5000/api/etudiant/tous")
+      .then((res) => setStudents(res.data));
+    axios
+      .get("http://localhost:5000/api/frais/tous")
+      .then((res) => setFrais(res.data));
+  }, []);
+
+  useEffect(() => {
+    if (matricule) {
+      const student = students.find((s) => s.matricule === matricule);
+      if (student) {
+        setNom(student.nom);
+        setPrenom(student.prenom);
+        setNiveau(student.niveau);
+        setFiliere(student.filiere);
+
+        const filteredFrais = frais.filter((f) => {
+          const niveaux = f.niveau.flatMap((n) =>
+            n.split(",").map((niv) => niv.trim().toLowerCase())
+          );
+          const specialites = f.specialite.flatMap((s) =>
+            s.split(",").map((spec) => spec.trim().toLowerCase())
+          );
+          return (
+            niveaux.includes(student.niveau.toLowerCase()) &&
+            specialites.includes(student.filiere.toLowerCase())
+          );
+        });
+
+        setFraisData(filteredFrais);
+      }
+    }
+  }, [matricule, students, frais]);
+
+  useEffect(() => {
+    if (nomFrais) {
+      const selectedFrais = fraisData.find((f) => f.nom === nomFrais);
+      if (selectedFrais) {
+        setMontantFrais(selectedFrais.montant);
+      } else {
+        setMontantFrais("");
+      }
+    }
+  }, [nomFrais, fraisData]);
+
+  const handleEditPayment = (payment) => {
+    setEditPaymentId(payment.id);
+    setMatricule(payment.matricule);
+    setNom(payment.nom);
+    setPrenom(payment.prenom);
+    setNiveau(payment.niveau);
+    setFiliere(payment.filiere);
+    setNomFrais(payment.nomFrais);
+    setMontantFrais(payment.montant);
+    setMontantPaye(payment.montantPayer);
+    setMontantReste(payment.montantReste);
+    setAnneeUniv(payment.anneeUniv);
+    setModePaiement(payment.modePaiement);
+    setShowModalEdit(true);
+  };
+
+  const handlePaymentSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const montantReste = montantFrais - montantPaye;
+
+      const paymentData = {
+        matricule,
+        nom,
+        prenom,
+        niveau,
+        filiere,
+        nomFrais,
+        montant: montantFrais,
+        montantPayer: montantPaye,
+        montantReste,
+        anneeUniv,
+        modePaiement,
+      };
+
+      await axios.post(
+        "http://localhost:5000/api/paiement/frais/add",
+        paymentData
+      );
+
+      Swal.fire({
+        title: "Succès!",
+        text: "Le paiement a été effectué avec succès.",
+        icon: "success",
+        confirmButtonText: "OK",
+      });
+
+      generateReceipt(paymentData);
+      window.location.reload(); // Maintenant paymentData est défini
+      setShowModal(false);
+    } catch (error) {
+      console.error("Erreur lors de l'ajout du paiement :", error); // Ajout du log
+      Swal.fire({
+        title: "Erreur!",
+        text: "Une erreur est survenue lors de l'ajout du paiement.",
+        icon: "error",
+        confirmButtonText: "OK",
+      });
+    }
+  };
+
+  const handleUpdateFrais = async (e) => {
+    e.preventDefault();
+
+    // Convertir les montants en nombres
+    const montantPayeFloat = parseFloat(montantPaye);
+    const montantResteFloat = parseFloat(montantReste);
+
+    // Mettre à jour montantPaye en ajoutant montantReste
+    const updatedMontantPaye = montantPayeFloat + montantResteFloat;
+
+    // Réinitialiser montantReste à 0
+    const updatedMontantReste = 0;
+
+    const fraisData = {
+      matricule,
+      nom,
+      prenom,
+      niveau,
+      filiere,
+      nomFrais,
+      montant: parseFloat(montantFrais),
+      montantPayer: updatedMontantPaye,
+      montantReste: updatedMontantReste,
+      anneeUniv,
+      modePaiement,
+    };
+
+    try {
+      const response = await axios.put(
+        `http://localhost:5000/api/paiement/frais/update/${editPaymentId}`,
+        fraisData
+      );
+
+      const data = response.data;
+
+      if (response.status === 200) {
+        Swal.fire({
+          title: "Succès!",
+          text: data.message,
+          icon: "success",
+          confirmButtonText: "OK",
+        });
+        generateReceipt2(fraisData);
+        window.location.reload();
+        setShowModalEdit(false);
+      } else {
+        Swal.fire({
+          title: "Erreur!",
+          text: data.message || "Erreur lors de la mise à jour du paiement.",
+          icon: "error",
+          confirmButtonText: "OK",
+        });
+      }
+    } catch (error) {
+      console.error("Erreur lors de la mise à jour du paiement:", error);
+      Swal.fire({
+        title: "Erreur!",
+        text: "Erreur de connexion avec le serveur.",
+        icon: "error",
+        confirmButtonText: "OK",
+      });
+    }
+  };
+
+  const generateReceipt = (paymentData) => {
+    const doc = new jsPDF({
+      orientation: "portrait",
+      unit: "mm",
+      format: [80, 230], // Taille de la page
+    });
+
+    // Génération du numéro de facture
+    const invoiceNumber = `F00 ${Math.floor(Math.random() * 10000) + 1}`;
+
+    // Ajout du logo (Hauteur augmentée)
+    doc.addImage(Logo, "PNG", 20, 10, 40, 30); // Largeur 40mm, Hauteur 30mm
+
+    // Titre du reçu
+    doc.setFont("helvetica", "bold");
+    doc.setFontSize(12);
+    doc.setTextColor("#000000");
+    doc.text("REÇU DE PAIEMENT", 40, 50, { align: "center" });
+
+    // Infos du reçu
+    doc.setFontSize(9);
+    doc.setTextColor("#000000");
+
+    // Formater la date en "Mardi 20 Mars 2025"
+    const formattedDate = new Date().toLocaleDateString("fr-FR", {
+      weekday: "long", // Jour de la semaine (Mardi)
+      day: "numeric", // Jour (20)
+      month: "long", // Mois (Mars)
+      year: "numeric", // Année (2025)
+    });
+
+    // Centrer la date et le numéro de facture
+    doc.text(`Facture: ${invoiceNumber}`, 40, 58, { align: "center" });
+    doc.text(`Date: ${formattedDate}`, 40, 64, { align: "center" });
+
+    doc.line(5, 68, 75, 68); // Séparation horizontale
+
+    // Informations de l'étudiant
+    doc.setFontSize(9);
+    doc.setFont("helvetica", "bold");
+    doc.text("Informations Étudiant", 10, 74);
+    doc.setFont("helvetica", "normal");
+    doc.text(`Matricule: ${paymentData.matricule}`, 10, 80);
+    doc.text(`Nom & Prenom: ${paymentData.nom} ${paymentData.prenom}`, 10, 86);
+    doc.text(`Niveau: ${paymentData.niveau}`, 10, 92);
+    doc.text(`Spécialité: ${paymentData.filiere}`, 10, 98);
+    doc.text(`Année Académique: ${paymentData.anneeUniv}`, 10, 104);
+    doc.line(5, 108, 75, 108); // Séparation horizontale
+
+    // Détails du paiement
+    doc.setFontSize(9);
+    doc.setFont("helvetica", "bold");
+    doc.text("Détails du Paiement", 10, 114);
+
+    // Tableau des paiements avec bordures X et Y
+    const colX = [10, 35, 60]; // Position des colonnes
+    const rowHeight = 6;
+    let posY = 120;
+
+    // En-tête du tableau avec bordures et fond gris
+    doc.setFillColor(230, 230, 230); // Fond gris clair
+    doc.rect(5, posY - 4, 70, rowHeight, "F"); // Fond gris
+    doc.rect(5, posY - 4, 70, rowHeight); // Bordure du haut
+    doc.text("Description", colX[0], posY);
+    doc.text("Montant", colX[1], posY);
+    doc.text("Paiement", colX[2], posY);
+    posY += rowHeight;
+
+    // Contenu du tableau avec bordures X et Y
+    const tableData = [
+      [
+        paymentData.nomFrais,
+        `${paymentData.montant} Ar`,
+        `${paymentData.modePaiement}`,
+      ], // Remplacer "Autres Frais" par le nom du frais
+      ["Montant payé", `${paymentData.montantPayer} Ar`, ""], // Montant payé
+      // Ajout de la ligne pour le montant restant si le montant reste existe
+      paymentData.montantReste
+        ? ["Montant restant", `${paymentData.montantReste} Ar`, ""]
+        : [],
+    ];
+
+    // Supprimer la ligne vide si le montant restant n'existe pas
+    const filteredTableData = tableData.filter((row) => row.length > 0);
+
+    console.log(filteredTableData);
+
+    doc.setFont("helvetica", "normal");
+    filteredTableData.forEach((row) => {
+      doc.rect(5, posY - 4, 70, rowHeight); // Bordure pour chaque ligne
+      doc.text(row[0], colX[0], posY);
+      doc.text(row[1], colX[1], posY);
+      doc.text(row[2], colX[2], posY);
+      posY += rowHeight;
+    });
+
+    // Ajouter le message de remerciement
+    doc.setFontSize(10);
+    doc.setFont("helvetica", "bold");
+    doc.setTextColor("#2C3E50"); // Couleur du texte en noir foncé
+    const thanksMessage = "Merci de votre paiement !";
+    const thanksMessageWidth = doc.getTextWidth(thanksMessage); // Calcul de la largeur du texte
+    const thanksMessageX = (80 - thanksMessageWidth) / 2; // Calcul du X pour centrer
+    doc.text(thanksMessage, thanksMessageX, posY + 20);
+
+    // Ajout d'une ligne de séparation pour structurer l'élément
+    doc.setDrawColor(44, 62, 80); // Couleur gris foncé
+    doc.line(5, posY + 25, 75, posY + 25); // Ligne de séparation sous le message
+
+    // Placer le slogan en bas (footer)
+    doc.setFontSize(6);
+    doc.setFont("helvetica", "bold");
+    doc.setTextColor("#16A085"); // Couleur vert pour le slogan ou le message complémentaire
+    const footerMessage = "I.U.M - MADAGASCAR DEVELOPPEMENT FORMATION";
+    const footerMessageWidth = doc.getTextWidth(footerMessage); // Calcul de la largeur du texte du footer
+    const footerMessageX = (80 - footerMessageWidth) / 2; // Calcul du X pour centrer
+    doc.text(footerMessage, footerMessageX, 225); // Footer centré
+
+    // Convertir en blob et imprimer avec window.print
+    const pdfBlob = doc.output("blob");
+    const pdfUrl = URL.createObjectURL(pdfBlob);
+    const printWindow = window.open(pdfUrl);
+
+    if (printWindow) {
+      printWindow.onload = () => {
+        printWindow.focus();
+        printWindow.print(); // Utilisation de window.print pour l'impression
+      };
+    }
+  };
+
+  const generateReceipt2 = (fraisData) => {
+    const doc = new jsPDF({
+      orientation: "portrait",
+      unit: "mm",
+      format: [80, 230], // Taille de la page
+    });
+
+    // Génération du numéro de facture
+    const invoiceNumber = `FR0 ${Math.floor(Math.random() * 10000) + 1}`;
+
+    // Ajout du logo (Hauteur augmentée)
+    doc.addImage(Logo, "PNG", 20, 10, 40, 30); // Largeur 40mm, Hauteur 30mm
+
+    // Titre du reçu
+    doc.setFont("helvetica", "bold");
+    doc.setFontSize(12);
+    doc.setTextColor("#000000");
+    doc.text("REÇU DE PAIEMENT", 40, 50, { align: "center" });
+
+    // Infos du reçu
+    doc.setFontSize(9);
+    doc.setTextColor("#000000");
+
+    // Formater la date en "Mardi 20 Mars 2025"
+    const formattedDate = new Date().toLocaleDateString("fr-FR", {
+      weekday: "long", // Jour de la semaine (Mardi)
+      day: "numeric", // Jour (20)
+      month: "long", // Mois (Mars)
+      year: "numeric", // Année (2025)
+    });
+
+    // Centrer la date et le numéro de facture
+    doc.text(`Facture: ${invoiceNumber}`, 40, 58, { align: "center" });
+    doc.text(`Date: ${formattedDate}`, 40, 64, { align: "center" });
+
+    doc.line(5, 68, 75, 68); // Séparation horizontale
+
+    // Informations de l'étudiant
+    doc.setFontSize(9);
+    doc.setFont("helvetica", "bold");
+    doc.text("Informations Étudiant", 10, 74);
+    doc.setFont("helvetica", "normal");
+    doc.text(`Matricule: ${fraisData.matricule}`, 10, 80);
+    doc.text(`Nom & Prenom: ${fraisData.nom} ${fraisData.prenom}`, 10, 86);
+    doc.text(`Niveau: ${fraisData.niveau}`, 10, 92);
+    doc.text(`Spécialité: ${fraisData.filiere}`, 10, 98);
+    doc.text(`Année Académique: ${fraisData.anneeUniv}`, 10, 104);
+    doc.line(5, 108, 75, 108); // Séparation horizontale
+
+    // Détails des frais
+    doc.setFontSize(9);
+    doc.setFont("helvetica", "bold");
+    doc.text("Détails des Frais", 10, 114);
+
+    // Tableau des frais avec bordures X et Y
+    const colX = [10, 35, 60]; // Position des colonnes
+    const rowHeight = 6;
+    let posY = 120;
+
+    // En-tête du tableau avec bordures et fond gris
+    doc.setFillColor(230, 230, 230); // Fond gris clair
+    doc.rect(5, posY - 4, 70, rowHeight, "F"); // Fond gris
+    doc.rect(5, posY - 4, 70, rowHeight); // Bordure du haut
+    doc.text("Description", colX[0], posY);
+    doc.text("Montant", colX[1], posY);
+    doc.text("Paiement", colX[2], posY);
+    posY += rowHeight;
+
+    // Contenu du tableau avec bordures X et Y
+    const tableData = [
+      [
+        fraisData.nomFrais,
+        `${fraisData.montant} Ar`,
+        `${fraisData.modePaiement}`,
+      ],
+      ["Montant payé", `${fraisData.montantPayer} Ar`, ""], // Montant payé
+      // Ajout de la ligne pour le montant restant si le montant reste existe
+      fraisData.montantReste
+        ? ["Montant restant", `${fraisData.montantReste} Ar`, ""]
+        : [],
+    ];
+
+    // Supprimer la ligne vide si le montant restant n'existe pas
+    const filteredTableData = tableData.filter((row) => row.length > 0);
+
+    doc.setFont("helvetica", "normal");
+    filteredTableData.forEach((row) => {
+      doc.rect(5, posY - 4, 70, rowHeight); // Bordure pour chaque ligne
+      doc.text(row[0], colX[0], posY);
+      doc.text(row[1], colX[1], posY);
+      doc.text(row[2], colX[2], posY);
+      posY += rowHeight;
+    });
+
+    // Ajouter le message de remerciement
+    doc.setFontSize(10);
+    doc.setFont("helvetica", "bold");
+    doc.setTextColor("#2C3E50"); // Couleur du texte en noir foncé
+    const thanksMessage = "Merci de votre paiement !";
+    const thanksMessageWidth = doc.getTextWidth(thanksMessage); // Calcul de la largeur du texte
+    const thanksMessageX = (80 - thanksMessageWidth) / 2; // Calcul du X pour centrer
+    doc.text(thanksMessage, thanksMessageX, posY + 20);
+
+    // Ajout d'une ligne de séparation pour structurer l'élément
+    doc.setDrawColor(44, 62, 80); // Couleur gris foncé
+    doc.line(5, posY + 25, 75, posY + 25); // Ligne de séparation sous le message
+
+    // Placer le slogan en bas (footer)
+    doc.setFontSize(6);
+    doc.setFont("helvetica", "bold");
+    doc.setTextColor("#16A085"); // Couleur vert pour le slogan ou le message complémentaire
+    const footerMessage = "I.U.M - MADAGASCAR DEVELOPPEMENT FORMATION";
+    const footerMessageWidth = doc.getTextWidth(footerMessage); // Calcul de la largeur du texte du footer
+    const footerMessageX = (80 - footerMessageWidth) / 2; // Calcul du X pour centrer
+    doc.text(footerMessage, footerMessageX, 225); // Footer centré
+
+    // Convertir en blob et imprimer avec window.print
+    const pdfBlob = doc.output("blob");
+    const pdfUrl = URL.createObjectURL(pdfBlob);
+    const printWindow = window.open(pdfUrl);
+
+    if (printWindow) {
+      printWindow.onload = () => {
+        printWindow.focus();
+        printWindow.print(); // Utilisation de window.print pour l'impression
+      };
+    }
+  };
+
+  return (
+    <div className="note-table-container">
+      <h5 className="fw-bold">Liste des étudiants</h5>
+      <div className="note-filters-container">
+        <div className="note-filters">
+          <input
+            type="text"
+            placeholder="Recherche par nom"
+            className="form-control"
+            value={searchNom}
+            onChange={(e) => setSearchNom(e.target.value)}
+          />
+          <input
+            type="text"
+            placeholder="Recherche par prénom"
+            className="form-control"
+            value={searchPrenom}
+            onChange={(e) => setSearchPrenom(e.target.value)}
+          />
+          <select
+            className="form-control"
+            value={searchNiveau}
+            onChange={(e) => setSearchNiveau(e.target.value)}
+          >
+            <option value="">Tous les niveaux</option>
+            <option value="L1">L1</option>
+            <option value="L2">L2</option>
+            <option value="L3">L3</option>
+            <option value="M1">M1</option>
+          <option value="M2">M2</option>
+          </select>
+        </div>
+
+        <Button
+          className="payment-btn"
+          variant="success"
+          onClick={() => setShowModal(true)}
+        >
+          <i className="fas fa-money-bill-wave"></i> Paiement Frais
+        </Button>
+      </div>
+
+      <div className="table-responsive">
+        <table className="niveau-table">
+          <thead>
+            <tr>
+              <th>Matricule</th>
+              <th>Nom</th>
+              <th>Prénom</th>
+              <th>Niveau</th>
+              <th>Spécialité</th>
+              <th>Nom Frais</th>
+              <th>Montant</th>
+              <th>Déja payer</th>
+              <th>Reste à payer</th>
+              <th>Année Universitaire</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            {payments
+              .filter((payment) => {
+                return (
+                  payment.nom.toLowerCase().includes(searchNom.toLowerCase()) &&
+                  payment.prenom
+                    .toLowerCase()
+                    .includes(searchPrenom.toLowerCase()) &&
+                  (searchNiveau
+                    ? payment.niveau.some((n) => n.includes(searchNiveau))
+                    : true) &&
+                  (searchSpecialite
+                    ? payment.specialite.some((s) =>
+                        s.includes(searchSpecialite)
+                      )
+                    : true)
+                );
+              })
+              .map((payment, index) => (
+                <tr key={index}>
+                  <td>{payment.matricule}</td>
+                  <td>{payment.nom}</td>
+                  <td>{payment.prenom}</td>
+                  <td>{payment.niveau}</td>
+                  <td>{payment.filiere}</td>
+                  <td>{payment.nomFrais}</td>
+                  <td>{payment.montant} Ar</td>
+                  <td>{payment.montantPayer} Ar</td>
+                  <td>{payment.montantReste} Ar</td>
+                  <td>{payment.anneeUniv} </td>
+                  <td>
+                    {payment.montantReste > 0 && (
+                      <Button
+                        variant="warning"
+                        onClick={() => handleEditPayment(payment)}
+                      >
+                        <FaMoneyBillTrendUp style={{ marginRight: "5px" }} />{" "}
+                        Completer
+                      </Button>
+                    )}
+                  </td>
+                </tr>
+              ))}
+          </tbody>
+        </table>
+      </div>
+
+      <Modal show={showModal} onHide={() => setShowModal(false)} centered>
+        <Modal.Header closeButton>
+          <Modal.Title>Effectuer un Paiement</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <div className="container">
+            <div className="row">
+              {/* Colonne 1 */}
+              <div className="col-md-6">
+                <div className="mb-3">
+                  <div className="position-relative w-100">
+                    <input
+                      type="text"
+                      className="form-control"
+                      placeholder="Rechercher un matricule..."
+                      value={matricule}
+                      onChange={(e) => {
+                        setMatricule(e.target.value);
+                        setFilteredStudents(
+                          students.filter((student) =>
+                            student.matricule
+                              .toLowerCase()
+                              .includes(e.target.value.toLowerCase())
+                          )
+                        );
+                      }}
+                      onFocus={() => setFilteredStudents(students)}
+                    />
+                    {filteredStudents.length > 0 && (
+                      <ul
+                        className="list-group position-absolute w-100"
+                        style={{
+                          zIndex: 1000,
+                          maxHeight: "150px",
+                          overflowY: "auto",
+                        }}
+                      >
+                        {filteredStudents.slice(0, 5).map((student) => (
+                          <li
+                            key={student.matricule}
+                            className="list-group-item list-group-item-action"
+                            onClick={() => {
+                              setMatricule(student.matricule);
+                              setFilteredStudents([]); // Masquer la liste après sélection
+                            }}
+                          >
+                            {student.matricule}
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+                  </div>
+                </div>
+                <div className="mb-3">
+                  <input
+                    type="text"
+                    className="form-control"
+                    placeholder="Nom"
+                    value={nom}
+                    onChange={(e) => setNom(e.target.value)}
+                  />
+                </div>
+                <div className="mb-3">
+                  <input
+                    type="text"
+                    className="form-control"
+                    placeholder="Prénom"
+                    value={prenom}
+                    onChange={(e) => setPrenom(e.target.value)}
+                  />
+                </div>
+                <div className="mb-3">
+                  <input
+                    type="text"
+                    className="form-control"
+                    placeholder="Niveau"
+                    value={niveau}
+                    onChange={(e) => setNiveau(e.target.value)}
+                  />
+                </div>
+                <div className="mb-3">
+                  <input
+                    type="text"
+                    className="form-control"
+                    placeholder="Parcours"
+                    value={filiere}
+                    onChange={(e) => setFiliere(e.target.value)}
+                  />
+                </div>
+              </div>
+
+              {/* Colonne 2 */}
+              <div className="col-md-6">
+                <div className="mb-3">
+                  <select
+                    className="form-control"
+                    id="fraisSelect"
+                    value={nomFrais}
+                    onChange={(e) => setNomFrais(e.target.value)}
+                  >
+                    <option value="">Sélectionnez un frais</option>
+                    {fraisData.map((fraisItem, index) => (
+                      <option key={index} value={fraisItem.nom}>
+                        {fraisItem.nom}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+                <div className="mb-3">
+                  <input
+                    type="text"
+                    className="form-control"
+                    placeholder="Montant"
+                    value={montantFrais ? `${montantFrais} Ar` : ""}
+                    readOnly
+                  />
+                </div>
+                <div className="mb-3">
+                  <input
+                    type="text"
+                    className="form-control"
+                    placeholder="Montant payé"
+                    value={montantPaye}
+                    onChange={(e) => setMontantPaye(e.target.value)}
+                  />
+                </div>
+                <div className="mb-3">
+                  <input
+                    type="text"
+                    className="form-control"
+                    placeholder="Année Universitaire"
+                    value={anneeUniv}
+                    onChange={(e) => setAnneeUniv(e.target.value)}
+                  />
+                </div>
+                <label>Mode de paiement :</label>
+                <select
+                  className="form-control mb-3"
+                  value={modePaiement}
+                  onChange={(e) => setModePaiement(e.target.value)}
+                >
+                  <option value="">Sélectionner un mode de paiement</option>
+                  <option value="Virement">Virement</option>
+                  <option value="Chèque">Chèque</option>
+                  <option value="Espèces">Espèces</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={() => setShowModal(false)}>
+            Fermer
+          </Button>
+          <Button variant="success" onClick={handlePaymentSubmit}>
+            Valider le paiement
+          </Button>
+        </Modal.Footer>
+      </Modal>
+
+      {/*Modal pour completer paiement*/}
+      <Modal
+        show={showModalEdit}
+        onHide={() => setShowModalEdit(false)}
+        centered
+      >
+        <Modal.Header closeButton>
+          <Modal.Title>Completer Paiement</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <div className="container">
+            <div className="row">
+              {/* Colonne 1 */}
+              <div className="col-md-6">
+                <div className="mb-3">
+                  <div className="position-relative w-100">
+                    <input
+                      type="text"
+                      className="form-control"
+                      placeholder="Matricule"
+                      value={matricule}
+                      onChange={(e) => {
+                        setMatricule(e.target.value);
+                      }}
+                      readOnly
+                    />
+                  </div>
+                </div>
+                <div className="mb-3">
+                  <input
+                    type="text"
+                    className="form-control"
+                    placeholder="Nom"
+                    value={nom}
+                    onChange={(e) => setNom(e.target.value)}
+                    readOnly
+                  />
+                </div>
+                <div className="mb-3">
+                  <input
+                    type="text"
+                    className="form-control"
+                    placeholder="Prénom"
+                    value={prenom}
+                    onChange={(e) => setPrenom(e.target.value)}
+                    readOnly
+                  />
+                </div>
+                <div className="mb-3">
+                  <input
+                    type="text"
+                    className="form-control"
+                    placeholder="Niveau"
+                    value={niveau}
+                    onChange={(e) => setNiveau(e.target.value)}
+                    readOnly
+                  />
+                </div>
+                <div className="mb-3">
+                  <input
+                    type="text"
+                    className="form-control"
+                    placeholder="Parcours"
+                    value={filiere}
+                    onChange={(e) => setFiliere(e.target.value)}
+                    readOnly
+                  />
+                </div>
+              </div>
+
+              {/* Colonne 2 */}
+              <div className="col-md-6">
+                <div className="mb-3">
+                  <input
+                    type="text"
+                    className="form-control"
+                    placeholder="Nom Frais"
+                    value={nomFrais}
+                    readOnly
+                  />
+                </div>
+                <div className="mb-3">
+                  <input
+                    type="text"
+                    className="form-control"
+                    placeholder="Montant"
+                    value={montantFrais ? `${montantFrais} Ar` : ""}
+                    readOnly
+                  />
+                </div>
+                <div className="mb-3">
+                  <input
+                    type="text"
+                    className="form-control"
+                    placeholder="Montant payé"
+                    value={montantPaye}
+                    onChange={(e) => setMontantPaye(e.target.value)}
+                    readOnly
+                  />
+                </div>
+                <div className="mb-3">
+                  <input
+                    type="text"
+                    className="form-control"
+                    placeholder="Année Universitaire"
+                    value={anneeUniv}
+                    onChange={(e) => setAnneeUniv(e.target.value)}
+                    readOnly
+                  />
+                </div>
+                <div className="mb-3">
+                  <input
+                    type="text"
+                    className="form-control"
+                    placeholder="Montant Reste"
+                    value={montantReste}
+                    onChange={(e) => setMontantReste(e.target.value)}
+                    readOnly
+                  />
+                </div>
+                <label>Mode de paiement :</label>
+                <select
+                  className="form-control mb-3"
+                  value={modePaiement}
+                  onChange={(e) => setModePaiement(e.target.value)}
+                >
+                  <option value="">Sélectionner un mode de paiement</option>
+                  <option value="Virement">Virement</option>
+                  <option value="Chèque">Chèque</option>
+                  <option value="Espèces">Espèces</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={() => setShowModal(false)}>
+            Fermer
+          </Button>
+          <Button variant="success" onClick={handleUpdateFrais}>
+            Confirmer le paiement
+          </Button>
+        </Modal.Footer>
+      </Modal>
+    </div>
+  );
+}
+
+export default FraisTable;

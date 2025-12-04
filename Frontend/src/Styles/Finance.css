@@ -1,0 +1,500 @@
+
+.table2-tabledepense{
+  max-height: 5px !important;
+  overflow-y: auto;
+}
+.table2 th{
+  background-color: #227d37;
+  color: white;
+}
+
+
+.stat-card h5 {
+  font-size: 1rem;
+font-weight: bold;
+margin-top: 10px;
+}
+
+.stat-card p {
+  font-size: 1rem;
+  font-weight: bold;
+  color: #218838;
+}
+
+/* Mise en page et filtres */
+.filters {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.filters .form-control1 {
+  padding: 6px 10px;
+  font-size: 14px;
+  border-radius: 4px;
+  width: auto;
+  max-width: 200px;
+
+}
+
+.filters input {
+  width: 100%;
+}
+.header-section {
+  display: flex;
+  align-items: center; /* Alignement vertical des éléments */
+}
+
+.icon-btn {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+.icon-return {
+  font-size: 20px;
+  margin-right: 5px; /* Espacement entre la flèche et le titre */
+}
+
+h4.fw-bold {
+  margin: 0;
+  text-align: left !important; /* S'assure que le titre est aligné à gauche */
+}
+
+.export-btn {
+  margin-left: 15px; /* Un espace entre le titre et le bouton "Voir les Sorties" */
+}
+
+
+/* Boutons exportation */
+.export-btn {
+  background-color: #28a745;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  cursor: pointer;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.export-btn i {
+  font-size: 1.2rem;
+}
+
+.export-btn:hover {
+  background-color: #218838;
+}
+.payment-list {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  width: 100%; /* Vérifie que le conteneur prend toute la largeur disponible */
+}
+
+
+
+.stat-card h5 {
+  font-size: 15px;
+  margin-bottom: 10px;
+}
+
+.stat-card p {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+/* Conteneur pour les sections (statistiques, graphiques, paiements) */
+.main-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 20px;
+}
+
+/* Séparation entre les différentes sections */
+.stats-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* Quatre colonnes égales */
+  gap: 30px; /* Espacement entre les cartes */
+  margin-top: 10px;
+  margin-bottom: 10px; /* Séparation avec la table */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+  padding: 20px;
+  border-radius: 10px;
+
+}
+
+.stat-card {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow:2px 0px 4px 6px rgba(0, 0, 0, 0.1);
+  cursor: pointer; /* Ajout de l'ombre pour bien délimiter les cartes */
+}
+
+/* Ajustement de la table pour éviter qu'elle soit trop large */
+.payment-list {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+.table-container {
+  width: 100%;
+  overflow-x: auto; /* Permet de faire défiler horizontalement si nécessaire */
+  margin-top: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Ombre autour du tableau */
+}
+
+/* Espacement entre la table et les autres sections */
+.table-container {
+  margin-top: 20px; /* Espacement avec la section précédente */
+}
+
+/* Amélioration du look du graphique */
+.graph-container {
+  flex: 1 1 50%; /* Augmente l'espace du graphique */
+  max-width: 800px;
+  min-width: 300px;
+  margin-bottom: 20px; /* Espacement entre les éléments */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Ombre autour du conteneur */
+}
+.finance-stats-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 40px;
+  margin-top: 10px;
+  box-shadow:2px 0px 2px 2px rgba(0, 0, 0, 0.1);
+  padding: 60px;
+  border-radius: 10px;
+}
+.finance-container{
+  box-shadow:4px 0px 0px 2px rgba(0, 0, 0, 0.1);
+  padding: 5px;
+  border-radius: 10px;
+}
+
+.finance-stat-card {
+  background-color: #e5e5e5;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow:2px 0px 4px 0px rgba(0, 0, 0, 0.1);
+  flex: 1;
+  text-align: center; 
+  font-weight: bold;
+  cursor: pointer;
+}
+.finance-rapport-card {
+  background-color: #e5e5e5;
+  padding: 5px;
+  border-radius: 10px;
+  box-shadow:2px 0px 4px 0px rgba(0, 0, 0, 0.1);
+  flex: 1;
+  text-align: center; 
+  font-weight: bold;
+  cursor: pointer;
+  height: 60px;
+}
+
+.finance-stat-card h5 {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+.finance-rapport-card h5 {
+  font-size: 1rem;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+.finance-stat-card p {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #218838;
+}
+.finance-rapport-card p {
+  font-size: 1rem;
+  font-weight: bold;
+  color: #218838;
+}
+
+
+/* Overlay pour le modal */
+.modal-frais-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6); /* Fond sombre semi-transparent */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  animation: fadeIn 0.3s ease-in-out; /* Animation d'apparition */
+}
+
+/* Contenu du modal */
+.modal-frais-content {
+  background-color: white;
+  padding: 30px;
+  border-radius: 10px;
+  width: 400px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Ombre portée */
+  animation: modalSlideIn 0.3s ease-out;
+}
+
+/* Titre du modal */
+.modal-frais-content h2 {
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+/* Style des champs du formulaire */
+.modal-frais-content label {
+  font-weight: bold;
+  margin-top: 10px;
+  display: block;
+}
+
+.modal-frais-content input, 
+.modal-frais-content select {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+  font-size: 1rem;
+}
+
+/* Boutons du modal */
+.modal-frais-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.btn-valider, .btn-annuler {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+  width: 165px;
+}
+
+.btn-valider {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.btn-valider:hover {
+  background-color: #135b17;
+}
+
+.btn-annuler {
+  background-color: #a69e9d;
+  color: white;
+}
+
+.btn-annuler:hover {
+  background-color: #4b4747;
+}
+
+/* Bouton de fermeture du modal */
+.btn-fermer-modal {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 1.5rem;
+  background: none;
+  border: none;
+  color: #333;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.btn-fermer-modal:hover {
+  color: #f44336;
+}
+
+/* Animation pour faire apparaître le modal */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes modalSlideIn {
+  from {
+    transform: translateY(-30px);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+
+
+/* 🌟 Style du bouton "+" */
+.btn-ajout-frais {
+  background: #007bff;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 50%;
+  margin-left: 10px;
+}
+.finance-stat-card-autre {
+  background-color: #e5e5e5;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow:2px 0px 4px 0px rgba(0, 0, 0, 0.1);
+  flex: 1;
+  text-align: center; 
+}
+
+.finance-stat-card-autre h5 {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+  font-weight: bold;
+  margin-left: 122px;
+}
+
+.finance-stat-card-autre p {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #218838;
+}
+
+.finance-stat-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.plus-icon {
+  font-size: 2rem;
+  box-shadow: 10px gray;
+  color: #28a745; 
+  cursor: pointer;
+}
+
+.autredepenses{
+  background-color: #ffffff;
+  padding: 30px;
+  border-radius: 10px;
+  height: 40vh;
+  box-shadow:2px 0px 2px 2px rgba(0, 0, 0, 0.1);
+}
+
+/* Effet au survol des cartes */
+.finance-stat-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.finance-stat-card:hover {
+  transform: scale(1.05); /* Augmente la taille de la carte */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Ajoute une ombre autour de la carte */
+  cursor: pointer; /* Change le curseur pour indiquer l'interaction */
+}
+/* Effet au survol des cartes */
+.finance-rapport-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.finance-rapport-card:hover {
+  transform: scale(1.05); /* Augmente la taille de la carte */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Ajoute une ombre autour de la carte */
+  cursor: pointer; /* Change le curseur pour indiquer l'interaction */
+}
+.finance-stat-card-autre {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.finance-stat-card-autre:hover {
+  transform: scale(1.05); /* Effet similaire pour la carte des autres dépenses */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+}
+.autredepenses table {
+  max-height: 300px; /* Ajuste la hauteur en fonction de la taille souhaitée */
+  overflow-y: auto; /* Active le scroll vertical */
+  display: block;
+}
+
+.autredepenses thead {
+  display: table; /* S'assurer que l'en-tête est toujours visible */
+  width: 100%;
+}
+
+.autredepenses tbody {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.autredepenses tbody tr {
+  width: 100%;
+  display: table;
+  table-layout: fixed;
+}
+
+
+
+.filters-container {
+  display: flex;
+  justify-content: flex-end; /* Aligne les filtres à droite */
+  gap: 20px; /* Espace entre chaque filtre */
+  margin-top: 10px;
+}
+
+.filter-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  
+}
+
+.filter-card label {
+  margin-bottom: 5px; /* Espacement entre le label et le select */
+}
+
+.filter-card select {
+  padding: 8px;
+  font-size: 14px;
+  width: 200px; /* Largeur des filtres */
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+/* Ajoutez ces styles pour les graphiques côte à côte */
+.charts-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  width: 100%;
+}
+
+.linechart-container, .donutchart-container {
+  flex: 1;
+  min-width: 0; 
+  background-color: #fff;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}

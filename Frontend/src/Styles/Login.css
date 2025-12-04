@@ -1,0 +1,133 @@
+.mainLogin {
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+ 
+}
+
+.login {
+    display: flex;
+    width: 75%;
+    height: 70vh;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.2);
+    background: white;
+}
+
+.leftLogin {
+    width: 80%;
+    background: linear-gradient(135deg, #2E7D32, #1B5E20);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 10px;
+    height: 65vh;
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+}
+
+.leftLogin h1 {
+    font-size: 3.5rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.leftLogin p {
+    font-size: 1.2rem;
+    margin-top: 10px;
+}
+
+.leftLogin .footer {
+    margin-top: 30px;
+    font-size: 0.9rem;
+    opacity: 0.8;
+}
+.footer p {
+    margin-top: 50px !important;
+}
+
+.rightLogin {
+    width: 50%;
+    background: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 3rem;
+}
+
+.rightLogin img {
+    width: 150px;
+    margin-bottom: 87px;
+}
+
+.exeption h2 {
+    font-size: 2rem;
+    margin-bottom: 50px;
+    color: #2E7D32;
+}
+
+.exeption p {
+    font-size: 1rem;
+    color: #555;
+    text-align: center;
+}
+
+.form-floating .form-control {
+    border-radius: 8px;
+    border: 1px solid #ccc;
+}
+
+.form-floating input:focus {
+    border-color: #2E7D32;
+    box-shadow: 0px 0px 8px rgba(46, 125, 50, 0.5);
+}
+
+.rightLogin form button {
+    width: 100%;
+    background: #2E7D32;
+    color: white;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    padding: 12px;
+    margin-top: 50px;
+    transition: background 0.3s ease;
+}
+
+.rightLogin form button:hover {
+    background: #1B5E20;
+}
+
+@media (max-width: 768px) {
+    .login {
+        flex-direction: column;
+        width: 90%;
+        height: auto;
+    }
+
+    .leftLogin, .rightLogin {
+        width: 100%;
+        height: auto;
+        padding: 2rem;
+    }
+
+    .leftLogin h1 {
+        font-size: 2.5rem;
+    }
+
+    .leftLogin p {
+        font-size: 1rem;
+    }
+
+    .rightLogin img {
+        width: 70px;
+    
+    }
+}

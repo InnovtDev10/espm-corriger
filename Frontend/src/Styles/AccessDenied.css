@@ -1,0 +1,51 @@
+/* AccessDenied.css */
+
+.access-denied-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #95f5aa; /* Couleur de fond rouge clair pour attirer l'attention */
+    color: #193092; /* Couleur de texte rouge foncé */
+    font-family: Arial, sans-serif;
+  }
+  
+  .access-denied-content {
+    text-align: center;
+    padding: 30px;
+    border-radius: 10px;
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .access-denied-logo {
+    width: 250px; 
+    margin-bottom: 20px; 
+  }
+
+  .access-denied-content h1 {
+    font-size: 80px;
+    margin-bottom: 20px;
+  }
+  
+  .access-denied-content p {
+    font-size: 20px;
+    margin-bottom: 20px;
+  }
+  
+  .access-denied-content button {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .access-denied-content button:hover {
+    background-color: #5fc276;
+    font-size: 20px;
+  }
+  

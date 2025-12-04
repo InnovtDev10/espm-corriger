@@ -1,0 +1,137 @@
+.center{
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+
+.gradient-text {
+    background: linear-gradient(90deg, #ff5733, #ffbd33, #33ff57);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size: 3rem;
+    font-weight: bold;
+}
+
+  
+main{
+    height: 90vh;
+    width: 100%;
+    overflow-y: hiddenvv;
+}
+header{
+    padding-left: 1%;
+    padding-right: 1%;
+}
+aside{
+    height: 91vh;
+    width: 18%;
+} 
+.contenu{
+    height: 90vh;
+    width: 65%;
+    /* box-shadow: 0 0 5px gray; */
+    background-color: white;
+    border-radius: 10px;
+    overflow-y: hidden;
+}
+.contenu2{
+    height: 90vh;
+    width: 85%;
+    /* box-shadow: 0 0 5px gray; */
+    background-color: white;
+    border-radius: 10px;
+}
+
+article{
+    height: 91vh;
+    width: 20%;
+}
+.hr{
+    height: 2vh;
+    width: 100%;
+    background-color: #0f982880;
+}
+.btn1{
+    background-color: rgb(12, 220, 71);
+    border: none !important;
+    width: 100%;
+    border-radius: 4px;
+    color: white;
+    font-size: bold;
+    height: 40px;
+    margin-top: -50px;
+}
+.btnaj{
+      background-color: #0f982880;  
+    border: none !important;
+    width: 100%;
+    border-radius: 4px;
+    color: white;
+    font-size: bold;
+    height: 40px;
+    margin-top: -50px;
+}
+.btnaj:hover{
+    background: linear-gradient(135deg, #015837, #0d442f, #034931dd);
+    color: #fff;
+    transform: scale(1.05);
+}
+.btn1:hover {
+    background: linear-gradient(135deg, #015837, #0d442f, #034931dd);
+    color: #fff;
+    transform: scale(1.05);
+}
+.sidebar .btn.active{
+    background: linear-gradient(135deg, #015837, #0d442f, #034931dd);
+    color: #fff;
+    font-weight: bold;
+    transform: scale(1.05);
+    border: none;
+}
+
+
+
+.logout-btn {
+    background-color: #0b491780;
+    color: white;
+    font-size: 18px; /* Texte plus grand */
+    font-weight: bold;
+    padding: 10px 20px; /* Agrandir le bouton */
+    border: none;
+    border-radius: 5px; /* Coins arrondis */
+    cursor: pointer;
+    margin-left: 20px;
+    display: flex;
+    align-items: center;
+    gap: 8px; /* Espacement entre l'icône et le texte */
+    transition: background 0.3s ease, transform 0.2s;
+    margin-top: -10px;
+}
+
+.logout-btn i {
+    font-size: 22px; /* Icône plus grande */
+}
+
+.logout-btn:hover {
+    background: linear-gradient(135deg, #015837, #0d442f, #034931dd);
+ /* Rouge plus foncé au survol */
+    transform: scale(1.05); /* Effet de zoom léger */
+}
+.hr {
+    height: 10px;
+    width: 100%;
+    background: #198754;
+    border-radius: 5px;
+  }
+  
+  
+  @keyframes clignoter {
+    0% { background-color: #ffe6e6; }
+    50% { background-color: #ffb3b3; }
+    100% { background-color: #ffe6e6; }
+  }
+  
+  .clignote {
+    animation: clignoter 1s linear infinite;
+  }
+  

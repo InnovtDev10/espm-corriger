@@ -1,0 +1,330 @@
+.note-table-container {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0px 50px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+    width: 100%;
+}
+
+/* Filtres */
+/* ========== CONTENEUR DES FILTRES ET DU BOUTON ========== */
+.note-filters-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+/* ========== FILTRES ========== */
+.note-filters {
+    display: flex;
+    gap: 10px;
+    flex-grow: 1;
+}
+
+.note-filters .form-control {
+    width: 100%;
+    max-width: 200px; /* Ajuste la taille des champs */
+}
+
+/* ========== BOUTON EFFECTUER UN PAIEMENT ========== */
+.payment-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: #28a745;
+    color: white;
+    padding: 12px 18px;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    white-space: nowrap; /* Empêche le texte de passer à la ligne */
+}
+
+.payment-btn i {
+    font-size: 18px;
+}
+
+.payment-btn:hover {
+    background: #218838;
+    transform: translateY(-2px);
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.25);
+}
+
+
+/* Tableau */
+.note-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.note-table thead {
+    background: #198754; 
+    color: white;
+}
+
+.note-table th, .note-table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.note-table tbody tr:hover {
+    background: rgba(40, 167, 69, 0.1);
+}
+
+/* Boutons */
+.edit-btn, .delete-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    margin-right: 5px;
+}
+
+.edit-btn i {
+    color: #007bff;
+}
+
+.delete-btn i {
+    color: red;
+}
+
+.edit-btn:hover i {
+    color: #0056b3;
+}
+
+.delete-btn:hover i {
+    color: darkred;
+}
+
+
+/* ========== MODAL ========== */
+.modal1-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal1-content {
+    background: white;
+    padding: 0;
+    border-radius: 12px;
+    width: 450px;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+    animation: fadeIn 0.3s ease-in-out;
+    overflow: hidden;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Header du modal1 avec fond vert */
+.modal-header {
+    background: #28a745;
+    color: white;
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: bold;
+}
+
+.modal1-header h5 {
+    margin: 0;
+    font-size: 18px;
+}
+
+.close-btn {
+    background: none;
+    border: none;
+    font-size: 22px;
+    cursor: pointer;
+    color: white;
+}
+
+.close-btn:hover {
+    color: #ddd;
+}
+
+/* Contenu du modal1 */
+.modal-body {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* Champs d'entrée */
+.modal-body .form-control {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+}
+
+/* Footer du modal1 */
+.modal-footer {
+    padding: 15px;
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    background: #f5f5f5;
+    border-top: 1px solid #ddd;
+}
+
+/* Boutons */
+.modal .btn {
+    padding: 10px 12px;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    border: none;
+    transition: 0.3s;
+
+}
+
+.btn-secondary {
+    background: #ccc;
+    color: #333;
+}
+
+.btn-secondary:hover {
+    background: #bbb;
+}
+
+.btn-success {
+    background: #28a745;
+    color: white;
+}
+
+.btn-success:hover {
+    background: #218838;
+}
+/* ========== BOUTON EFFECTUER UN PAIEMENT ========== */
+.payment-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: #28a745;
+    color: white;
+    padding: 12px 18px;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.payment-btn i {
+    font-size: 18px;
+}
+
+.payment-btn:hover {
+    background: #218838;
+    transform: translateY(-2px);
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.25);
+}
+
+
+/* Élargissement du modal */
+.modal-dialog {
+  max-width: 800px; /* Augmente la largeur */
+}
+
+/* Effet flottant pour les placeholders */
+.floating-label {
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.floating-label input {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  outline: none;
+  transition: all 0.3s ease-in-out;
+}
+
+.floating-label label {
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 16px;
+  color: #aaa;
+  pointer-events: none;
+  transition: all 0.3s ease-in-out;
+}
+
+/* Animation au focus */
+.floating-label input:focus + label,
+.floating-label input:not(:placeholder-shown) + label {
+  top: 5px;
+  font-size: 12px;
+  color: #007bff;
+}
+
+
+.table-responsive {
+    max-height: 250px; /* Ajuste la hauteur selon ton besoin */
+    overflow-y: auto;
+    
+  }
+  
+.table3-responsive {
+    max-height: 250px; /* Ajuste la hauteur selon ton besoin */
+    overflow-y: auto;
+
+    
+  }
+  .table-responsive thead{
+    color: white;
+  }
+
+  .table2-responsive thead{
+    color: white;
+  }
+  .table2-responsive {
+    max-height: 600px; /* Ajuste la hauteur selon ton besoin */
+    overflow-y: auto;
+  }
+  
+  .note1-table tbody {
+    display: block;
+    max-height: 250px; /* Ajuste la hauteur selon ton besoin */
+    overflow-y: auto;
+  }
+  
+  .note1-table thead,
+  .note1-table tbody tr {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+  }
+  .noteo-table thead,
+  .noteo-table tbody tr {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+  }
+  
+  

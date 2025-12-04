@@ -1,0 +1,45 @@
+/* Conteneur principal du tableau */
+.table-container {
+    max-height: 100px; /* Ajuste la hauteur pour environ 4 lignes */
+    overflow-y: auto;
+    border-radius: 8px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    background: #fff;
+    padding: 10px;
+  }
+  
+  /* Assurer que le header reste fixe */
+  .fourniture-table {
+    position: sticky;
+    top: 0;
+    background: #f8f9fa;
+    z-index: 2;
+    
+  }
+  
+  /* Assurer le défilement uniquement sur le body */
+  .table-body {
+    display: block;
+    max-height: 200px; /* Permet le scroll après 4 lignes */
+    overflow-y: auto;
+  }
+  
+  /* Ajuster la largeur des colonnes */
+  .table-fourniture {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  /* Assurer la largeur des colonnes */
+  .table-fourniture thead,
+  .table-fourniture tbody tr {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+  }
+  
+  /* Ajustement des styles pour l'affichage */
+  .table-fourniture tbody {
+    display: block;
+  }
+  

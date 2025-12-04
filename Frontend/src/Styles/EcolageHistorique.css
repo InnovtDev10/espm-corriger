@@ -1,0 +1,74 @@
+.historique-ecolage {
+    max-width: 100%;
+  }
+  
+  .historique-container {
+    max-height: 500px; /* Active le scroll après 15 lignes environ */
+    overflow-y: auto;
+    border: 1px solid #ddd; /* Ajoute une bordure pour la lisibilité */
+    border-radius: 5px;
+  }
+  .text-danger {
+    color: #dc3545;
+    font-weight: bold;
+  }
+  
+  .text-success {
+    color: #28a745;
+    font-weight: bold;
+  }
+  
+  .historique-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .historique-table thead {
+    position: sticky;
+    top: 0;
+    background: #fff;
+    z-index: 2;
+    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1); /* Sépare l'en-tête du reste */
+  }
+  
+  .historique-table th,
+  .historique-table td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .historique-table tbody tr:hover {
+    background: #f5f5f5;
+  }
+  
+  .historique-responsive {
+    overflow-x: auto;
+  }
+  
+
+  .filters {
+    display: flex;
+    align-items: center;
+    gap: 3rem; /* Augmente l'espacement entre les inputs et le texte */
+  }
+  
+  .filters select {
+    width: 200px; /* Réduit la largeur des selects */
+  }
+  
+  .filters p {
+    margin-left: auto; /* Aligne le texte à l'extrême droite */
+    font-weight: bold;
+  }
+
+  .filtreEco {
+    display: flex;
+    margin-right: 30%;
+  }
+
+  .Affichage {
+    background: #6234eb;
+    padding: 10px 20px 0 20px;
+    border-radius: 10px;
+  }

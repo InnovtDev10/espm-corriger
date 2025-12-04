@@ -1,0 +1,316 @@
+.row-count {
+  margin-top: 10px;
+  font-size: 16px;
+  font-weight: bold;
+  text-align: right;
+}
+
+
+/* Styles pour le composant ChartMoyenne */
+.ChartMoyenne {
+  background: #fff;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  margin: 2rem 0;
+  border: 1px solid #f0f0f0;
+}
+
+.ChartMoyenne-header {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.ChartMoyenne-title {
+  color: #2c3e50;
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.ChartMoyenne-subtitle {
+  color: #7f8c8d;
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+.ChartMoyenne-footer {
+  text-align: right;
+  margin-top: 1rem;
+  color: #95a5a6;
+  font-size: 0.8rem;
+}
+
+/* Personnalisation du tooltip */
+.apexcharts-tooltip {
+  border-radius: 8px !important;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .ChartMoyenne {
+    padding: 16px;
+  }
+  
+  .ChartMoyenne-title {
+    font-size: 1.2rem;
+  }
+}
+
+
+
+.btnAjout {
+  float: right;
+  background-color: #0f982880;
+  border: none;
+  color: white;
+  height: 35px;
+  font-weight: bold;
+  border-radius: 8px;
+}
+.filtre-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+}
+
+.filtre-container input, .filtre-container select {
+  width: 200px;
+}
+
+.filtre-container .form-control, .filtre-container .form-select {
+  flex-grow: 1;
+}
+
+.contenu h4 {
+  float: left;
+}
+
+.filtre {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px; /* Espacement entre les filtres */
+  margin-left: 20px;
+}
+
+.filtre .form-control {
+  width: auto;
+  min-width: 200px; /* Largeur minimale pour éviter que les champs soient trop petits */
+}
+
+/* Conteneur du tableau */
+.professeur-table-container {
+  margin: 20px auto;
+  padding: 10px;
+  background: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  overflow-x: auto; /* Permet le défilement horizontal si nécessaire */
+  height: 60vh;
+}
+
+/* Table principale */
+.noteo-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+  table-layout: fixed; /* Assure que chaque colonne garde une largeur fixe */
+}
+
+/* En-tête du tableau */
+.noteo-table thead {
+  background: #28a745; /* Vert Bootstrap */
+  color: white;
+}
+
+.noteo-table th {
+  padding: 12px;
+  text-align: left;
+  white-space: nowrap; /* Empêche les retours à la ligne */
+  border: none; /* Suppression de la bordure */
+}
+
+/* Lignes du tableau */
+.noteo-table tbody tr {
+  transition: background 0.3s ease-in-out;
+}
+
+.noteo-table tbody tr:hover {
+  background: rgba(13, 110, 253, 0.1); /* Légère coloration au survol */
+}
+
+/* Cellules du tableau */
+.noteo-table td {
+  padding: 10px;
+  word-wrap: break-word; /* Permet de couper le texte long */
+  overflow: hidden; /* Cache le contenu dépassant */
+  text-overflow: ellipsis; /* Ajoute "..." si le texte est trop long */
+  max-width: 150px; /* Définit une largeur max aux cellules */
+  border: none; /* Suppression de la bordure */
+}
+
+/* Colonne Nom & Photo */
+.profile-cell {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  white-space: nowrap;
+}
+
+.profile-img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #ddd;
+}
+
+/* Bouton Modifier */
+.edit-btn {
+  background: none;
+  border: none;
+  color: #ffc107; /* Jaune */
+  font-size: 18px;
+  cursor: pointer;
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.delete-btn {
+  background: none;
+  border: none;
+  color: #ff2407;
+  font-size: 18px;
+  cursor: pointer;
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.edit-btn:hover {
+  transform: scale(1.2);
+  color: #d39e00; /* Jaune foncé */
+}
+
+.edit-btn i {
+  font-size: 20px; /* Taille de l'icône */
+}
+
+/* Statut Actif/Inactif */
+.status {
+  padding: 5px 10px;
+  border-radius: 4px;
+  font-weight: bold;
+  text-align: center;
+  display: inline-block;
+}
+
+
+.statut.active {
+  color: green;
+}
+
+.statut.inactive {
+  color: red;
+}
+/* Bouton Paiement */
+.payment2-btn {
+  background-color: #28a745;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-left: 87%;
+  margin-top: -45px;
+}
+
+.payment2-btn i {
+  font-size: 18px;
+}
+
+.payment2-btn:hover {
+  background-color: #218838;
+}
+
+/* Icône Pointage */
+.presence-icon {
+  font-size: 20px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.presence-icon:hover {
+  transform: scale(1.2);
+}
+
+/* Centrage des messages */
+.text-center {
+  text-align: center;
+  font-weight: bold;
+  color: #e9d7d9; /* Rouge Bootstrap */
+}
+/* Colonne avec icône */
+.noteo-table td .icon-cell {
+  display: flex;
+  justify-content: center; /* Centre horizontalement */
+  align-items: center; /* Centre verticalement */
+  font-size: 24px; /* Taille plus grande des icônes */
+}
+
+/* Modifie la taille des icônes dans les boutons */
+.edit-btn i, .delete-btn i, .presence-icon {
+  font-size: 24px; /* Taille augmentée des icônes */
+}
+/* Centrer l'icône Modifier dans le bouton */
+.edit-btn {
+  display: flex;
+  justify-content: center; /* Centre horizontalement */
+  align-items: center; /* Centre verticalement */
+}
+
+/* Taille de l'icône Modifier */
+.edit-btn i {
+  font-size: 40px; /* Augmenter la taille de l'icône */
+}
+
+/* Pour les autres icônes comme delete-btn */
+.delete-btn i {
+  font-size: 24px; /* Taille des icônes de suppression */
+}
+
+.icon_valide {
+  font-size: 30px;
+}
+
+.btnValide {
+  border-radius: 15%;
+  background-color: #ffc107;
+  border: none;
+  box-shadow: 0 2px 2px 1px gray;
+  cursor: pointer;
+}
+.btnValide:hover {
+  transform: scale(1.1);
+  transition: transform 0.2s ease-in-out;
+}
+
+.btnEditNote {
+  border-radius: 10px;
+  background-color: #ffc107;
+  border: none;
+  box-shadow: 0 2px 2px 1px gray;
+  cursor: pointer;
+}
+
+.pdf_icon {
+  font-size: 30px;
+  color: #ee4832;
+  cursor: pointer;
+}
+.pdf_icon:hover{
+  font-size: 32px;
+  color: #dd6151;
+}

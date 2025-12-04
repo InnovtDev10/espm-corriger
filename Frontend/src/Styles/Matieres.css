@@ -1,0 +1,29 @@
+/* Conteneur du tableau avec scroll */
+.Tablemat {
+    max-height: 600px; /* Définis la hauteur maximale avant d'activer le scroll */
+    overflow-y: auto; /* Active le scroll vertical si nécessaire */
+    overflow-x: auto; /* Active le scroll horizontal si le tableau est trop large */
+    border: 1px solid #ddd; /* Ajoute une bordure pour une meilleure visibilité */
+    border-radius: 8px;
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Ajustement du tableau pour éviter que le scroll cache les bordures */
+  .Table {
+    margin-bottom: 0; /* Supprime la marge inférieure pour un affichage propre */
+  }
+  
+  /* Fixe l'entête du tableau */
+  .Tablemat thead {
+    position: sticky;
+    top: 0;
+    background: #2f5e81; /* Assure que l'entête est bien visible */
+    color: white;
+    z-index: 10;
+  }
+
+  .btnMatiere {
+    margin-bottom: 20px;
+    margin-left: 60vh;
+  }
+  

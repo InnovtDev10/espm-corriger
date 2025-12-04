@@ -1,0 +1,529 @@
+.icon-action {
+  cursor: pointer;
+  font-size: 1.2rem;
+  transition: color 0.2s ease-in-out;
+}
+
+.blinking-row {
+  animation: blink 1s step-start 0s infinite;
+}
+/* Style moderne pour le bouton Modifier */
+.btn-modern-edit {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 8px 16px;
+  background-color: #3f51b5;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  min-width: 100px;
+}
+
+.btn-modern-edit:hover {
+  background-color: #303f9f;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.btn-modern-edit:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.icon-edit {
+  font-size: 16px;
+  transition: transform 0.3s ease;
+}
+
+.btn-modern-edit:hover .icon-edit {
+  transform: scale(1.1);
+}
+
+/* Animation au survol */
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+.sticky-col {
+  position: sticky;
+  left: 0;
+  background-color: #f8f8f8;
+  z-index: 5;
+}
+
+.note-table thead .sticky-col {
+  z-index: 15;
+}
+.btn-modern-edit:hover {
+  animation: pulse 1.5s infinite;
+}
+
+/* Style pour les écrans plus petits */
+@media (max-width: 768px) {
+  .btn-modern-edit {
+    padding: 6px 12px;
+    font-size: 12px;
+    min-width: auto;
+  }
+  
+  .btn-modern-edit span {
+    display: none;
+  }
+  
+  .btn-modern-edit .icon-edit {
+    margin-right: 0;
+  }
+}
+@keyframes blink {
+  50% {
+    background-color: #f8d7da;  /* Rouge pâle pour alerte */
+  }
+}
+.NoteTheoriqueTable-container {
+  max-height: 500px;
+  overflow-y: auto;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  padding: 1rem;
+  background-color: #ffffff;
+}
+
+.table-responsive {
+  overflow-x: auto;
+}
+
+.NoteTheoriqueTable {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: 'Segoe UI', sans-serif;
+  font-size: 14px;
+}
+
+.NoteTheoriqueTable thead th {
+  position: sticky;
+  top: 0;
+  background-color: #1d4ed8;
+  color: white;
+  padding: 10px;
+  text-align: left;
+  z-index: 2;
+  white-space: nowrap;
+}
+
+.NoteTheoriqueTable td,
+.NoteTheoriqueTable th {
+  border: 1px solid #d1d5db;
+  padding: 8px;
+}
+
+.NoteTheoriqueTable tbody tr:nth-child(even) {
+  background-color: #f9fafb;
+}
+
+.NoteTheoriqueTable tbody tr:hover {
+  background-color: #eff6ff;
+}
+
+.text-center {
+  text-align: center;
+  color: #6b7280;
+  padding: 1rem;
+}
+
+.btnValide {
+  background-color: #10b981;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.btnValide:hover {
+  background-color: #059669;
+}
+
+.icon_valide {
+  font-size: 16px;
+}
+
+
+.icon-action:hover {
+  color: #007bff;
+}
+
+.form-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.input-group {
+  display: flex;
+  flex: 1;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+/* Modal de taille variable */
+
+
+.form-control {
+  border-radius: 8px;
+  padding: 10px;
+  font-size: 1rem;
+  width: 100%;
+}
+
+
+select.form-control {
+  width: 48%;
+}
+
+.table-container {
+  margin-top: 30px;
+  overflow-x: auto;
+  border-radius: 10px;
+  height: 50vh;
+}
+.tablefourniture-container {
+  margin-top: 30px;
+  overflow-x: auto;
+  border-radius: 10px;
+  height: 30vh;
+}
+.table-wrapper {
+  max-height:600px; /* Hauteur maximale du tableau, vous pouvez l'ajuster */
+  overflow-y: auto;  /* Active le défilement vertical lorsque le contenu est trop long */
+  border: 1px solid #ddd;  /* Optionnel, pour ajouter une bordure autour du conteneur */
+}
+
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+
+}
+
+th, td {
+  padding: 10px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+th {
+  background-color: #f2f2f2;
+  font-weight: bold;
+}
+
+td input {
+  width: 10px;
+  padding: 5px;
+  border-radius: 5px;
+  font-size: 0.9rem;
+}
+
+.btn2 {
+  background-color: #28a745;
+  color: white;
+  padding: 12px 20px;
+  border-radius: 8px;
+  font-size: 1rem;
+  width:20%;
+  margin-top: 20px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+align-items:flex-end;
+  height: 40px;
+}
+
+.btn2:hover {
+  background-color: #218838;
+}
+
+.buttons {
+  display: flex;
+  justify-content: flex-end; /* Aligne les boutons à droite */
+  margin-top: -10px; /* Espacement au-dessus des boutons */
+  gap: 15px; /* Espacement entre les boutons */
+}
+
+.buttons .btn2, .buttons .btn {
+  padding: 10px 20px; /* Agrandir les boutons */
+  font-size: 16px; /* Augmenter la taille du texte */
+  border-radius: 5px; /* Bordures arrondies */
+  border: none; /* Supprime la bordure par défaut */
+  cursor: pointer; /* Ajoute un curseur pointer au survol */
+  transition: all 0.3s ease; /* Transition fluide lors du survol */
+}
+
+.buttons .btn2 {
+  background-color: #28a745; /* Couleur verte pour le bouton Enregistrer */
+  color: white;
+}
+
+.buttons .btn {
+  background-color: #007bff; /* Couleur bleue pour le bouton Annuler */
+  color: white;
+}
+
+/* Effet de survol pour les boutons */
+.buttons .btn2:hover, .buttons .btn:hover {
+  background-color: #0056b3; /* Changer la couleur au survol */
+  transform: scale(1.05); /* Agrandir légèrement au survol */
+}
+
+/* Ajout d'un effet de focus pour l'accessibilité */
+.buttons .btn2:focus, .buttons .btn:focus {
+  outline: none; /* Supprime l'effet de contour par défaut */
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.5); /* Ajoute un contour bleu au focus */
+}
+
+
+/* Style global du conteneur */
+.fourniture-container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* Titre */
+.title {
+  font-weight: bold;
+  font-size: 1.5rem;
+  text-align: center;
+}
+
+/* Séparateur horizontal */
+.divider {
+  height: 2px;
+  background-color: #e0e0e0;
+}
+
+/* Conteneur du formulaire */
+.form-container {
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Champs de formulaire */
+.form-input {
+  width: 100%;
+  padding: 8px 12px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: #007bff;
+}
+
+/* Bouton d'enregistrement */
+.btn-submit {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: #28a745;
+  color: white;
+  font-weight: bold;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.btn-submit:hover {
+  background-color: #218838;
+}
+
+
+/* Styles pour centrer l'icône dans la cellule de la colonne "Action" */
+.table th, .table td {
+  text-align: center; /* Centre le contenu horizontalement */
+}
+
+.table td button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.5rem;
+  border: none;
+
+  width: 100%;
+
+
+}
+
+.table td button .fa-sign-out-alt {
+  font-size: 1.2rem; /* Réduit la taille de l'icône */
+}
+
+.suggestions-list {
+  position: absolute;
+  top: 40px;
+  left: 0;
+  right: 0;
+  border: 1px solid #ddd;
+  background-color: white;
+  max-height: 200px;
+  overflow-y: auto;
+  z-index: 10;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+}
+
+.suggestion-item {
+  padding: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.suggestion-item:hover {
+  background-color: #f0f0f0;
+}
+
+.input-container {
+  position: relative;
+}
+
+.form-input {
+  width: 100%;
+  padding: 8px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+.btn-submit {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+
+.btn-submit:hover {
+  background-color: #45a049;
+}
+
+.form-container {
+  position: relative;
+}
+.note-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.note-table th, .note-table td {
+  padding: 10px;
+  text-align: center;
+}
+
+.note-table th {
+  background-color: #f4f4f4;
+}
+
+.separator-row {
+  height: 1px;
+  background-color: #ccc;
+}
+
+.btn-agrandir {
+  font-size: 18px;
+  background: none;
+  border: none;
+  color: #007bff;
+  cursor: pointer;
+}
+
+.table-responsive.open {
+  position: fixed;
+  top: 10%;
+  left: 10%;
+  width: 80%;
+  height: 80%;
+  z-index: 5;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: white;
+  overflow: auto;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+
+
+
+.blinking-row {
+  animation: pulse-blink 1.5s infinite;
+}
+
+@keyframes pulse-blink {
+  0% {
+    background-color: #fff3cd;
+  }
+  50% {
+    background-color: #ffe8a1;
+  }
+  100% {
+    background-color: #fff3cd;
+  }
+}
+
+.btn-modifier {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background-color: #4a90e2;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 12px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  margin-left: 20px;
+}
+.cell-action {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.btn-modifier:hover {
+  background-color: #357bd8;
+  transform: scale(1.05);
+}
+
+.btn-modifier:active {
+  transform: scale(0.95);
+}
+
+.icon-edit {
+  font-size: 16px;
+}
+
+
+
