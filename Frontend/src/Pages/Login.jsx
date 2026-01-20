@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import "../Styles/Login.css";
-import Logo from "../assets/logo1.png";
+import Logo from "../assets/SARY.jpeg";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
@@ -48,17 +48,17 @@ function Login() {
       <section className="login glass-effect p-3 center">
         <div className="leftLogin p-5">
           <div className="container p-5">
-            <h1 className="mt-5 mb-4 center">I.U.M</h1>
-            <p className="def">INSTITUT UNIVERSITAIRE DE MADAGASCAR</p>
-            <p className="slogan">CREATIVITE - INTEGRITE - PROSPERITE</p>
+            <h1 className="mt-5 mb-4 center">E.S.P.M</h1>
+            <p className="def">Transformation digitale des processus internes</p>
+            {/* <p className="slogan">CREATIVITE - INTEGRITE - PROSPERITE</p> */}
             <p className="footer ">
               <i className="fa fa-check-circle"></i> Développé par{" "}
-              <b>Judicaël RANDRIAMPANALINDAHY</b> (+261 34  29  331 68)
+              <b>INNOV-T Consulting</b> (+261 38  10  788 60)
             </p>
           </div>
         </div>
         <div className="rightLogin p-5">
-          <img src={Logo} alt="Logo" width={100} />
+          {/* <img src={Logo} alt="Logo" width={20} /> */}
           <div className="exeption">
             <h2 className="fw-bold mb-5 center">
               <i className="fa fa-users"></i> Connexion

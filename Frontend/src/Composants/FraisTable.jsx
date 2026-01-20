@@ -5,7 +5,7 @@ import { Modal, Button } from "react-bootstrap";
 import axios from "axios";
 import { FaMoneyBillTrendUp } from "react-icons/fa6";
 import jsPDF from "jspdf";
-import Logo from "../assets/logo1.png";
+import Logo from "../assets/SARY.jpeg";
 
 function FraisTable() {
   const [searchNom, setSearchNom] = useState("");

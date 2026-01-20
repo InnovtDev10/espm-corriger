@@ -7,7 +7,7 @@ import axios from "axios";
 import Swal from "sweetalert2";
 import { GiReceiveMoney } from "react-icons/gi";
 import jsPDF from "jspdf";
-import Logo from "../assets/logo1.png";
+import Logo from "../assets/SARY.jpeg";
 import "jspdf-autotable";
 
 function EcolagePayment() {

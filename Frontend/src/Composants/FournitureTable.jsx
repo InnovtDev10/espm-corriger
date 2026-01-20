@@ -7,7 +7,7 @@ import "../Styles/Note.css";
 import Swal from "sweetalert2";
 import axios from "axios";
 import jsPDF from "jspdf";
-import Logo from "../assets/logo1.png";
+import Logo from "../assets/SARY.jpeg";
 
 function FournitureTable() {
   const [fournitures, setFournitures] = useState([]);

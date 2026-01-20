@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
-import Logo from "../assets/logo1.png";
+import Logo from "../assets/SARY.jpeg";
 import { FaUserCircle, FaBell, FaSignOutAlt } from "react-icons/fa"; // Importation des icônes de React Icons
 
 function Navbar() {
@@ -63,7 +63,7 @@ function Navbar() {
       <div className="header p-3">
         {/* Logo et titre */}
         <div className="logo center">
-          <img src={Logo} alt="logo" width={70} />
+          <img src={Logo} alt="logo" width={50} />
           {/* Affichage du rôle en gras */}
           <h4 className="fw-bold m-3" style={{ color: "#227d37" }}>
   {userRole || "Rôle non défini"}

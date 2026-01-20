@@ -6,7 +6,7 @@ import axios from "axios";
 import { GiReceiveMoney } from "react-icons/gi";
 import { FaMoneyBillTrendUp } from "react-icons/fa6";
 import jsPDF from "jspdf";
-import Logo from "../assets/logo1.png";
+import Logo from "../assets/SARY.jpeg";
 import "jspdf-autotable";
 function ClasseTable() {
   const [searchResteAPayer, setSearchResteAPayer] = useState("");
