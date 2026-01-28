@@ -21,7 +21,7 @@ const Listes = () => {
     <div className="container mt-4">
       <h5 className="fw-bold">Liste des Unités d'Enseignement et Matières</h5>
       <div className="d-flex justify-content-end mb-3">
-        <label className="fw-bold me-2">Filtrer par filière :</label>
+        <label className="fw-bold me-2">Filtrer par parcours :</label>
         <select
           className="form-control w-auto"
           value={selectedFiliere}
@@ -35,8 +35,8 @@ const Listes = () => {
       </div>
       <table className="table table-striped table-bordered text-center shadow-sm">
         <thead>
-          <tr>
-            <th>Filière</th>
+            <tr>
+            <th>Parcours</th>
             <th>Unité d'Enseignement</th>
             <th>Matières</th>
           </tr>

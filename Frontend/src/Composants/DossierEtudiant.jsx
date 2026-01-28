@@ -122,7 +122,7 @@ const StudentTableDossier = ({
     });
 
     let titre = "Liste des Étudiants";
-    if (selectedFiliere) titre += ` - Filière: ${selectedFiliere}`;
+    if (selectedFiliere) titre += ` - Parcours: ${selectedFiliere}`;
     if (selectedNiveau) titre += ` - Niveau: ${selectedNiveau}`;
     if (selectedMois) titre += ` - Mois: ${selectedMois}`;
     if (selectedAnnee) titre += ` - Année: ${selectedAnnee}`;
@@ -216,7 +216,7 @@ const StudentTableDossier = ({
                     <th>Matricule</th>
                     <th>Nom</th>
                     <th>Prénom</th>
-                    <th>Filière</th>
+                    <th>Parcours</th>
                     <th>Niveau</th>
                     <th>D.Bacc</th>
                     <th>C. Résidence</th>

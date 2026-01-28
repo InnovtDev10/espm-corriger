@@ -115,7 +115,7 @@ const DashTable = ({
 
     // Titre dynamique basé sur les filtres sélectionnés
     let titre = "Liste des Étudiants";
-    if (selectedFiliere) titre += ` - Filière: ${selectedFiliere}`;
+    if (selectedFiliere) titre += ` - Parcours: ${selectedFiliere}`;
     if (selectedNiveau) titre += ` - Niveau: ${selectedNiveau}`;
     if (selectedMois) titre += ` - Mois: ${selectedMois}`;
     if (selectedAnnee) titre += ` - Année: ${selectedAnnee}`;
@@ -136,7 +136,7 @@ const DashTable = ({
           "Nom",
           "Prénom",
           "Sexe",
-          "Filière",
+          "Parcours",
           "Niveau",
           "Téléphone",
           "Adresse",

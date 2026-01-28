@@ -92,7 +92,7 @@ const AutreFraisHistoriqueTable = () => {
           value={filterFiliere}
           onChange={(e) => setFilterFiliere(e.target.value)}
         >
-          <option value="">Sélectionner une filière</option>
+          <option value="">Sélectionner un parcours</option>
           <option value="Technicien de laboratoire">Technicien de laboratoire</option>
           <option value="Sciences infirmières">Sciences infirmières</option>
           <option value="Maieutique">Maieutique</option>

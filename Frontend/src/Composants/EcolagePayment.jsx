@@ -900,7 +900,7 @@ function EcolagePayment() {
                 value={filterSpecialite}
                 onChange={(e) => setFilterSpecialite(e.target.value)}
               >
-                <option value="">Filière</option>
+                <option value="">Parcours</option>
                 <option>Technicien de laboratoire</option>
                 <option>Sciences infirmières</option>
                 <option>Maieutique</option>
@@ -922,7 +922,7 @@ function EcolagePayment() {
                     <th>Nom</th>
                     <th>Prénom</th>
                     <th>Niveau</th>
-                    <th>Filière</th>
+                    <th>Parcours</th>
                     <th>Montant /mois</th>
                     <th>Mois effectués</th>
                     <th>Mois restants</th>

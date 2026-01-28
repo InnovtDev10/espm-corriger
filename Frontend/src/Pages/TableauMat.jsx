@@ -78,7 +78,7 @@ const TableauMat = () => {
           <div className="hr mt-2"></div>
 
           <div className="d-flex justify-content-end mt-3">
-            <label className="fw-bold me-2">Filtrer par filière :</label>
+            <label className="fw-bold me-2">Filtrer par parcours :</label>
             <select
               className="form-control w-auto"
               value={selectedFiliere}
@@ -94,7 +94,7 @@ const TableauMat = () => {
           <table className="table table-striped table-bordered text-center shadow-sm mt-4">
             <thead className="table">
               <tr>
-                <th>Filière</th>
+                <th>Parcours</th>
                 <th>Unité d'Enseignement</th>
                 <th>Matières</th>
                 <th>Actions</th>

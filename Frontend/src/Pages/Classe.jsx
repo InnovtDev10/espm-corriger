@@ -217,7 +217,7 @@ function Classe() {
                   value={specialite}
                   onChange={(e) => setSpecialite(e.target.value)}
                 >
-                  <option value="">Filière</option>
+                  <option value="">Parcours</option>
                   <option>Technicien de laboratoire</option>
                   <option>Sciences infirmières</option>
                   <option>Maieutique</option>
@@ -276,7 +276,7 @@ function Classe() {
                     value={specialite}
                     onChange={(e) => setSpecialite(e.target.value)}
                   >
-                    <option value="">Filière</option>
+                    <option value="">Parcours</option>
                     <option>Technicien de laboratoire</option>
                     <option>Sciences infirmières</option>
                     <option>Maieutique</option>
