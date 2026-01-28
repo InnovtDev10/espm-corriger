@@ -60,10 +60,7 @@ function Dashboard() {
                   <h1 className="text-light">{counts.infirmier}</h1>
                 </div>
                 <div className="text center">
-                  <h5 className="text-light p-2">
-                    {" "}
-                    Etudiants Gestion
-                  </h5>
+                  <h5 className="text-light p-2">Etudiants Technicien de laboratoire</h5>
                 </div>
               </div>
               <div className="stat center p-1">
@@ -71,7 +68,7 @@ function Dashboard() {
                   <h1 className="text-light">{counts.sageFemme}</h1>
                 </div>
                 <div className="text center">
-                  <h5 className="text-light ">Etudiants Commerce</h5>
+                  <h5 className="text-light ">Etudiants Sciences infirmières</h5>
                 </div>
               </div>
               <div className="stat center p-1">
@@ -79,9 +76,7 @@ function Dashboard() {
                   <h1 className="text-light">{counts.bioTechnicien}</h1>
                 </div>
                 <div className="text center">
-                  <h5 className="text-light p-2">
-                    Etudiants Tourisme
-                  </h5>
+                  <h5 className="text-light p-2">Etudiants Maieutique</h5>
                 </div>
               </div>
             </div>
@@ -109,9 +104,9 @@ function Dashboard() {
                 onChange={(e) => setSelectedFiliere(e.target.value)}
               >
                 <option value="">Toutes les filières</option>
-                <option>Gestion</option>
-                <option>Commerce</option>
-                <option>Tourisme</option>
+                <option>Technicien de laboratoire</option>
+                <option>Sciences infirmières</option>
+                <option>Maieutique</option>
               </select>
               <select
                 className="form-control"

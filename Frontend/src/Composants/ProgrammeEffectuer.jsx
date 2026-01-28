@@ -14,11 +14,10 @@ function ProgrammeEffectuer() {
 
   // Données statiques
   const filieres = [
-    "Gestion",
-    "Commerce",
-    "Tourisme"
+    "Technicien de laboratoire",
+    "Sciences infirmières",
+    "Maieutique"
   ];
-
   const niveaux = ["L1", "L2", "L3","M1","M2"];
   const niveauxSemestres = {
     L1: ["S1", "S2"],
@@ -56,18 +55,19 @@ function ProgrammeEffectuer() {
 
   // Sélection des unités et matières en fonction de la filière
   const getUnites = () => {
-    if (filiere === "Gestion" || filiere === "Commerce") {
+    // "Sciences infirmières" and "Maieutique" use the SFIG units
+    if (filiere === "Sciences infirmières" || filiere === "Maieutique") {
       return Object.keys(unitesEtMatieresSFIG);
-    } else if (filiere === "Tourisme") {
+    } else if (filiere === "Technicien de laboratoire") {
       return Object.keys(unitesEtMatieresBTL);
     }
     return [];
   };
 
   const getMatieres = () => {
-    if (filiere === "Gestion" || filiere === "Commerce") {
+    if (filiere === "Sciences infirmières" || filiere === "Maieutique") {
       return unitesEtMatieresSFIG[uniteEnseignement] || [];
-    } else if (filiere === "Tourisme") {
+    } else if (filiere === "Technicien de laboratoire") {
       return unitesEtMatieresBTL[uniteEnseignement] || [];
     }
     return [];

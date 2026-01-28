@@ -96,7 +96,7 @@ function ModifNote() {
         "ANGLAIS": ["Anglais"]
     };
 
-const matieres = filiere === "Tourisme" ? unitesEtMatieresBTL : unitesEtMatieresSFIG;*/
+const matieres = filiere === "Technicien de laboratoire" ? unitesEtMatieresBTL : unitesEtMatieresSFIG;*/
   }
 
   useEffect(() => {

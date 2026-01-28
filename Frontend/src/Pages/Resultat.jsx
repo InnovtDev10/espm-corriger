@@ -19,7 +19,7 @@ function Resultat() {
     const [moyenneGenerale, setMoyenneGenerale] = useState("");
 
     const niveaux = ["L1", "L2", "L3","M1","M2"];
-    const filieres = ["Gestion", "Commerce", "Tourisme"];
+    const filieres = ["Technicien de laboratoire", "Sciences infirmières", "Maieutique"];
 
     return (
         <>

@@ -34,9 +34,9 @@ function ProgrammeModal() {
     anneesAcademiques.push(`${anneeDebut}-${anneeFin}`);
   }
   const filieres = [
-    "Gestion",
-    "Commerce",
-    "Tourisme",
+    "Technicien de laboratoire",
+    "Sciences infirmières",
+    "Maieutique",
   ];
   const niveaux = ["L1", "L2", "L3","M1","M2"];
   const niveauxSemestres = {

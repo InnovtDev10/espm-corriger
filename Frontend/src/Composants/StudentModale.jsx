@@ -180,9 +180,9 @@ const StudentModal = () => {
                 <Form.Group className="mb-3">
                   <Form.Select name="filiere" value={etudiant.filiere} onChange={handleChange} required>
                     <option value="">Filière</option>
-                    <option value="Gestion">Gestion</option>
-                    <option value="Commerce">Commerce</option>
-                    <option value="Tourisme">Tourisme</option>
+                    <option value="Technicien de laboratoire">Technicien de laboratoire</option>
+                    <option value="Sciences infirmières">Sciences infirmières</option>
+                    <option value="Maieutique">Maieutique</option>
                   </Form.Select>
                 </Form.Group>
                 <Form.Group className="mb-3">

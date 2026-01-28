@@ -218,9 +218,9 @@ function Classe() {
                   onChange={(e) => setSpecialite(e.target.value)}
                 >
                   <option value="">Filière</option>
-                  <option>Gestion</option>
-                  <option>Commerce</option>
-                  <option>Tourisme</option>
+                  <option>Technicien de laboratoire</option>
+                  <option>Sciences infirmières</option>
+                  <option>Maieutique</option>
                 </select>
               </div>
               <div className="d-flex gap-2 ">
@@ -277,9 +277,9 @@ function Classe() {
                     onChange={(e) => setSpecialite(e.target.value)}
                   >
                     <option value="">Filière</option>
-                    <option>Gestion</option>
-                    <option>Commerce</option>
-                    <option>Tourisme</option>
+                    <option>Technicien de laboratoire</option>
+                    <option>Sciences infirmières</option>
+                    <option>Maieutique</option>
                   </select>
                 </div>
               </div>

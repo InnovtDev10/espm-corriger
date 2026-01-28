@@ -465,10 +465,15 @@ function EcolagePayment() {
     posY += rowHeight;
 
     // Contenu du tableau avec bordures X et Y
+    const dernierMoisPaiement =
+      paiementData.moisEffectuer && paiementData.moisEffectuer.length
+        ? paiementData.moisEffectuer[paiementData.moisEffectuer.length - 1]
+        : null;
+
     const tableData = [
       ["Écolage/Mois", `${paiementData.montantParMois || "N/A"} Ar`, ""],
-      ["Mois", `${paiementData.moisEffectuer[0] || "Non spécifié"}`, ""],
-      ["Montant payé", `${paiementData.montantParMois || "N/A"} Ar`, ""], // Vérifie si montantPaye existe
+      ["Mois", `${dernierMoisPaiement || "Non spécifié"}`, ""],
+      ["Montant payé", `${paiementData.montantParMois || "N/A"} Ar`, ""],
     ];
 
     console.log(tableData); // Vérifier les données utilisées
@@ -499,7 +504,7 @@ function EcolagePayment() {
     doc.setFontSize(6);
     doc.setFont("helvetica", "bold");
     doc.setTextColor("#16A085"); // Couleur vert pour le slogan ou le message complémentaire
-    const footerMessage = "I.U.M - MADAGASCAR DEVELOPPEMENT FORMATION";
+    const footerMessage = "E.S.P.M";
     const footerMessageWidth = doc.getTextWidth(footerMessage); // Calcul de la largeur du texte du footer
     const footerMessageX = (80 - footerMessageWidth) / 2; // Calcul du X pour centrer
     doc.text(footerMessage, footerMessageX, 225); // Footer centré
@@ -585,10 +590,15 @@ function EcolagePayment() {
     posY += rowHeight;
 
     // Contenu du tableau
+    const dernierMoisUpdate =
+      updateData.moisEffectuer && updateData.moisEffectuer.length
+        ? updateData.moisEffectuer[updateData.moisEffectuer.length - 1]
+        : null;
+
     const tableData = [
-      ["Écolage/Mois", `${updateData.montantParMois || "N/A"} Ar`, ""], // ✅ Correction ici
-      ["Mois", `${updateData.moisEffectuer[0] || "Non spécifié"}`, ""], // ✅ Correction ici
-      ["Montant payé", `${updateData.montantParMois || "N/A"} Ar`, ""], // Vérifie si montantPaye existe
+      ["Écolage/Mois", `${updateData.montantParMois || "N/A"} Ar`, ""],
+      ["Mois", `${dernierMoisUpdate || "Non spécifié"}`, ""],
+      ["Montant payé", `${updateData.montantParMois || "N/A"} Ar`, ""],
     ];
 
     doc.setFont("helvetica", "normal");
@@ -616,7 +626,7 @@ function EcolagePayment() {
     doc.setFontSize(6);
     doc.setFont("helvetica", "bold");
     doc.setTextColor("#16A085");
-    const footerMessage = "I.U.M - MADAGASCAR DEVELOPPEMENT FORMATION";
+    const footerMessage = "E.S.P.M";
     const footerMessageX = (80 - doc.getTextWidth(footerMessage)) / 2;
     doc.text(footerMessage, footerMessageX, 225);
 
@@ -891,9 +901,9 @@ function EcolagePayment() {
                 onChange={(e) => setFilterSpecialite(e.target.value)}
               >
                 <option value="">Filière</option>
-                <option>Gestion</option>
-                <option>Commerce</option>
-                <option>Tourisme</option>
+                <option>Technicien de laboratoire</option>
+                <option>Sciences infirmières</option>
+                <option>Maieutique</option>
               </select>
               <input
                 list="annees-universitaires"

@@ -16,9 +16,9 @@ function Frais() {
   const [nom, setNom] = useState("");
   const [description, setDescription] = useState("");
   const [specialite, setSpecialite] = useState([
-    "Gestion",
-    "Commerce",
-    "Tourisme",
+    "Technicien de laboratoire",
+    "Sciences infirmières",
+    "Maieutique",
   ]);
   const [frais, setFrais] = useState([]);
   const [showEditModal, setShowEditModal] = useState(false);
@@ -50,9 +50,9 @@ function Frais() {
 
     if (selectedValues.includes("Tous")) {
       setSpecialite([
-        "Gestion",
-        "Commerce",
-        "Tourisme",
+        "Technicien de laboratoire",
+        "Sciences infirmières",
+        "Maieutique",
       ]);
     } else {
       setSpecialite(selectedValues);
@@ -214,12 +214,12 @@ function Frais() {
                   onChange={handleSpecialiteChange}
                 >
                   <option value="Tous">Toutes les spécialités</option>
-                  <option value="Gestion">
-                    Gestion
+                  <option value="Technicien de laboratoire">
+                    Technicien de laboratoire
                   </option>
-                  <option value="Commerce">Commerce</option>
-                  <option value="Tourisme">
-                    Tourisme
+                  <option value="Sciences infirmières">Sciences infirmières</option>
+                  <option value="Maieutique">
+                    Maieutique
                   </option>
                 </select>
               </div>

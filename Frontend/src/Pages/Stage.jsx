@@ -657,7 +657,7 @@ function Stage() {
                 <button
                   className="btn btn-primary"
                   onClick={() => {
-                    if (filiereNote === "Tourisme") {
+                    if (filiereNote === "Technicien de laboratoire") {
                       navigate("/notestagelabo", {
                         state: {
                           matriculeNote,
@@ -672,8 +672,8 @@ function Stage() {
                         },
                       });
                     } else if (
-                      filiereNote === "Commerce" ||
-                      filiereNote === "Gestion"
+                      filiereNote === "Sciences infirmières" ||
+                      filiereNote === "Maieutique"
                     ) {
                       navigate("/notestage", {
                         state: {

@@ -49,9 +49,9 @@ const ResultatTable = ({
       notesAnnee.forEach(note => {
         const pratique = pratiques.find(p => p.matricule === note.matricule);
         let moyT = 0;
-        if (note.filiere === "Commerce" || note.filiere === "Gestion") {
+        if (note.filiere === "Sciences infirmières" || note.filiere === "Maieutique") {
           moyT = note.totalTheorique / 58;
-        } else if (note.filiere === "Tourisme") {
+        } else if (note.filiere === "Technicien de laboratoire") {
           moyT = note.totalTheorique / 32;
         }
         const moyP = pratique ? parseFloat(pratique.notes["MOYENNE PRATIQUES"]) || 0 : 0;
@@ -116,9 +116,9 @@ const ResultatTable = ({
   const filteredNotes = notesTheoriques.filter((note) => {
     const notePratique = notesPratiques.find(n => n.matricule === note.matricule);
     let moyT = "-";
-    if (note.filiere === "Commerce" || note.filiere === "Gestion") {
+    if (note.filiere === "Sciences infirmières" || note.filiere === "Maieutique") {
       moyT = (note.totalTheorique / 58).toFixed(2);
-    } else if (note.filiere === "Tourisme") {
+    } else if (note.filiere === "Technicien de laboratoire") {
       moyT = (note.totalTheorique / 32).toFixed(2);
     }
     const moyP = notePratique ? parseFloat(notePratique.notes["MOYENNE PRATIQUES"]) || 0 : 0;
@@ -192,9 +192,9 @@ const ResultatTable = ({
       body: filteredNotes.map(note => {
         const p = notesPratiques.find(n => n.matricule === note.matricule);
         let moyT = "-";
-        if (note.filiere === "Commerce" || note.filiere === "Gestion") {
+        if (note.filiere === "Sciences infirmières" || note.filiere === "Maieutique") {
           moyT = (note.totalTheorique / 58).toFixed(2);
-        } else if (note.filiere === "Tourisme") {
+        } else if (note.filiere === "Technicien de laboratoire") {
           moyT = (note.totalTheorique / 32).toFixed(2);
         }
         const moyP = p ? parseFloat(p.notes["MOYENNE PRATIQUES"]) || 0 : 0;
@@ -258,12 +258,12 @@ const ResultatTable = ({
         let moyenneTheorique = "-";
 
         if (
-          note.filiere === "Commerce" ||
-          note.filiere === "Gestion"
+          note.filiere === "Sciences infirmières" ||
+          note.filiere === "Maieutique"
         ) {
           moyenneTheorique = (note.totalTheorique / 58).toFixed(2);
         } else if (
-          note.filiere === "Tourisme"
+          note.filiere === "Technicien de laboratoire"
         ) {
           moyenneTheorique = (note.totalTheorique / 32).toFixed(2);
         }

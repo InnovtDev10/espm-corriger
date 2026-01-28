@@ -351,29 +351,24 @@ function RapportGenerale() {
           <div className="finance-stats-container mt-0 p-4  ">
             <h5> Absence & Retard</h5>
             <div className="finance-rapport-card">
-              <h5 className="fw-bold">Gestion</h5>
+              <h5 className="fw-bold">Technicien de laboratoire</h5>
               <p>
-                {calculateAbsenceAndRetard("Gestion")}/
-                {calculateTotalStudentsForPointage("Gestion")}
+                {calculateAbsenceAndRetard("Technicien de laboratoire")}/
+                {calculateTotalStudentsForPointage("Technicien de laboratoire")}
               </p>
             </div>
             <div className="finance-rapport-card">
-              <h5 className="fw-bold"> Commerce</h5>
+              <h5 className="fw-bold">Sciences infirmières</h5>
               <p>
-                {calculateAbsenceAndRetard("Commerce")}/
-                {calculateTotalStudentsForPointage("Commerce")}
+                {calculateAbsenceAndRetard("Sciences infirmières")}/
+                {calculateTotalStudentsForPointage("Sciences infirmières")}
               </p>
             </div>
             <div className="finance-rapport-card">
-              <h5 className="fw-bold">Tourisme</h5>
+              <h5 className="fw-bold">Maieutique</h5>
               <p>
-                {calculateAbsenceAndRetard(
-                  "Tourisme"
-                )}
-                /
-                {calculateTotalStudentsForPointage(
-                  "Tourisme"
-                )}
+                {calculateAbsenceAndRetard("Maieutique")}/
+                {calculateTotalStudentsForPointage("Maieutique")}
               </p>
             </div>
           </div>
@@ -446,39 +441,38 @@ function RapportGenerale() {
           <div className="finance-stats-container mt-0 p-4">
             <h5>Suivi Ecolage</h5>
             <div className="finance-rapport-card">
-              <h5 className="fw-bold">Gestion</h5>
+              <h5 className="fw-bold">Technicien de laboratoire</h5>
               <p>
                 {
                   filteredPaiements.filter(
-                    (paiement) => paiement.filiere === "Gestion"
+                    (paiement) => paiement.filiere === "Technicien de laboratoire"
                   ).length
                 }
-                /{calculateTotalStudentsForPaiement("Gestion")}
+                /{calculateTotalStudentsForPaiement("Technicien de laboratoire")}
               </p>
             </div>
             <div className="finance-rapport-card">
-              <h5 className="fw-bold"> Commerce</h5>
+              <h5 className="fw-bold">Sciences infirmières</h5>
               <p>
                 {
                   filteredPaiements.filter(
-                    (paiement) => paiement.filiere === "Commerce"
+                    (paiement) => paiement.filiere === "Sciences infirmières"
                   ).length
                 }
-                /{calculateTotalStudentsForPaiement("Commerce")}
+                /{calculateTotalStudentsForPaiement("Sciences infirmières")}
               </p>
             </div>
             <div className="finance-rapport-card">
-              <h5 className="fw-bold">Tourisme</h5>
+              <h5 className="fw-bold">Maieutique</h5>
               <p>
                 {
                   filteredPaiements.filter(
-                    (paiement) =>
-                      paiement.filiere === "Tourisme"
+                    (paiement) => paiement.filiere === "Maieutique"
                   ).length
                 }
                 /
                 {calculateTotalStudentsForPaiement(
-                  "Tourisme"
+                  "Maieutique"
                 )}
               </p>
             </div>
@@ -486,23 +480,23 @@ function RapportGenerale() {
           <div className="finance-stats-container mt-0 p-4">
             <h5>Montant Total</h5>
             <div className="finance-rapport-card">
-              <h5 className="fw-bold">Gestion</h5>
+              <h5 className="fw-bold">Technicien de laboratoire</h5>
               <p>
                 {calculateMontantTotal(
-                  "Gestion"
+                  "Technicien de laboratoire"
                 ).toLocaleString()}{" "}
                 Ar
               </p>
             </div>
             <div className="finance-rapport-card">
-              <h5 className="fw-bold"> Commerce</h5>
-              <p>{calculateMontantTotal("Commerce").toLocaleString()} Ar</p>
+              <h5 className="fw-bold">Sciences infirmières</h5>
+              <p>{calculateMontantTotal("Sciences infirmières").toLocaleString()} Ar</p>
             </div>
             <div className="finance-rapport-card">
-              <h5 className="fw-bold">Tourisme</h5>
+              <h5 className="fw-bold">Maieutique</h5>
               <p>
                 {calculateMontantTotal(
-                  "Tourisme"
+                  "Maieutique"
                 ).toLocaleString()}{" "}
                 Ar
               </p>
@@ -566,39 +560,38 @@ function RapportGenerale() {
           <div className="finance-stats-container mt-0 p-4">
             <h5>Suivi de stage</h5>
             <div className="finance-rapport-card">
-              <h5 className="fw-bold">Gestion</h5>
+              <h5 className="fw-bold">Technicien de laboratoire</h5>
               <p>
                 {
                   filteredStages.filter(
-                    (stage) => stage.filiere === "Gestion"
+                    (stage) => stage.filiere === "Technicien de laboratoire"
                   ).length
                 }
-                /{calculateTotalStudentsForStage("Gestion")}
+                /{calculateTotalStudentsForStage("Technicien de laboratoire")}
               </p>
             </div>
             <div className="finance-rapport-card">
-              <h5 className="fw-bold"> Commerce</h5>
+              <h5 className="fw-bold">Sciences infirmières</h5>
               <p>
                 {
                   filteredStages.filter(
-                    (stage) => stage.filiere === "Commerce"
+                    (stage) => stage.filiere === "Sciences infirmières"
                   ).length
                 }
-                /{calculateTotalStudentsForStage("Commerce")}
+                /{calculateTotalStudentsForStage("Sciences infirmières")}
               </p>
             </div>
             <div className="finance-rapport-card">
-              <h5 className="fw-bold">Tourisme</h5>
+              <h5 className="fw-bold">Maieutique</h5>
               <p>
                 {
                   filteredStages.filter(
-                    (stage) =>
-                      stage.filiere === "Tourisme"
+                    (stage) => stage.filiere === "Maieutique"
                   ).length
                 }
                 /
                 {calculateTotalStudentsForStage(
-                  "Tourisme"
+                  "Maieutique"
                 )}
               </p>
             </div>

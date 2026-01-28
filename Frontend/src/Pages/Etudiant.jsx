@@ -81,9 +81,9 @@ function Etudiant() {
             onChange={(e) => setSelectedFiliere(e.target.value)}
         >
             <option value="">Toutes les filières</option>
-            <option>Gestion</option>
-            <option>Commerce</option>
-            <option>Tourisme</option>
+            <option>Technicien de laboratoire</option>
+            <option>Sciences infirmières</option>
+            <option>Maieutique</option>
         </select>
         <select
             className='form-control'

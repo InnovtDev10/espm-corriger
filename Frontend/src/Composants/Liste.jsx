@@ -28,11 +28,9 @@ const Listes = () => {
           onChange={(e) => setSelectedFiliere(e.target.value)}
         >
           <option value="">Toutes</option>
-          <option value="Gestion">Gestion</option>
-          <option value="Commerce">Commerce</option>
-          <option value="Tourisme">
-            Tourisme
-          </option>
+          <option value="Technicien de laboratoire">Technicien de laboratoire</option>
+          <option value="Sciences infirmières">Sciences infirmières</option>
+          <option value="Maieutique">Maieutique</option>
         </select>
       </div>
       <table className="table table-striped table-bordered text-center shadow-sm">
