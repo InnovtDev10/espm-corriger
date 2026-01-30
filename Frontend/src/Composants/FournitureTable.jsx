@@ -243,14 +243,7 @@ function FournitureTable() {
     doc.setDrawColor(44, 62, 80);
     doc.line(5, posY + 15, 75, posY + 15);
 
-    // Placer le slogan ou message de bas de page
-    doc.setFontSize(6);
-    doc.setFont("helvetica", "bold");
-    doc.setTextColor("#16A085");
-    const footerMessage = "I.U.M - MADAGASCAR DEVELOPPEMENT FORMATION";
-    const footerMessageWidth = doc.getTextWidth(footerMessage);
-    const footerMessageX = (80 - footerMessageWidth) / 2;
-    doc.text(footerMessage, footerMessageX, 225); // Footer centré, placé en bas de la page
+    // Footer removed per request
 
     // Convertir en blob et imprimer avec window.print
     const pdfBlob = doc.output("blob");

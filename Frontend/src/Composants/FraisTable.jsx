@@ -317,14 +317,7 @@ function FraisTable() {
     doc.setDrawColor(44, 62, 80); // Couleur gris foncé
     doc.line(5, posY + 25, 75, posY + 25); // Ligne de séparation sous le message
 
-    // Placer le slogan en bas (footer)
-    doc.setFontSize(6);
-    doc.setFont("helvetica", "bold");
-    doc.setTextColor("#16A085"); // Couleur vert pour le slogan ou le message complémentaire
-    const footerMessage = "I.U.M - MADAGASCAR DEVELOPPEMENT FORMATION";
-    const footerMessageWidth = doc.getTextWidth(footerMessage); // Calcul de la largeur du texte du footer
-    const footerMessageX = (80 - footerMessageWidth) / 2; // Calcul du X pour centrer
-    doc.text(footerMessage, footerMessageX, 225); // Footer centré
+    // Footer removed per request
 
     // Convertir en blob et imprimer avec window.print
     const pdfBlob = doc.output("blob");
@@ -446,14 +439,7 @@ function FraisTable() {
     doc.setDrawColor(44, 62, 80); // Couleur gris foncé
     doc.line(5, posY + 25, 75, posY + 25); // Ligne de séparation sous le message
 
-    // Placer le slogan en bas (footer)
-    doc.setFontSize(6);
-    doc.setFont("helvetica", "bold");
-    doc.setTextColor("#16A085"); // Couleur vert pour le slogan ou le message complémentaire
-    const footerMessage = "I.U.M - MADAGASCAR DEVELOPPEMENT FORMATION";
-    const footerMessageWidth = doc.getTextWidth(footerMessage); // Calcul de la largeur du texte du footer
-    const footerMessageX = (80 - footerMessageWidth) / 2; // Calcul du X pour centrer
-    doc.text(footerMessage, footerMessageX, 225); // Footer centré
+    // Footer removed per request
 
     // Convertir en blob et imprimer avec window.print
     const pdfBlob = doc.output("blob");
