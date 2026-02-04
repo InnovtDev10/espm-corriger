@@ -1,9 +1,10 @@
 {
   "development": {
     "username": "postgres",
-    "password": "12345678",
-    "database": "SgbdESPM2",
-    "host": "127.0.0.1",
+    "password": "Antonio0108Andria", 
+    "database": "ESPM",
+    "host": "localhost",
+    "port": 5432,
     "dialect": "postgres"
   },
   "test": {
@@ -14,10 +15,11 @@
     "dialect": "mysql"
   },
   "production": {
-    "username": "root",
-    "password": null,
-    "database": "database_production",
-    "host": "127.0.0.1",
-    "dialect": "mysql"
+    "username": "innovtco_cto",
+    "password": "Antonio0108Andria", 
+    "database": "innovtco_ESPM",
+    "host": "localhost",
+    "port": 5432,
+    "dialect": "postgres"
   }
 }

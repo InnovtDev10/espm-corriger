@@ -36,7 +36,8 @@ function FinanceSortie() {
   const [historyMonth, setHistoryMonth] = useState("");
   const [historyYear, setHistoryYear] = useState("");
   const [historyDay, setHistoryDay] = useState("");
-
+  const url = import.meta.env.VITE_API_URL;
+  
   const navigate = useNavigate(); // Initialisation de navigate
 
   // Manipulation des filtres
@@ -148,7 +149,7 @@ function FinanceSortie() {
   const handleSubmit = async () => {
     try {
       const response = await fetch(
-        "http://localhost:5000/api/autre-depenses/add",
+        `${url}/api/autre-depenses/add`,
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -186,7 +187,10 @@ function FinanceSortie() {
     const fetchPaiements = async () => {
       try {
         const response = await fetch(
-          "http://localhost:5000/api/paiement/salaire/all"
+          `${url}/api/paiement/salaire/all`,
+          {
+            cache: 'no-store'
+          }
         );
         if (!response.ok)
           throw new Error("Erreur lors de la récupération des paiements");
@@ -207,7 +211,9 @@ function FinanceSortie() {
   }, []);
 
   useEffect(() => {
-    fetch("http://localhost:5000/api/materiel/all")
+    fetch(`${url}/api/materiel/all`, {
+      cache: 'no-store'
+    })
       .then((response) => response.json())
       .then((data) => {
         const fetchedMateriel = Array.isArray(data) ? data : [];
@@ -228,7 +234,10 @@ function FinanceSortie() {
     const fetchAutreDepenses = async () => {
       try {
         const response = await fetch(
-          "http://localhost:5000/api/autre-depenses/all"
+          `${url}/api/autre-depenses/all`,
+          {
+            cache: 'no-store'
+          }
         );
         const data = await response.json();
 

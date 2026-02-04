@@ -6,11 +6,12 @@ import axios from "axios";
 function SortieHistoriqueTable() {
   const [searchTerm, setSearchTerm] = useState("");
   const [sortiesFournitures, setSortiesFournitures] = useState([]);
+  const url = import.meta.env.VITE_API_URL;
 
   // Récupérer les sorties de fournitures depuis l'API
   useEffect(() => {
     axios
-      .get("http://localhost:5000/api/sortiemateriel/all")
+      .get(`${url}/api/sortiemateriel/all`)
       .then((response) => {
         setSortiesFournitures(response.data);
       })

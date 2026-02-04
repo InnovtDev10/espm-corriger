@@ -11,7 +11,17 @@ const db = {};
 
 let sequelize;
 if (config.use_env_variable) {
-  sequelize = new Sequelize(process.env[config.use_env_variable], config);
+  sequelize = new Sequelize(
+    process.env.DB_NAME,
+    process.env.DB_USER,
+    process.env.DB_PASSWORD,
+    {
+      host: process.env.DB_HOST,
+      port: process.env.DB_PORT || 5432,
+      dialect: process.env.DB_DIALECT,
+      logging: console.log
+    }
+  );
 } else {
   sequelize = new Sequelize(config.database, config.username, config.password, config);
 }

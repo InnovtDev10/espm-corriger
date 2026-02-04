@@ -23,7 +23,8 @@ function FournitureTable() {
   const [searchTerm, setSearchTerm] = useState("");
   // Ajout d'une nouvelle variable d'état pour gérer le clignotement
   const [blinkingRows, setBlinkingRows] = useState([]);
-
+  const url = import.meta.env.VITE_API_URL;
+  
   useEffect(() => {
     const interval = setInterval(() => {
       setBlinkingRows((prev) => {
@@ -39,7 +40,9 @@ function FournitureTable() {
   }, [filteredFournitures]);
 
   useEffect(() => {
-    fetch("http://localhost:5000/api/materiel/all")
+    fetch(`${url}/api/materiel/all`, {
+      cache: 'no-store'
+    })
       .then((response) => response.json())
       .then((data) => {
         const fetchedFournitures = Array.isArray(data) ? data : [];
@@ -113,7 +116,7 @@ function FournitureTable() {
   const handleSubmitSortie = async () => {
     try {
       const response = await axios.post(
-        "http://localhost:5000/api/sortiemateriel/add",
+        `${url}/api/sortiemateriel/add`,
         {
           designation: selectedFourniture.designation,
           natureSortie,

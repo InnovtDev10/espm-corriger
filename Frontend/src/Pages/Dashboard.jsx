@@ -13,12 +13,18 @@ function Dashboard() {
     sageFemme: 0,
     bioTechnicien: 0,
   });
+  const url = import.meta.env.VITE_API_URL;
 
   useEffect(() => {
     const fetchCounts = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:5000/api/etudiant/count"
+          `${url}/api/etudiant/count`,
+          {
+            headers: {
+              'Cache-Control': 'no-cache'
+            }
+          }
         );
         setCounts({
           infirmier: response.data.totalInfirmiers,
@@ -37,6 +43,7 @@ function Dashboard() {
   const [selectedFiliere, setSelectedFiliere] = useState("");
   const [selectedNiveau, setSelectedNiveau] = useState("");
   const [selectedAnnee, setSelectedAnnee] = useState("");
+  
 
   return (
     <>

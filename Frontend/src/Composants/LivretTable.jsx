@@ -17,6 +17,7 @@ const LivretTable = ({
 }) => {
   const [students, setStudents] = useState([]);
   const [filteredStudents, setFilteredStudents] = useState([]);
+  const url = import.meta.env.VITE_API_URL;
 
   // Fonction pour formater la date en format français
   const formatDate = (dateString) => {
@@ -33,7 +34,12 @@ const LivretTable = ({
     const fetchStudents = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:5000/api/livret/tous"
+          `${url}/api/livret/tous`,
+          {
+            headers: {
+              'Cache-Control': 'no-cache'
+            }
+          }
         );
         setStudents(response.data);
         setFilteredStudents(response.data);

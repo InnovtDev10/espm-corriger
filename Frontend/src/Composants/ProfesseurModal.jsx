@@ -21,6 +21,7 @@ const ProfesseurModal = () => {
     statut: "Actif",
   });
 
+  const url = import.meta.env.VITE_API_URL;
   const [photo, setPhoto] = useState(null);
   const [cv, setCv] = useState(null);
   const [lm, setLm] = useState(null);
@@ -70,7 +71,7 @@ const ProfesseurModal = () => {
       }
 
       const response = await axios.post(
-        "http://localhost:5000/api/prof/add",
+        `${url}/api/prof/add`,
         formData,
         {
           headers: { "Content-Type": "multipart/form-data" },
@@ -271,30 +272,33 @@ const ProfesseurModal = () => {
                   </Form.Control>
                 </Form.Group>
                 <Form.Group controlId="cv" className="mb-3">
-                  <Form.Label>CV (PDF)</Form.Label>
+                  <Form.Label>CV (PDF)*</Form.Label>
                   <Form.Control
                     type="file"
                     accept=".pdf"
                     name="cv"
                     onChange={handleFileChange}
+                    required
                   />
                 </Form.Group>
                 <Form.Group controlId="lm" className="mb-3">
-                  <Form.Label>Lettre de Motivation (PDF)</Form.Label>
+                  <Form.Label>Lettre de Motivation (PDF)*</Form.Label>
                   <Form.Control
                     type="file"
                     accept=".pdf"
                     name="lm"
                     onChange={handleFileChange}
+                    required
                   />
                 </Form.Group>
                 <Form.Group controlId="diplome" className="mb-3">
-                  <Form.Label>Diplôme (PDF)</Form.Label>
+                  <Form.Label>Diplôme (PDF)*</Form.Label>
                   <Form.Control
                     type="file"
                     accept=".pdf"
                     name="diplome"
                     onChange={handleFileChange}
+                    required
                   />
                 </Form.Group>
                 <Form.Group controlId="photo_profil" className="mb-3">

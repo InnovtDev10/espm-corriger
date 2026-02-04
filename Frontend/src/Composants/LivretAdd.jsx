@@ -19,13 +19,19 @@ function LivretAdd() {
   // États pour le champ d’entrée dynamique
   const [showNewTypeInput, setShowNewTypeInput] = useState(false);
   const [newTypeDocument, setNewTypeDocument] = useState("");
+  const url = import.meta.env.VITE_API_URL;
 
   // 🔹 Charger la liste des étudiants au montage
   useEffect(() => {
     const fetchStudents = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:5000/api/etudiant/tous"
+          `${url}/api/etudiant/tous`,
+          {
+            headers: {
+              'Cache-Control': 'no-cache'
+            }
+          }
         );
         setStudents(response.data);
       } catch (error) {
@@ -95,7 +101,7 @@ function LivretAdd() {
 
     try {
       const response = await axios.post(
-        "http://localhost:5000/api/livret/add",
+        `${url}/api/livret/add`,
         data
       );
       Swal.fire({

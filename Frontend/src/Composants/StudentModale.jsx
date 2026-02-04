@@ -5,6 +5,7 @@ import { Modal, Button, Form, Row, Col } from "react-bootstrap";
 import "../Styles/ModalEtu.css";
 
 const StudentModal = () => {
+  const url = import.meta.env.VITE_API_URL;
   const [etudiant, setEtudiant] = useState({
     matricule: "",
     nom: "",
@@ -42,7 +43,7 @@ const StudentModal = () => {
 
   const validateForm = () => {
     const requiredFields = [
-      "matricule", "nom", "prenom", "date_naissance", "lieu_naissance",
+      "matricule", "nom", "prenom", "date_naissance", "lieu_naissance", "sexe",
       "email", "telephone", "adresse", "nationalite", "filiere", "niveau",
       "date_inscription", "nomPrenomPere", "telPere", "nomPrenomMere",
       "telMere", "numeroCIN", "dateDelivranceCIN"
@@ -68,7 +69,7 @@ const StudentModal = () => {
       }
 
       const response = await axios.post(
-        "http://localhost:5000/api/etudiant/add",
+        `${url}/api/etudiant/add`,
         formData,
         {
           headers: {
@@ -144,8 +145,8 @@ const StudentModal = () => {
                 <Form.Group className="mb-3">
                   <Form.Select name="sexe" value={etudiant.sexe} onChange={handleChange}>
                     <option value="">Sexe</option>
-                    <option value="Masculin">Masculin</option>
-                    <option value="Féminin">Féminin</option>
+                    <option value="Homme">Homme</option>
+                    <option value="Femme">Femme</option>
                   </Form.Select>
                 </Form.Group>
                 <Form.Group className="mb-3">

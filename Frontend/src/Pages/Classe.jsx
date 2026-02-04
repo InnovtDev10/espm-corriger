@@ -22,6 +22,7 @@ function Classe() {
   const [showConfirmModal, setShowConfirmModal] = useState(false);
   const [selectedEcolageForDelete, setSelectedEcolageForDelete] =
     useState(null);
+  const url = import.meta.env.VITE_API_URL;
 
   const navigate = useNavigate();
 
@@ -49,7 +50,7 @@ function Classe() {
     if (selectedEcolageForDelete) {
       try {
         await axios.delete(
-          `http://localhost:5000/api/ecolage/delete/${selectedEcolageForDelete.id}`
+          `${url}/api/ecolage/delete/${selectedEcolageForDelete.id}`
         );
         setEcolages(
           ecolages.filter(
@@ -72,7 +73,7 @@ function Classe() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/api/ecolage/get")
+      .get(`${url}/api/ecolage/get`)
       .then((response) => {
         setEcolages(response.data);
       })
@@ -97,7 +98,7 @@ function Classe() {
 
     try {
       const response = await axios.post(
-        "http://localhost:5000/api/ecolage/add",
+        `${url}/api/ecolage/add`,
         newEcolage
       );
       setEcolages([...ecolages, response.data]);
@@ -132,7 +133,7 @@ function Classe() {
     try {
       // Effectuer la requête PUT pour mettre à jour l'écologie
       const response = await axios.put(
-        `http://localhost:5000/api/ecolage/update/${selectedEcolage.id}`,
+        `${url}/api/ecolage/update/${selectedEcolage.id}`,
         updatedEcolage
       );
 

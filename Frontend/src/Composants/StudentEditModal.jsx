@@ -17,6 +17,7 @@ const StudentEditModal = ({ student, show, onHide }) => {
   const handleChange = (e) => {
     setEtudiant({ ...etudiant, [e.target.name]: e.target.value });
   };
+  const url = import.meta.env.VITE_API_URL;
 
   const validateForm = () => {
     const requiredFields = [
@@ -50,7 +51,7 @@ const StudentEditModal = ({ student, show, onHide }) => {
 
     try {
       const response = await axios.put(
-        `http://localhost:5000/api/etudiant/update/${etudiant.id}`,
+        `${url}/api/etudiant/update/${etudiant.id}`,
         etudiant
       );
       if (response.status === 200) {
@@ -162,8 +163,8 @@ const StudentEditModal = ({ student, show, onHide }) => {
                     <Form.Group className="mb-3">
                       <Form.Select name="sexe" value={etudiant.sexe} onChange={handleChange}>
                         <option value="">Sexe</option>
-                        <option value="Masculin">Masculin</option>
-                        <option value="Féminin">Féminin</option>
+                        <option value="Homme">Homme</option>
+                        <option value="Femme">Femme</option>
                       </Form.Select>
                     </Form.Group>
                     <Form.Group className="mb-3">

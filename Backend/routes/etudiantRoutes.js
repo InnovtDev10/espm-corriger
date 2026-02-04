@@ -7,6 +7,7 @@ const {
   deleteEtudiant, 
   getAllEtudiants, 
   countEtudiants, 
+  debugEtudiants,
   updateEtudiantByMatricule 
 } = require('../controllers/etudiantController');
 
@@ -45,5 +46,6 @@ router.put('/update/by/:matricule', (req, res, next) => {
 router.delete('/delete/:id', deleteEtudiant);
 router.get('/tous', getAllEtudiants);
 router.get('/count', countEtudiants);
+router.get('/debug', debugEtudiants);
 
 module.exports = router;

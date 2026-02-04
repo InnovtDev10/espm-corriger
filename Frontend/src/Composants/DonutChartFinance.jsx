@@ -9,6 +9,7 @@ const DonutChartFinance = ({ selectedMonth, selectedYear, selectedDay }) => {
     beneficeBrut: 0,
     immobilisation: 0,
   });
+  const url = import.meta.env.VITE_API_URL;
 
   useEffect(() => {
     const fetchFinancialData = async () => {
@@ -24,14 +25,14 @@ const DonutChartFinance = ({ selectedMonth, selectedYear, selectedDay }) => {
           autreDepensesRes,
           immobilisationRes,
         ] = await Promise.all([
-          axios.get("http://localhost:5000/api/paiement/droit/all"),
-          axios.get("http://localhost:5000/api/paiement/frais/all"),
-          axios.get("http://localhost:5000/api/sortiemateriel/all"),
-          axios.get("http://localhost:5000/api/paiement/ecolage/all"),
-          axios.get("http://localhost:5000/api/paiement/salaire/all"),
-          axios.get("http://localhost:5000/api/materiel/all"),
-          axios.get("http://localhost:5000/api/autre-depenses/all"),
-          axios.get("http://localhost:5000/api/immobilisation/tous"),
+          axios.get(`${url}/api/paiement/droit/all`,{headers:{'Cache-Control': 'no-cache'}}),
+          axios.get(`${url}/api/paiement/frais/all`,{headers:{'Cache-Control': 'no-cache'}}),
+          axios.get(`${url}/api/sortiemateriel/all`,{headers:{'Cache-Control': 'no-cache'}}),
+          axios.get(`${url}/api/paiement/ecolage/all`,{headers:{'Cache-Control': 'no-cache'}}),
+          axios.get(`${url}/api/paiement/salaire/all`,{headers:{'Cache-Control': 'no-cache'}}),
+          axios.get(`${url}/api/materiel/all`,{headers:{'Cache-Control': 'no-cache'}}),
+          axios.get(`${url}/api/autre-depenses/all`,{headers:{'Cache-Control': 'no-cache'}}),
+          axios.get(`${url}/api/immobilisation/tous`,{headers:{'Cache-Control': 'no-cache'}}),
         ]);
 
         const droits = droitsRes.data;

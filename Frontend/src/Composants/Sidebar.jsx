@@ -17,7 +17,8 @@ import defaultPhoto from "../assets/default_photo.jpg";
 function Sidebar() {
   const navigate = useNavigate();
   const location = useLocation();
-  const basePhotoUrl = "http://localhost:5000/uploads/";
+  const url = import.meta.env.VITE_API_URL;
+  const basePhotoUrl = `${url}/uploads/`;
 
   const isActive = (path) => {
     if (path === "/classe") {

@@ -30,6 +30,7 @@ function ModifNote() {
   const [moyenne, setMoyenne] = useState(0);
   const [matieresData, setMatieresData] = useState([]);
   const [matieres, setMatieres] = useState({});
+  const url = import.meta.env.VITE_API_URL;
 
   const calculerTotalEtMoyenne = () => {
     const matieresListe = Object.values(matieres).flat(); // toutes les matières affichées
@@ -124,7 +125,12 @@ const matieres = filiere === "Technicien de laboratoire" ? unitesEtMatieresBTL :
     const fetchMatieres = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:5000/api/matiere/tous"
+          `${url}/api/matiere/tous`,
+          {
+            headers: {
+              'Cache-Control': 'no-cache'
+            }
+          }
         );
         const formattedData = formatMatiereData(response.data);
         setMatieresData(formattedData);
@@ -223,7 +229,7 @@ const matieres = filiere === "Technicien de laboratoire" ? unitesEtMatieresBTL :
     // Envoi de la requête PUT pour mettre à jour les notes avec Axios
     try {
       const response = await axios.put(
-        `http://localhost:5000/api/note/update/${id}`,
+        `${url}/api/note/update/${id}`,
         data,
         {
           headers: {

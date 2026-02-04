@@ -31,13 +31,19 @@ function ClasseTable() {
   const [ecolages, setEcolages] = useState([]);
   const [payments, setPayments] = useState([]);
   const [filteredStudents, setFilteredStudents] = useState([]);
+  const url = import.meta.env.VITE_API_URL;
 
   // Fetch la liste des paiements
   useEffect(() => {
     const fetchPayments = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:5000/api/paiement/droit/all"
+          `${url}/api/paiement/droit/all`,
+          {
+            headers: {
+              'Cache-Control': 'no-cache'
+            }
+          }
         );
         setPayments(response.data);
       } catch (error) {
@@ -53,7 +59,12 @@ function ClasseTable() {
     const fetchStudents = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:5000/api/etudiant/tous"
+          `${url}/api/etudiant/tous`,
+          {
+            headers: {
+              'Cache-Control': 'no-cache'
+            }
+          }
         );
         setStudents(response.data); // Met à jour l'état `students` avec les étudiants
       } catch (error) {
@@ -67,7 +78,7 @@ function ClasseTable() {
   // Fetch liste des droits d'inscription
   useEffect(() => {
     axios
-      .get("http://localhost:5000/api/ecolage/get")
+      .get(`${url}/api/ecolage/get`)
       .then((response) => {
         setEcolages(response.data);
       })
@@ -132,7 +143,7 @@ function ClasseTable() {
 
     try {
       const response = await fetch(
-        "http://localhost:5000/api/paiement/droit/add",
+        `${url}/api/paiement/droit/add`,
         {
           method: "POST",
           headers: {
@@ -224,7 +235,7 @@ function ClasseTable() {
     console.log("Id:", editPaymentId);
     try {
       const response = await axios.put(
-        `http://localhost:5000/api/paiement/droit/update/${editPaymentId}`,
+        `${url}/api/paiement/droit/update/${editPaymentId}`,
         paymentData
       );
 
@@ -265,7 +276,12 @@ function ClasseTable() {
   const fetchPayments = async () => {
     try {
       const response = await axios.get(
-        "http://localhost:5000/api/paiement/droit/all"
+        `${url}/api/paiement/droit/all`,
+        {
+          headers: {
+            'Cache-Control': 'no-cache'
+          }
+        }
       );
       setPayments(response.data);
     } catch (error) {

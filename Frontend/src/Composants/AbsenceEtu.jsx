@@ -19,13 +19,19 @@ function AbsenceEtu() {
   const [decision, setDecision] = useState("");
   const [isLoading, setIsLoading] = useState(false); // Etat de chargement
   const [filteredStudents, setFilteredStudents] = useState([]);
+  const url = import.meta.env.VITE_API_URL;
 
   // Charger la liste des étudiants
   useEffect(() => {
     const fetchStudents = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:5000/api/etudiant/tous"
+          `${url}/api/etudiant/tous`,
+          {
+            headers: {
+              'Cache-Control': 'no-cache'
+            }
+          }
         );
         setStudents(response.data);
       } catch (error) {
@@ -105,7 +111,7 @@ function AbsenceEtu() {
 
     try {
       const response = await axios.post(
-        "http://localhost:5000/api/pointage/etudiant/add",
+        `${url}/api/pointage/etudiant/add`,
         data
       );
       Swal.fire({

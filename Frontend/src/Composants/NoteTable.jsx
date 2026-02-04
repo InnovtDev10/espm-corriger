@@ -9,13 +9,19 @@ function NoteTable({ matricule }) {
   const [notes, setNotes] = useState([]);
   const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
+  const url = import.meta.env.VITE_API_URL;
 
   useEffect(() => {
     const fetchNotes = async () => {
       if (matricule) {
         try {
           const response = await axios.get(
-            `http://localhost:5000/api/note/get/${matricule}`
+            `${url}/api/note/get/${matricule}`,
+            {
+              headers: {
+                'Cache-Control': 'no-cache'
+              }
+            }
           );
           setNotes(response.data);
         } catch (error) {

@@ -24,17 +24,18 @@ function RapportGenerale() {
   const [filteredPointage, setFilteredPointage] = useState([]); // Données filtrées
   const [filteredStages, setFilteredStages] = useState([]);
   const [filteredPaiements, setFilteredPaiements] = useState([]);
+  const url = import.meta.env.VITE_API_URL;
 
   useEffect(() => {
-    axios.get("http://localhost:5000/api/pointage/etudiant/all").then((res) => {
+    axios.get(`${url}/api/pointage/etudiant/all`, {headers: {'Cache-Control': 'no-cache'}}).then((res) => {
       setPointage(res.data);
       setFilteredPointage(res.data);
     });
     axios
-      .get("http://localhost:5000/api/etudiant/tous")
+      .get(`${url}/api/etudiant/tous`, {headers: {'Cache-Control': 'no-cache'}})
       .then((res) => setStudents(res.data));
     axios
-      .get("http://localhost:5000/api/stage/all")
+      .get(`${url}/api/stage/all`, {headers: {'Cache-Control': 'no-cache'}})
       .then((res) => setStages(res.data));
   }, []);
 
@@ -191,7 +192,12 @@ function RapportGenerale() {
     const fetchPaiements = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:5000/api/paiement/ecolage/all"
+          `${url}/api/paiement/ecolage/all`,
+          {
+            headers: {
+              'Cache-Control': 'no-cache'
+            }
+          }
         );
         setPaiements(response.data.data);
       } catch (error) {

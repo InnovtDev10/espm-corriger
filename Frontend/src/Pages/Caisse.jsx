@@ -10,6 +10,7 @@ function Caisse() {
   const handleVoirSortieClick = () => {
     navigate("/caissesortie");
   };
+  
 
   // États des filtres
   const [selectedMonth, setSelectedMonth] = useState("");
@@ -23,19 +24,20 @@ function Caisse() {
   const [totalFraisEncaisse, setTotalFraisEncaisse] = useState(0);
   const [totalVenteEncaisse, setTotalVenteEncaisse] = useState(0);
   const [totalArgentSortant, setTotalArgentSortant] = useState(0);
+  const url = import.meta.env.VITE_API_URL;
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/api/paiement/frais/all")
+      .get(`${url}/api/paiement/frais/all`)
       .then((res) => setFrais(res.data));
     axios
-      .get("http://localhost:5000/api/paiement/droit/all")
+      .get(`${url}/api/paiement/droit/all`)
       .then((res) => setDroits(res.data));
     axios
-      .get("http://localhost:5000/api/sortiemateriel/all")
+      .get(`${url}/api/sortiemateriel/all`)
       .then((res) => setVenteMateriel(res.data));
     axios
-      .get("http://localhost:5000/api/materiel/all")
+      .get(`${url}/api/materiel/all`)
       .then((res) => setMateriel(res.data));
   }, []);
 

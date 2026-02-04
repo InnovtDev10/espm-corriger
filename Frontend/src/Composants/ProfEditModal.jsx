@@ -4,6 +4,7 @@ import Swal from "sweetalert2";
 import { Modal, Button, Form, Row, Col } from "react-bootstrap";
 
 const ProfEdit = ({ professeur, showModal, handleClose }) => {
+  const url = import.meta.env.VITE_API_URL;
   const [formData, setFormData] = useState({
     matricule: "",
     nom: "",
@@ -41,7 +42,7 @@ const ProfEdit = ({ professeur, showModal, handleClose }) => {
 
     try {
       const response = await axios.put(
-        `http://localhost:5000/api/prof/update/${formData.id}`,
+        `${url}/api/prof/update/${formData.id}`,
         formData
       );
 

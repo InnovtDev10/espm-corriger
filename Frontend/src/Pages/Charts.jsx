@@ -43,6 +43,7 @@ function Charts() {
   const [selectedDate, setSelectedDate] = useState("");
   const [historique, setHistorique] = useState([]);
   const [totalMontantImmo, setTotalMontantImmo] = useState(0);
+  const url = import.meta.env.VITE_API_URL;
 
   // Manipulation des filtres
   const handleMonthChange = (event) => setSelectedMonth(event.target.value);
@@ -71,7 +72,12 @@ function Charts() {
     const fetchHistorique = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:5000/api/immobilisation/tous"
+          `${url}/api/immobilisation/tous`,
+          {
+            headers: {
+              'Cache-Control': 'no-cache'
+            }
+          }
         );
         setHistorique(response.data);
 
@@ -103,7 +109,7 @@ function Charts() {
     try {
       // Effectuer la requête POST vers l'API
       const response = await axios.post(
-        "http://localhost:5000/api/immobilisation/add",
+        `${url}/api/immobilisation/add`,
         immobilisationData
       );
 
@@ -132,7 +138,7 @@ function Charts() {
   };
 
   useEffect(() => {
-    axios.get("http://localhost:5000/api/paiement/ecolage/all").then((res) => {
+    axios.get(`${url}/api/paiement/ecolage/all`, {headers: {'Cache-Control': 'no-cache'}}).then((res) => {
       setEcolage(res.data.data);
     });
   }, []);
@@ -140,13 +146,13 @@ function Charts() {
   // Fetch la liste des paiements
   useEffect(() => {
     axios
-      .get("http://localhost:5000/api/paiement/frais/all")
+      .get(`${url}/api/paiement/frais/all`, {headers: {'Cache-Control': 'no-cache'}})
       .then((res) => setFrais(res.data));
     axios
-      .get("http://localhost:5000/api/paiement/droit/all")
+      .get(`${url}/api/paiement/droit/all`, {headers: {'Cache-Control': 'no-cache'}})
       .then((res) => setDroits(res.data));
     axios
-      .get("http://localhost:5000/api/sortiemateriel/all")
+      .get(`${url}/api/sortiemateriel/all`, {headers: {'Cache-Control': 'no-cache'}})
       .then((res) => setVenteMateriel(res.data));
   }, []);
 
@@ -154,7 +160,10 @@ function Charts() {
     const fetchPaiements = async () => {
       try {
         const response = await fetch(
-          "http://localhost:5000/api/paiement/salaire/all"
+          `${url}/api/paiement/salaire/all`,
+          {
+            cache: 'no-store'
+          }
         );
         if (!response.ok)
           throw new Error("Erreur lors de la récupération des paiements");
@@ -169,7 +178,9 @@ function Charts() {
   }, []);
 
   useEffect(() => {
-    fetch("http://localhost:5000/api/materiel/all")
+    fetch(`${url}/api/materiel/all`,{
+      cache: 'no-store'
+    })
       .then((response) => response.json())
       .then((data) => {
         const fetchedMateriel = Array.isArray(data) ? data : [];
@@ -184,7 +195,10 @@ function Charts() {
     const fetchAutreDepenses = async () => {
       try {
         const response = await fetch(
-          "http://localhost:5000/api/autre-depenses/all"
+          `${url}/api/autre-depenses/all`,
+          {
+            cache: 'no-store'
+          }
         );
         const data = await response.json();
 

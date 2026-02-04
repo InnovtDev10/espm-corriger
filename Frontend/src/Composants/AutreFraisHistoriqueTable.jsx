@@ -10,13 +10,19 @@ const AutreFraisHistoriqueTable = () => {
   const [filterStatut, setFilterStatut] = useState("");
   const [loading, setLoading] = useState(false);
   const [resultCount, setResultCount] = useState(0);
+  const url = import.meta.env.VITE_API_URL;
 
   useEffect(() => {
     const fetchPaiements = async () => {
       setLoading(true);
       try {
         const response = await axios.get(
-          "http://localhost:5000/api/paiement/frais/all"
+          `${url}/api/paiement/frais/all`,
+          {
+            headers: {
+              'Cache-Control': 'no-cache'
+            }
+          }
         );
         setPaiements(response.data);
       } catch (error) {

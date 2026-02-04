@@ -10,6 +10,7 @@ function Login() {
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false); // 🔹 Ajout d'un état de chargement
   const navigate = useNavigate();
+  const url = import.meta.env.VITE_API_URL;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -18,7 +19,7 @@ function Login() {
 
     try {
       const response = await axios.post(
-        "http://localhost:5000/api/users/login",
+        `${url}/api/users/login`,
         userData
       );
       if (response.data.token) {

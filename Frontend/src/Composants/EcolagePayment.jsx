@@ -27,7 +27,8 @@ function EcolagePayment() {
   const [searchMatricule, setSearchMatricule] = useState(""); // Champ de recherche
   const [filteredStudents, setFilteredStudents] = useState([]);
   const getMonthIndex = (mois) => mois.indexOf(moisSelectionne);
-
+  const url = import.meta.env.VITE_API_URL;
+  
   // Liste des étudiants filtrés
 
   const mois = [
@@ -173,7 +174,12 @@ function EcolagePayment() {
     const fetchStudents = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:5000/api/etudiant/tous"
+          `${url}/api/etudiant/tous`,
+          {
+            headers: {
+              'Cache-Control': 'no-cache'
+            }
+          }
         );
         setStudents(response.data);
       } catch (error) {
@@ -188,7 +194,12 @@ function EcolagePayment() {
     const fetchPaiements = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:5000/api/paiement/ecolage/all"
+          `${url}/api/paiement/ecolage/all`,
+          {
+            headers: {
+              'Cache-Control': 'no-cache'
+            }
+          }
         );
         setPaiements(response.data.data);
         console.log("Donnée de paiement ecolage:", response.data.data);
@@ -207,7 +218,7 @@ function EcolagePayment() {
   // Fetch liste des droits d'inscription
   useEffect(() => {
     axios
-      .get("http://localhost:5000/api/ecolage/get")
+      .get(`${url}/api/ecolage/get`)
       .then((response) => {
         setEcolages(response.data);
       })
@@ -276,7 +287,7 @@ function EcolagePayment() {
 
     try {
       const response = await axios.post(
-        "http://localhost:5000/api/paiement/ecolage/add",
+        `${url}/api/paiement/ecolage/add`,
         paiementData
       );
       if (response.status === 201) {
@@ -348,7 +359,7 @@ function EcolagePayment() {
 
     try {
       const response = await axios.put(
-        `http://localhost:5000/api/paiement/ecolage/update/${paiementId}`,
+        `${url}/api/paiement/ecolage/update/${paiementId}`,
         updateData
       );
       if (response.status === 200) {

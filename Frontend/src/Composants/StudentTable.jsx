@@ -19,6 +19,7 @@ const StudentTable = ({
   selectedMois,
   selectedAnnee,
 }) => {
+  const url = import.meta.env.VITE_API_URL;
   const [students, setStudents] = useState([]);
   const [filteredStudents, setFilteredStudents] = useState([]);
   const [showAbsenceModal, setShowAbsenceModal] = useState(false);
@@ -29,15 +30,22 @@ const StudentTable = ({
   const [nombreAbsences, setNombreAbsences] = useState(0);
   const [nombreRetards, setNombreRetards] = useState(0);
   const [pointage, setPointage] = useState([]);
-
   useEffect(() => {
     const fetchStudents = async () => {
       try {
+        console.log('Fetching students from:', `${url}/api/etudiant/tous`);
         const response = await axios.get(
-          "http://localhost:5000/api/etudiant/tous"
+          `${url}/api/etudiant/tous`,
+          {
+            headers: {
+              'Cache-Control': 'no-cache'
+            }
+          }
         );
+        console.log('Received students data:', response.data);
         setStudents(response.data);
         setFilteredStudents(response.data);
+        console.log('Students state updated, count:', response.data.length);
       } catch (error) {
         console.error("Erreur lors de la récupération des étudiants :", error);
       }
@@ -57,7 +65,7 @@ const StudentTable = ({
           (!selectedMois ||
             new Date(student.date_inscription).toISOString().slice(0, 7) ===
               selectedMois) &&
-          (!selectedAnnee || student.annee_scolaire === selectedAnnee)
+          (!selectedAnnee || student.annee_scolaire === selectedAnnee || !student.annee_scolaire)
       )
     );
   }, [
@@ -267,7 +275,7 @@ const StudentTable = ({
   
   // === Fonction de chargement de l'image ===
   async function loadStudentPhoto(doc, filename) {
-    const photoURL = `http://localhost:5000/uploads/${filename}`;
+    const photoURL = `${url}/uploads/${filename}`;
   
     try {
       const response = await fetch(photoURL);
@@ -310,7 +318,12 @@ const StudentTable = ({
   const handleOpenAbsenceModal = async (matricule) => {
     try {
       const response = await axios.get(
-        `http://localhost:5000/api/pointage/etudiant/get/${matricule}`
+        `${url}/api/pointage/etudiant/get/${matricule}`,
+        {
+          headers: {
+            'Cache-Control': 'no-cache'
+          }
+        }
       );
       let data = response.data;
       console.log("Donnée retard absence et sanction:", data);
@@ -356,14 +369,20 @@ const StudentTable = ({
 
   useEffect(() => {
     const fetchPointageParMois = async () => {
+      // Utiliser des valeurs par défaut si non sélectionnées pour tester
+      const mois = selectedMois || '01';
+      const annee = selectedAnnee || '2024';
+      
+      console.log('Fetching pointage with mois:', mois, 'annee:', annee);
+
       try {
-        let url = "http://localhost:5000/api/pointage/etudiant/mois";
+        let urlPointage = `${url}/api/pointage/etudiant/mois?mois=${mois}&annee=${annee}`;
 
-        if (selectedMois && selectedAnnee) {
-          url += `?mois=${selectedMois}&annee=${selectedAnnee}`;
-        }
-
-        const response = await axios.get(url);
+        const response = await axios.get(urlPointage,{
+          headers: {
+            'Cache-Control': 'no-cache'
+          }
+        });
         const data = response.data;
 
         setPointage(data);
@@ -433,7 +452,7 @@ const StudentTable = ({
       try {
         // Mettre à jour les cases à cocher dans la base de données
         await axios.put(
-          `http://localhost:5000/api/etudiant/update/${student.id}`,
+          `${url}/api/etudiant/update/${student.id}`,
           {
             [checkboxType]:
               checkboxType === "diplome_bacc"

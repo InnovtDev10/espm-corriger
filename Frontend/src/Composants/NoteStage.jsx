@@ -15,6 +15,7 @@ function NoteStage() {
   const [rapportDeGarde, setRapportDeGarde] = useState({});
   const [heures, setHeures] = useState({});
   const [credits, setCredits] = useState({});
+  const url = import.meta.env.VITE_API_URL;
 
   const location = useLocation();
   const {
@@ -136,7 +137,7 @@ function NoteStage() {
     };
 
     try {
-      const response = await fetch("http://localhost:5000/api/notestage/add", {
+      const response = await fetch(`${url}/api/notestage/add`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

@@ -20,12 +20,18 @@ const DashTable = ({
   const [showEditModal, setShowEditModal] = useState(false);
   const [absenceData, setAbsenceData] = useState({});
   const [selectedStudent, setSelectedStudent] = useState(null);
+  const url = import.meta.env.VITE_API_URL;
 
   useEffect(() => {
     const fetchStudents = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:5000/api/etudiant/tous"
+          `${url}/api/etudiant/tous`,
+          {
+            headers: {
+              'Cache-Control': 'no-cache'
+            }
+          }
         );
         setStudents(response.data);
         setFilteredStudents(response.data);
@@ -69,7 +75,12 @@ const DashTable = ({
   const handleOpenAbsenceModal = async (matricule) => {
     try {
       const response = await axios.get(
-        `http://localhost:5000/api/pointage/etudiant/get/${matricule}`
+        `${url}/api/pointage/etudiant/get/${matricule}`,
+        {
+          headers: {
+            'Cache-Control': 'no-cache'
+          }
+        }
       );
       let data = response.data;
 

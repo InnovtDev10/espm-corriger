@@ -5,13 +5,19 @@ import "../Styles/Note.css";
 function NotePratiqueTable({ matricule }) {
   const [noteData, setNoteData] = useState(null);
   const [loading, setLoading] = useState(true);
+  const url = import.meta.env.VITE_API_URL;
 
   useEffect(() => {
     const fetchNotes = async () => {
       if (matricule) {
         try {
           const response = await axios.get(
-            `http://localhost:5000/api/notestage/get/${matricule}`
+            `${url}/api/notestage/get/${matricule}`,
+            {
+              headers: {
+                'Cache-Control': 'no-cache'
+              }
+            }
           );
           setNoteData(response.data.data);
         } catch (error) {

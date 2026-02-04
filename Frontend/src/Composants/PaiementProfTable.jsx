@@ -7,12 +7,16 @@ function PaiementTable({ searchName, searchMatricule, selectedStatut, selectedMo
   const [paiements, setPaiements] = useState([]);  
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const url = import.meta.env.VITE_API_URL;
 
   useEffect(() => {
     const fetchPaiements = async () => {
       try {
         const response = await fetch(
-          "http://localhost:5000/api/paiement/salaire/all"
+          `${url}/api/paiement/salaire/all`,
+          {
+            cache: 'no-store'
+          }
         );
         if (!response.ok)
           throw new Error("Erreur lors de la récupération des paiements");

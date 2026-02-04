@@ -19,7 +19,7 @@ function ProgrammeModal() {
   const [filteredProfesseurs, setFilteredProfesseurs] = useState([]);
   const [matieresData, setMatieresData] = useState([]);
   const [matieres, setMatieres] = useState({});
-
+  const url = import.meta.env.VITE_API_URL;
   // Générer dynamiquement toutes les années académiques à partir de 2024
   const anneesAcademiques = [];
   const startYear = 2024;
@@ -97,7 +97,12 @@ function ProgrammeModal() {
     const fetchMatieres = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:5000/api/matiere/tous"
+          `${url}/api/matiere/tous`,
+          {
+            headers: {
+              'Cache-Control': 'no-cache'
+            }
+          }
         );
         const formattedData = formatMatiereData(response.data);
         setMatieresData(formattedData);
@@ -143,7 +148,7 @@ function ProgrammeModal() {
     };
 
     try {
-      const response = await fetch("http://localhost:5000/api/programme/add", {
+      const response = await fetch(`${url}/api/programme/add`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(newProgramme),
@@ -166,7 +171,11 @@ function ProgrammeModal() {
   useEffect(() => {
     const fetchProfesseurs = async () => {
       try {
-        const response = await axios.get("http://localhost:5000/api/prof/tous");
+        const response = await axios.get(`${url}/api/prof/tous`, {
+          headers: {
+            'Cache-Control': 'no-cache'
+          }
+        });
         setProfesseurs(response.data);
         setFilteredProfesseurs(response.data);
       } catch (error) {

@@ -33,6 +33,7 @@ function ProgrammeTable() {
     L2: ["S3", "S4"],
     L3: ["S5", "S6"],
   };
+  const url = import.meta.env.VITE_API_URL;
 
   const unitesEtMatieresSFIG = {
     "SCIENCES HUMAINES": [
@@ -122,7 +123,12 @@ function ProgrammeTable() {
     const fetchProgrammes = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:5000/api/programme/all"
+          `${url}/api/programme/all`,
+          {
+            headers: {
+              'Cache-Control': 'no-cache'
+            }
+          }
         );
         setProgrammes(response.data);
         setFilteredProgrammes(response.data);
@@ -164,7 +170,7 @@ function ProgrammeTable() {
 
     try {
       const response = await axios.put(
-        `http://localhost:5000/api/programme/update/${selectedProgramme.id}`,
+        `${url}/api/programme/update/${selectedProgramme.id}`,
         {
           volumeHoraireEffectuer: parseInt(Heure, 10),
         }

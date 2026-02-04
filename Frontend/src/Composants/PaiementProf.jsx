@@ -4,6 +4,7 @@ import Swal from "sweetalert2";
 import axios from "axios";
 
 function PaiementProfesseur() {
+  const url = import.meta.env.VITE_API_URL;
   // États pour gérer le formulaire
   const [professeurs, setProfesseurs] = useState([]);
   const [filteredProfesseurs, setFilteredProfesseurs] = useState([]);
@@ -19,7 +20,11 @@ function PaiementProfesseur() {
   useEffect(() => {
     const fetchProfesseurs = async () => {
       try {
-        const response = await axios.get("http://localhost:5000/api/prof/tous");
+        const response = await axios.get(`${url}/api/prof/tous`, {
+          headers: {
+            'Cache-Control': 'no-cache'
+          }
+        });
         setProfesseurs(response.data);
         setFilteredProfesseurs(response.data);
       } catch (error) {
@@ -71,7 +76,7 @@ function PaiementProfesseur() {
 
     try {
       const response = await axios.post(
-        "http://localhost:5000/api/paiement/salaire/add",
+        `${url}/api/paiement/salaire/add`,
         paiementData
       );
 

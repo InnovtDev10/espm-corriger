@@ -14,9 +14,10 @@ const TableauMat = () => {
   const naviguerVersMatieres = () => {
     navigate("/matieres");
   };
+  const url = import.meta.env.VITE_API_URL;
   useEffect(() => {
     axios
-      .get("http://localhost:5000/api/matiere/tous")
+      .get(`${url}/api/matiere/tous`)
       .then((response) => {
         console.log("Données reçues du backend:", response.data); // 🔍 Vérification des données
         setUnites(response.data);
@@ -38,7 +39,7 @@ const TableauMat = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         axios
-          .delete(`http://localhost:5000/api/matiere/delete/${id}`)
+          .delete(`${url}/api/matiere/delete/${id}`)
           .then(() => {
             setUnites(unites.filter((unite) => unite.id !== id));
             Swal.fire("Supprimé!", "L'unité a été supprimée.", "success");

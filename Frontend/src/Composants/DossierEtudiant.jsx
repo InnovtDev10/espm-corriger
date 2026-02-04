@@ -11,6 +11,7 @@ import Navbar from "../Composants/Navbar";
 import Sidebar from "../Composants/Sidebar";
 import { useNavigate } from "react-router-dom";
 
+
 const StudentTableDossier = ({
   searchMatricule,
   selectedFiliere,
@@ -23,7 +24,7 @@ const StudentTableDossier = ({
   const [showEditModal, setShowEditModal] = useState(false);
   const [selectedStudent, setSelectedStudent] = useState(null);
   const navigate = useNavigate(); // Définition de navigate
-
+  const url = import.meta.env.VITE_API_URL;
   const naviguerVersMatieres = () => {
     navigate("/etudiant");
   };
@@ -31,7 +32,12 @@ const StudentTableDossier = ({
     const fetchStudents = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:5000/api/etudiant/tous"
+          `${url}/api/etudiant/tous`,
+          {
+            headers: {
+              'Cache-Control': 'no-cache'
+            }
+          }
         );
         setStudents(response.data);
         setFilteredStudents(response.data);
@@ -88,7 +94,7 @@ const StudentTableDossier = ({
     if (result.isConfirmed) {
       try {
         await axios.put(
-          `http://localhost:5000/api/etudiant/update/by/${student.matricule}`,
+          `${url}/api/etudiant/update/by/${student.matricule}`,
           { [field]: newValue }
         );
 

@@ -15,12 +15,17 @@ function AbsenceProf() {
   const [heureEntree, setHeureEntree] = useState("");
   const [heureArrivee, setHeureArrivee] = useState("");
   const [profs, setProfs] = useState([]);
+  const url = import.meta.env.VITE_API_URL;
 
   // Charger la liste des professeurs
   useEffect(() => {
     const fetchProfs = async () => {
       try {
-        const response = await axios.get("http://localhost:5000/api/prof/tous");
+        const response = await axios.get(`${url}/api/prof/tous`, {
+          headers: {
+            'Cache-Control': 'no-cache'
+          }
+        });
         setProfs(response.data);
       } catch (error) {
         console.error(
@@ -64,7 +69,7 @@ function AbsenceProf() {
 
     try {
       const response = await axios.post(
-        "http://localhost:5000/api/pointage/prof/add",
+        `${url}/api/pointage/prof/add`,
         data
       );
       Swal.fire({

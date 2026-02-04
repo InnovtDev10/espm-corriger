@@ -13,11 +13,17 @@ function ProfilTable({
 }) {
   const [users, setUsers] = useState([]);
   const [editingUser, setEditingUser] = useState(null);
+  const url = import.meta.env.VITE_API_URL;
 
   useEffect(() => {
-    fetch("http://localhost:5000/api/users")
+    fetch(`${url}/api/users`, {
+      cache: 'no-store'
+    })
       .then((response) => response.json())
-      .then((data) => setUsers(data))
+      .then((data) => {
+        console.log('Users received:', data);
+        setUsers(data);
+      })
       .catch((error) =>
         console.error("Erreur lors du chargement des utilisateurs :", error)
       );
@@ -42,7 +48,7 @@ function ProfilTable({
   const handleUpdate = async (updatedUser) => {
     try {
       const response = await fetch(
-        `http://localhost:5000/api/users/${updatedUser.id}`,
+        `${url}/api/users/${updatedUser.id}`,
         {
           method: "PUT",
           headers: {
@@ -87,7 +93,7 @@ function ProfilTable({
     if (confirmDelete.isConfirmed) {
       try {
         const response = await fetch(
-          `http://localhost:5000/api/users/${userId}`,
+          `${url}/api/users/${userId}`,
           {
             method: "DELETE",
           }
@@ -217,7 +223,7 @@ function ProfilTable({
               <td>
                 {user.photo ? (
                   <img
-                    src={`http://localhost:5000/uploads/${user.photo}`}
+                    src={`${url}/uploads/${user.photo}`}
                     alt="Profil"
                     className="user-photo"
                   />

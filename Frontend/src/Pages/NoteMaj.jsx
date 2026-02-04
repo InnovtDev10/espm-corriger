@@ -25,6 +25,7 @@ function NoteMaj() {
   const [credits, setCredits] = useState({});
   const [totalHeures, setTotalHeures] = useState(0);
   const [totalCredits, setTotalCredits] = useState(0);
+  const url = import.meta.env.VITE_API_URL;
 
   const navigate = useNavigate();
 
@@ -91,7 +92,12 @@ function NoteMaj() {
     const fetchMatieres = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:5000/api/matiere/tous"
+          `${url}/api/matiere/tous`,
+          {
+            headers: {
+              'Cache-Control': 'no-cache'
+            }
+          }
         );
         const formattedData = formatMatiereData(response.data);
         setMatieresData(formattedData);
@@ -106,7 +112,12 @@ function NoteMaj() {
     const fetchStudents = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:5000/api/etudiant/tous"
+          `${url}/api/etudiant/tous`,
+          {
+            headers: {
+              'Cache-Control': 'no-cache'
+            }
+          }
         );
         setStudents(response.data);
       } catch (error) {
@@ -234,7 +245,7 @@ function NoteMaj() {
     };
 
     try {
-      await axios.post("http://localhost:5000/api/note/add", data);
+      await axios.post(`${url}/api/note/add`, data);
       Swal.fire({
         icon: "success",
         title: "Succès",
@@ -260,7 +271,12 @@ function NoteMaj() {
       const fetchNotesForStudent = async () => {
         try {
           const response = await axios.get(
-            `http://localhost:5000/api/note/all`
+            `${url}/api/note/all`,
+            {
+              headers: {
+                'Cache-Control': 'no-cache'
+              }
+            }
           );
           const studentNotes = response.data.filter(
             (note) =>

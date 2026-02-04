@@ -21,6 +21,7 @@ const ResultatTable = ({
   anneeUniversitaire,
   status,
 }) => {
+  const url = import.meta.env.VITE_API_URL;
   const [notesTheoriques, setNotesTheoriques] = useState([]);
   const [notesPratiques, setNotesPratiques] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -97,8 +98,8 @@ const ResultatTable = ({
       setError(null);
       try {
         const [resTheo, resPrat] = await Promise.all([
-          axios.get("http://localhost:5000/api/note/all"),
-          axios.get("http://localhost:5000/api/notestage/all"),
+          axios.get(`${url}/api/note/all`, {headers: {'Cache-Control': 'no-cache'}}),
+          axios.get(`${url}/api/notestage/all`, {headers: {'Cache-Control': 'no-cache'}}),
         ]);
         const grouped = groupNotesByStudent(resTheo.data || []);
         setNotesTheoriques(grouped);
@@ -162,7 +163,7 @@ const ResultatTable = ({
 
     if (confirmed.isConfirmed) {
       try {
-        await axios.put(`http://localhost:5000/api/etudiant/update/by/${matricule}`, {
+        await axios.put(`${url}/api/etudiant/update/by/${matricule}`, {
           niveau: newLevel,
         });
         Swal.fire("Succès", "Niveau mis à jour", "success");

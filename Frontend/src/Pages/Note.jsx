@@ -11,12 +11,18 @@ function Note() {
   const navigate = useNavigate();
   const [students, setStudents] = useState([]);
   const [matricule, setMatricule] = useState(""); // Ajouter un état pour le matricule
+  const url = import.meta.env.VITE_API_URL;
 
   useEffect(() => {
     const fetchStudents = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:5000/api/etudiant/tous"
+          `${url}/api/etudiant/tous`,
+          {
+            headers: {
+              'Cache-Control': 'no-cache'
+            }
+          }
         );
         setStudents(response.data);
       } catch (error) {

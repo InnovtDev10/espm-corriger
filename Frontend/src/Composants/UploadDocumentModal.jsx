@@ -11,6 +11,7 @@ const UploadDocumentModal = ({ show, handleClose }) => {
   const handleFileChange = (event) => {
     setFile(event.target.files[0]);
   };
+  const url = import.meta.env.VITE_API_URL;
 
   const handleSubmit = async () => {
     if (!documentName || !file) {
@@ -30,7 +31,7 @@ const UploadDocumentModal = ({ show, handleClose }) => {
 
     try {
       const response = await axios.post(
-        "http://localhost:5000/api/document/add",
+        `${url}/api/document/add`,
         formData,
         {
           headers: {

@@ -14,6 +14,7 @@ const TableUnitesMatieres = () => {
   const [newMatiere, setNewMatiere] = useState("");
   const [filiere, setFiliere] = useState("");
   const navigate = useNavigate();
+  const url = import.meta.env.VITE_API_URL;
 
   const naviguerVersMatieres = () => {
     navigate("/programme");
@@ -100,7 +101,7 @@ const TableUnitesMatieres = () => {
 
     // Envoi des données de l'unité à l'API
     axios
-      .post("http://localhost:5000/api/matiere/add", dataToSend)
+      .post(`${url}/api/matiere/add`, dataToSend)
       .then((response) => {
         Swal.fire({
           icon: "success",

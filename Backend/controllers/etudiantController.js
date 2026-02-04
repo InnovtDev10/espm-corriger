@@ -164,7 +164,12 @@ exports.deleteEtudiant = async (req, res) => {
 // Récupérer tous les étudiants
 exports.getAllEtudiants = async (req, res) => {
   try {
-    const etudiants = await Etudiant.findAll();
+    console.log('🔍 Recherche de tous les étudiants...');
+    
+    // Utiliser raw: true comme pour les professeurs
+    const etudiants = await Etudiant.findAll({ raw: true });
+    console.log('📊 Nombre trouvé:', etudiants.length);
+    
     return res.status(200).json(etudiants);
   } catch (error) {
     console.error('Erreur getAllEtudiants:', error);

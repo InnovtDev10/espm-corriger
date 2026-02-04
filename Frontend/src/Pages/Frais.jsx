@@ -11,6 +11,7 @@ import { GiReceiveMoney } from "react-icons/gi";
 import { useNavigate } from "react-router-dom";
 
 function Frais() {
+  const url = import.meta.env.VITE_API_URL;
   const [niveau, setNiveau] = useState(["L1", "L2", "L3","M1","M2"]);
   const [montant, setMontant] = useState("");
   const [nom, setNom] = useState("");
@@ -64,7 +65,12 @@ function Frais() {
     const fetchFrais = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:5000/api/frais/tous"
+          `${url}/api/frais/tous`,
+          {
+            headers: {
+              'Cache-Control': 'no-cache'
+            }
+          }
         );
         setFrais(response.data);
       } catch (error) {
@@ -80,7 +86,7 @@ function Frais() {
       const newFrais = { niveau, montant, nom, specialite, description };
 
       try {
-        await axios.post("http://localhost:5000/api/frais/add", newFrais);
+        await axios.post(`${url}/api/frais/add`, newFrais);
         setFrais([...frais, newFrais]);
         setNiveau("");
         setMontant("");
@@ -119,7 +125,7 @@ function Frais() {
   const confirmDelete = async () => {
     try {
       await axios.delete(
-        `http://localhost:5000/api/frais/delete/${selectedFrais.id}`
+        `${url}/api/frais/delete/${selectedFrais.id}`
       );
       setFrais(frais.filter((f) => f.id !== selectedFrais.id));
       setShowDeleteModal(false);
@@ -147,7 +153,7 @@ function Frais() {
 
       try {
         await axios.put(
-          `http://localhost:5000/api/frais/update/${selectedFrais.id}`,
+          `${url}/api/frais/update/${selectedFrais.id}`,
           updatedFrais
         );
 

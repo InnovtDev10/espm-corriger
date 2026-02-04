@@ -24,7 +24,7 @@ router.put('/update/:id',
 ); // pour mettre à jour un professeur
 router.delete('/delete/:id', professeurController.deleteProfesseur); // pour supprimer un professeur
 router.get("/tous", professeurController.getAllProfesseurs); // pour recuperer tous les professeurs
-router.get("/count", professeurController.countProfesseurs); // pour recuperer tous les professeurs
+router.get("/count", professeurController.countProfesseurs); // pour compter les professeurs
 
 module.exports = router;
  

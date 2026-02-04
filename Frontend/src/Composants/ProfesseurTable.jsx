@@ -25,11 +25,16 @@ const ProfesseurTable = ({
     setSelectedProf(prof);
     setShowEditModal(true);
   };
+  const url = import.meta.env.VITE_API_URL;
 
   useEffect(() => {
     const fetchProfesseurs = async () => {
       try {
-        const response = await axios.get("http://localhost:5000/api/prof/tous");
+        const response = await axios.get(`${url}/api/prof/tous`, {
+          headers: {
+            'Cache-Control': 'no-cache'
+          }
+        });
         setProfesseurs(response.data);
         setFilteredProfesseurs(response.data);
       } catch (error) {
@@ -74,7 +79,12 @@ const ProfesseurTable = ({
   const handleOpenModal = async (matricule) => {
     try {
       const response = await axios.get(
-        `http://localhost:5000/api/pointage/prof/get/${matricule}`
+        `${url}/api/pointage/prof/get/${matricule}`,
+        {
+          headers: {
+            'Cache-Control': 'no-cache'
+          }
+        }
       );
       const data = response.data;
 
@@ -169,7 +179,7 @@ const ProfesseurTable = ({
                         window.open(
                           prof.cv.startsWith("http")
                             ? prof.cv
-                            : `http://localhost:5000/uploads/${prof.cv}`,
+                            : `${url}/uploads/${prof.cv}`,
                           "_blank"
                         )
                       }
@@ -187,7 +197,7 @@ const ProfesseurTable = ({
                         window.open(
                           prof.lm.startsWith("http")
                             ? prof.lm
-                            : `http://localhost:5000/uploads/${prof.lm}`,
+                            : `${url}/uploads/${prof.lm}`,
                           "_blank"
                         )
                       }
@@ -205,7 +215,7 @@ const ProfesseurTable = ({
                         window.open(
                           prof.diplome.startsWith("http")
                             ? prof.diplome
-                            : `http://localhost:5000/uploads/${prof.diplome}`,
+                            : `${url}/uploads/${prof.diplome}`,
                           "_blank"
                         )
                       }

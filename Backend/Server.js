@@ -54,7 +54,9 @@ app.use("/api/site-stage", siteStageRoutes); // Routes pour les sites de stages
 app.use("/api/document", listeDocumentRoutes); // Routes pour les documments
 app.use("/api/livret", livretRoutes); // Routes pour les livrets   
 app.use("/api/immobilisation", immobilisationRoutes); // Routes pour les immobilisations 
-  
+app.post("/post-check", (req, res) => {
+  res.json({ ok: true });
+});
 // Servir le dossier "uploads" statiquement
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 

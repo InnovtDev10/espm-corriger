@@ -10,12 +10,18 @@ const EcolageHistoriqueTable = () => {
   const [filterStatut, setFilterStatut] = useState("");
   const [loading, setLoading] = useState(false);
   const [resultCount, setResultCount] = useState(0);
-
+  const url = import.meta.env.VITE_API_URL;
+  
   useEffect(() => {
     const fetchPaiements = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:5000/api/paiement/ecolage/all"
+          `${url}/api/paiement/ecolage/all`,
+          {
+            headers: {
+              'Cache-Control': 'no-cache'
+            }
+          }
         );
         setPaiements(response.data.data);
       } catch (error) {

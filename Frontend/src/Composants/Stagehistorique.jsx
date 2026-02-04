@@ -19,6 +19,7 @@ function StageHistorique() {
   const [selectedEtablissement, setSelectedEtablissement] = useState("");
   const [selectedFiliere, setSelectedFiliere] = useState("");
   const [selectedMonth, setSelectedMonth] = useState("");
+  const url = import.meta.env.VITE_API_URL;
   const moisNoms = [
     { valeur: "01", nom: "Janvier" },
     { valeur: "02", nom: "Février" },
@@ -37,7 +38,11 @@ function StageHistorique() {
   useEffect(() => {
     const fetchStages = async () => {
       try {
-        const response = await axios.get("http://localhost:5000/api/stage/all");
+        const response = await axios.get(`${url}/api/stage/all`, {
+          headers: {
+            'Cache-Control': 'no-cache'
+          }
+        });
         if (Array.isArray(response.data)) {
           setStages(response.data);
         } else {
@@ -75,7 +80,7 @@ function StageHistorique() {
     if (!updatedObservation) return;
     try {
       await axios.put(
-        `http://localhost:5000/api/stage/update/${selectedStage.id}`,
+        `${url}/api/stage/update/${selectedStage.id}`,
         { observation: updatedObservation }
       );
       setStages((prevStages) =>

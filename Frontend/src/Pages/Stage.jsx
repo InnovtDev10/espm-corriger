@@ -9,6 +9,7 @@ import Swal from "sweetalert2";
 import { Modal, Button, Form, Table } from "react-bootstrap";
 
 function Stage() {
+  const url = import.meta.env.VITE_API_URL;
   // États pour l'affectation
   const [matricule, setMatricule] = useState("");
   const [nom, setNom] = useState("");
@@ -153,7 +154,7 @@ function Stage() {
 
       try {
         const response = await axios.post(
-          "http://localhost:5000/api/stage/add",
+          `${url}/api/stage/add`,
           nouvelleAffectation
         );
         console.log("Stage ajouté:", response.data);
@@ -202,7 +203,12 @@ function Stage() {
     const fetchStudents = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:5000/api/etudiant/tous"
+          `${url}/api/etudiant/tous`,
+          {
+            headers: {
+              'Cache-Control': 'no-cache'
+            }
+          }
         );
         setStudents(response.data);
       } catch (error) {
@@ -216,7 +222,11 @@ function Stage() {
   useEffect(() => {
     const fetchStages = async () => {
       try {
-        const response = await axios.get("http://localhost:5000/api/stage/all");
+        const response = await axios.get(`${url}/api/stage/all`, {
+          headers: {
+            'Cache-Control': 'no-cache'
+          }
+        });
         setStages(response.data);
       } catch (error) {
         console.error(
@@ -298,7 +308,7 @@ function Stage() {
     try {
       // Envoyer la requête POST
       const response = await axios.post(
-        "http://localhost:5000/api/site-stage/add",
+        `${url}/api/site-stage/add`,
         siteStageData,
         {
           headers: {
@@ -333,7 +343,12 @@ function Stage() {
     const fetchEtablissements = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:5000/api/site-stage/all"
+          `${url}/api/site-stage/all`,
+          {
+            headers: {
+              'Cache-Control': 'no-cache'
+            }
+          }
         );
         {
           /*console.log("Données récupérées :", response.data);*/

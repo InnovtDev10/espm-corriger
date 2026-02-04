@@ -4,11 +4,12 @@ import axios from "axios";
 const Listes = () => {
   const [unites, setUnites] = useState([]);
   const [selectedFiliere, setSelectedFiliere] = useState("");
+  const url = import.meta.env.VITE_API_URL;
 
   useEffect(() => {
     // Récupérer les unités d'enseignement depuis l'API
     axios
-      .get("http://localhost:5000/api/matiere/liste")
+      .get(`${url}/api/matiere/liste`)
       .then((response) => {
         setUnites(response.data);
       })

@@ -3,6 +3,7 @@ import Swal from "sweetalert2";
 import { FaPlusCircle } from "react-icons/fa";
 
 function ProfilModal({ onUserAdded }) {
+  const url = import.meta.env.VITE_API_URL;
   const [formData, setFormData] = useState({
     nom: "",
     email: "",
@@ -36,7 +37,7 @@ function ProfilModal({ onUserAdded }) {
     }
 
     try {
-      const response = await fetch("http://localhost:5000/api/users/signup", {
+      const response = await fetch(`${url}/api/users/signup`, {
         method: "POST",
         body: formDataToSend,
       });

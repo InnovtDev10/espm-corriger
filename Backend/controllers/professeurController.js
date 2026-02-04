@@ -204,8 +204,15 @@ exports.deleteProfesseur = async (req, res) => {
 // ✅ Récupérer tous les professeurs
 exports.getAllProfesseurs = async (req, res) => {
   try {
-    const professeurs = await Professeur.findAll();
+    console.log('🔍 Recherche de tous les professeurs...');
+    
+    // Utiliser raw: true qui fonctionne dans le debug
+    const professeurs = await Professeur.findAll({ raw: true });
+    console.log('📊 Nombre trouvé:', professeurs.length);
+    
+    // Retourner directement le tableau
     return res.status(200).json(professeurs);
+    
   } catch (error) {
     console.error("❌ Erreur récupération professeurs :", error);
     return res.status(500).json({ message: "Erreur lors de la récupération des professeurs", error: error.message });

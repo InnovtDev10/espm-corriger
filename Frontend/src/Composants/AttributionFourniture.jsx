@@ -9,6 +9,7 @@ function AttributionFourniture() {
   const [prixUnitaire, setPrixUnitaire] = useState("");
   const [prixTotal, setPrixTotal] = useState(0);
   const [suggestions, setSuggestions] = useState([]); // Ajout d'état pour gérer les suggestions
+  const url = import.meta.env.VITE_API_URL;
 
   // Calcul du prix total lorsque la quantité ou le prix unitaire change
   const handleQuantiteChange = (e) => {
@@ -29,7 +30,12 @@ function AttributionFourniture() {
     try {
       // Récupérer toutes les fournitures pour vérifier si la désignation existe déjà
       const response = await axios.get(
-        "http://localhost:5000/api/materiel/all"
+        `${url}/api/materiel/all`,
+        {
+          headers: {
+            'Cache-Control': 'no-cache'
+          }
+        }
       );
       const fournitures = response.data;
 
@@ -54,7 +60,7 @@ function AttributionFourniture() {
         }
 
         await axios.put(
-          `http://localhost:5000/api/materiel/update/${existingFourniture.id}`,
+          `${url}/api/materiel/update/${existingFourniture.id}`,
           {
             quantite: updatedQuantite,
             quantiteReste: updatedQuantiteReste,
@@ -79,7 +85,7 @@ function AttributionFourniture() {
           prixTotal: quantite * prixUnitaire,
         };
 
-        await axios.post("http://localhost:5000/api/materiel/add", newMateriel);
+        await axios.post(`${url}/api/materiel/add`, newMateriel);
 
         Swal.fire({
           icon: "success",
@@ -113,7 +119,12 @@ function AttributionFourniture() {
       try {
         // Récupérer les fournitures existantes pour faire des suggestions
         const response = await axios.get(
-          "http://localhost:5000/api/materiel/all"
+          `${url}/api/materiel/all`,
+          {
+            headers: {
+              'Cache-Control': 'no-cache'
+            }
+          }
         );
         const fournitures = response.data;
 

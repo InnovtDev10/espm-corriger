@@ -9,13 +9,19 @@ const DocumentTable = () => {
   const [searchDescription, setSearchDescription] = useState("");
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
+  const url = import.meta.env.VITE_API_URL;
 
   // Récupération des documents depuis l'API
   useEffect(() => {
     const fetchDocuments = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:5000/api/document/all"
+          `${url}/api/document/all`,
+          {
+            headers: {
+              'Cache-Control': 'no-cache'
+            }
+          }
         );
         setDocuments(response.data);
       } catch (err) {
@@ -103,7 +109,7 @@ const DocumentTable = () => {
                               window.open(
                                 doc.filePath.startsWith("http")
                                   ? doc.filePath
-                                  : `http://localhost:5000/${doc.filePath}`,
+                                  : `${url}/${doc.filePath}`,
                                 "_blank"
                               )
                             }

@@ -32,16 +32,17 @@ function FraisTable() {
   const [editPaymentId, setEditPaymentId] = useState(null);
   const [filteredStudents, setFilteredStudents] = useState([]);
   const [fraisData, setFraisData] = useState([]);
+  const url = import.meta.env.VITE_API_URL;
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/api/paiement/frais/all")
+      .get(`${url}/api/paiement/frais/all`)
       .then((res) => setPayments(res.data));
     axios
-      .get("http://localhost:5000/api/etudiant/tous")
+      .get(`${url}/api/etudiant/tous`)
       .then((res) => setStudents(res.data));
     axios
-      .get("http://localhost:5000/api/frais/tous")
+      .get(`${url}/api/frais/tous`)
       .then((res) => setFrais(res.data));
   }, []);
 
@@ -119,7 +120,7 @@ function FraisTable() {
       };
 
       await axios.post(
-        "http://localhost:5000/api/paiement/frais/add",
+        `${url}/api/paiement/frais/add`,
         paymentData
       );
 
@@ -173,7 +174,7 @@ function FraisTable() {
 
     try {
       const response = await axios.put(
-        `http://localhost:5000/api/paiement/frais/update/${editPaymentId}`,
+        `${url}/api/paiement/frais/update/${editPaymentId}`,
         fraisData
       );
 
