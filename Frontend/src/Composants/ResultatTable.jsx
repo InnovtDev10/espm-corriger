@@ -163,7 +163,7 @@ const ResultatTable = ({
 
     if (confirmed.isConfirmed) {
       try {
-        await axios.put(`${url}/api/etudiant/update/by/${matricule}`, {
+        await axios.put(`${url}/api/etudiant/update?matricule=${encodeURIComponent(matricule)}`, {
           niveau: newLevel,
         });
         Swal.fire("Succès", "Niveau mis à jour", "success");

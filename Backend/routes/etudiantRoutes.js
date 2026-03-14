@@ -7,7 +7,6 @@ const {
   deleteEtudiant, 
   getAllEtudiants, 
   countEtudiants, 
-  debugEtudiants,
   updateEtudiantByMatricule 
 } = require('../controllers/etudiantController');
 
@@ -33,7 +32,8 @@ router.put('/update/:id', (req, res, next) => {
 }, updateEtudiant);
 
 // Correction: utiliser 'photo' au lieu de 'photo_profil' pour la cohérence
-router.put('/update/by/:matricule', (req, res, next) => {
+// Correction: utiliser 'photo' au lieu de 'photo_profil' pour la cohérence
+router.put('/update', (req, res, next) => {
   upload.single('photo')(req, res, (err) => {
     if (err) {
       console.error('Erreur upload:', err);
@@ -46,6 +46,5 @@ router.put('/update/by/:matricule', (req, res, next) => {
 router.delete('/delete/:id', deleteEtudiant);
 router.get('/tous', getAllEtudiants);
 router.get('/count', countEtudiants);
-router.get('/debug', debugEtudiants);
 
 module.exports = router;
