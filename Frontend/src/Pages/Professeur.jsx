@@ -28,7 +28,7 @@ function Professeur() {
                 </aside>
                 <section className='contenu mt-3 p-4'>
                     <h4 className='fw-bold'>Gestion des professeurs</h4>
-                           <p className=''><ProfesseurModal /></p>
+                           <div className=''><ProfesseurModal /></div>
 
                     <div className="hr mt-2"></div>
                                         <div className="filtre center mb-3 mt-3">

@@ -311,7 +311,7 @@ function Classe() {
                         }}
                       >
                         Action
-                      </th>{" "}
+                      </th>
                       {/* Réduit la largeur de la colonne */}
                     </tr>
                   </thead>

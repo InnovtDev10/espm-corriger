@@ -5,38 +5,113 @@ import "../Styles/EcolageHistorique.css";
 const EcolageHistoriqueTable = () => {
   const [paiements, setPaiements] = useState([]);
   const [filterNiveau, setFilterNiveau] = useState("");
+  const [filterParcours, setFilterParcours] = useState("");
+  const [searchNom, setSearchNom] = useState("");
+  const [searchMatricule, setSearchMatricule] = useState("");
   const [mois, setMois] = useState("");
-  const [filterAnnee, setFilterAnnee] = useState("");
   const [filterStatut, setFilterStatut] = useState("");
+  const [filterAnnee, setFilterAnnee] = useState("");
   const [loading, setLoading] = useState(false);
   const [resultCount, setResultCount] = useState(0);
   const url = import.meta.env.VITE_API_URL;
   
+  const resetFilters = () => {
+    setFilterNiveau("");
+    setFilterParcours("");
+    setSearchNom("");
+    setSearchMatricule("");
+    setMois("");
+    setFilterStatut("");
+    setFilterAnnee("");
+  };
+
   useEffect(() => {
-    const fetchPaiements = async () => {
+    const fetchData = async () => {
+      setLoading(true);
       try {
-        const response = await axios.get(
-          `${url}/api/paiement/ecolage/all`,
-          {
-            headers: {
-              'Cache-Control': 'no-cache'
-            }
+        const [paiementsRes, etudiantsRes] = await Promise.all([
+          axios.get(`${url}/api/paiement/ecolage/all`, {
+            headers: { 'Cache-Control': 'no-cache' }
+          }),
+          axios.get(`${url}/api/etudiant/tous`, {
+            headers: { 'Cache-Control': 'no-cache' }
+          })
+        ]);
+
+        const allPaiements = paiementsRes.data.data || [];
+        const allEtudiants = Array.isArray(etudiantsRes.data) ? etudiantsRes.data : (etudiantsRes.data.data || []);
+
+        console.log("Paiements bruts reçus:", allPaiements.length);
+        console.log("Étudiants reçus:", allEtudiants.length);
+
+        // Regrouper les paiements par matricule pour éviter les doublons d'affichage
+        const paymentsByMatricule = allPaiements.reduce((acc, p) => {
+          if (!acc[p.matricule] || new Date(p.updatedAt) > new Date(acc[p.matricule].updatedAt)) {
+            acc[p.matricule] = p;
           }
-        );
-        setPaiements(response.data.data);
+          return acc;
+        }, {});
+
+        const tousLesMois = [
+          "Janvier", "Février", "Mars", "Avril", "Mai", "Juin", 
+          "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"
+        ];
+
+        // Créer la liste finale basée sur la liste exhaustive des étudiants
+        const finalData = allEtudiants.map(e => {
+          const paymentInfo = paymentsByMatricule[e.matricule];
+          
+          if (paymentInfo) {
+            return {
+              ...paymentInfo,
+              nom: e.nom, // Priorité aux infos de la table Etudiant pour la cohérence
+              prenom: e.prenom,
+              niveau: e.niveau,
+              filiere: e.filiere
+            };
+          } else {
+            return {
+              matricule: e.matricule,
+              nom: e.nom,
+              prenom: e.prenom,
+              niveau: e.niveau,
+              filiere: e.filiere,
+              montantParMois: 0,
+              moisEffectuer: [],
+              moisRestant: tousLesMois,
+              anneeUniv: "N/A",
+              updatedAt: e.updatedAt || e.createdAt || new Date().toISOString()
+            };
+          }
+        });
+
+        console.log("Total final affiché (doit être 265):", finalData.length);
+        setPaiements(finalData);
       } catch (error) {
-        console.error("Erreur lors de la récupération des paiements :", error);
+        console.error("Erreur lors de la récupération des données :", error);
+      } finally {
+        setLoading(false);
       }
     };
 
-    fetchPaiements();
-  }, []);
+    fetchData();
+  }, [url]);
 
   // Fonction pour filtrer les paiements selon les critères
-  useEffect(() => {
-    const filtered = paiements.filter((paiement) => {
+  const getFilteredPaiements = () => {
+    return paiements.filter((paiement) => {
+      const nomMatch = searchNom
+        ? paiement.nom.toLowerCase().includes(searchNom.toLowerCase()) || 
+          paiement.prenom.toLowerCase().includes(searchNom.toLowerCase())
+        : true;
+      const matriculeMatch = searchMatricule
+        ? paiement.matricule.toLowerCase().includes(searchMatricule.toLowerCase())
+        : true;
       const niveauMatch = filterNiveau
         ? paiement.niveau === filterNiveau
+        : true;
+      const parcoursMatch = filterParcours
+        ? paiement.filiere === filterParcours
         : true;
       const anneeMatch = filterAnnee
         ? paiement.anneeUniv === filterAnnee
@@ -44,27 +119,58 @@ const EcolageHistoriqueTable = () => {
 
       let moisMatch = true;
       if (mois) {
-        if (filterStatut === "Effectuer") {
+        if (filterStatut === "Payé") {
           moisMatch = paiement.moisEffectuer?.includes(mois);
-        } else if (filterStatut === "Non Effectuer") {
+        } else if (filterStatut === "Non Payé") {
           moisMatch = paiement.moisRestant?.includes(mois);
+        } else {
+          moisMatch = (paiement.moisEffectuer?.includes(mois)) || (paiement.moisRestant?.includes(mois));
         }
       }
 
-      return niveauMatch && moisMatch && anneeMatch;
-    });
+      // Filtre additionnel pour le statut global (si pas de mois sélectionné)
+      let statutMatch = true;
+      if (!mois && filterStatut) {
+        if (filterStatut === "Payé") {
+          statutMatch = paiement.moisEffectuer && paiement.moisEffectuer.length > 0;
+        } else if (filterStatut === "Non Payé") {
+          statutMatch = !paiement.moisEffectuer || paiement.moisEffectuer.length === 0;
+        }
+      }
 
-    setResultCount(filtered.length);
-  }, [paiements, filterNiveau, mois, filterAnnee, filterStatut]);
+      return nomMatch && matriculeMatch && niveauMatch && parcoursMatch && moisMatch && anneeMatch && statutMatch;
+    });
+  };
+
+  useEffect(() => {
+    setResultCount(getFilteredPaiements().length);
+  }, [paiements, searchNom, searchMatricule, filterNiveau, filterParcours, mois, filterStatut, filterAnnee]);
 
   return (
     <div className="historique-ecolage mt-3">
       {/* Filtres */}
-      <div className="filters d-flex gap-3 mb-3">
+      <div className="filters d-flex flex-wrap gap-3 mb-3">
+        <input
+          type="text"
+          className="form-control"
+          placeholder="Rechercher par nom..."
+          value={searchNom}
+          onChange={(e) => setSearchNom(e.target.value)}
+          style={{ width: "200px" }}
+        />
+        <input
+          type="text"
+          className="form-control"
+          placeholder="Matricule..."
+          value={searchMatricule}
+          onChange={(e) => setSearchMatricule(e.target.value)}
+          style={{ width: "150px" }}
+        />
         <select
           className="form-control"
           value={filterNiveau}
           onChange={(e) => setFilterNiveau(e.target.value)}
+          style={{ width: "150px" }}
         >
           <option value="">Tous les Niveaux</option>
           <option value="L1">L1</option>
@@ -76,8 +182,21 @@ const EcolageHistoriqueTable = () => {
 
         <select
           className="form-control"
+          value={filterParcours}
+          onChange={(e) => setFilterParcours(e.target.value)}
+          style={{ width: "200px" }}
+        >
+          <option value="">Tous les Parcours</option>
+          <option value="Technicien de laboratoire">Technicien de laboratoire</option>
+          <option value="Sciences infirmières">Sciences infirmières</option>
+          <option value="Maieutique">Maieutique</option>
+        </select>
+
+        <select
+          className="form-control"
           value={mois}
           onChange={(e) => setMois(e.target.value)}
+          style={{ width: "180px" }}
         >
           <option value="">Sélectionner un mois</option>
           <option value="Janvier">Janvier</option>
@@ -98,10 +217,11 @@ const EcolageHistoriqueTable = () => {
           className="form-control"
           value={filterStatut}
           onChange={(e) => setFilterStatut(e.target.value)}
+          style={{ width: "150px" }}
         >
-          <option value="">Statut</option>
-          <option value="Effectuer">Effectuer</option>
-          <option value="Non Effectuer">Non Effectuer</option>
+          <option value="">Statut Paiement</option>
+          <option value="Payé">Déjà Payé</option>
+          <option value="Non Payé">Non Payé</option>
         </select>
 
         <input
@@ -110,7 +230,12 @@ const EcolageHistoriqueTable = () => {
           value={filterAnnee}
           onChange={(e) => setFilterAnnee(e.target.value)}
           placeholder="Année universitaire"
+          style={{ width: "180px" }}
         />
+
+        <button className="btn btn-secondary" onClick={resetFilters}>
+          Réinitialiser
+        </button>
 
         <button className="btn btn-primary">{resultCount} Etudiants</button>
       </div>
@@ -137,26 +262,7 @@ const EcolageHistoriqueTable = () => {
             </thead>
             <tbody>
               {resultCount > 0 ? (
-                paiements
-                  .filter((paiement) => {
-                    const niveauMatch = filterNiveau
-                      ? paiement.niveau === filterNiveau
-                      : true;
-                    const anneeMatch = filterAnnee
-                      ? paiement.anneeUniv === filterAnnee
-                      : true;
-
-                    let moisMatch = true;
-                    if (mois) {
-                      if (filterStatut === "Effectuer") {
-                        moisMatch = paiement.moisEffectuer?.includes(mois);
-                      } else if (filterStatut === "Non Effectuer") {
-                        moisMatch = paiement.moisRestant?.includes(mois);
-                      }
-                    }
-
-                    return niveauMatch && moisMatch && anneeMatch;
-                  })
+                getFilteredPaiements()
                   .map((paiement, index) => (
                     <tr key={index}>
                       <td>{paiement.matricule}</td>

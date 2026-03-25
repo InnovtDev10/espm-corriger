@@ -45,7 +45,7 @@ const DonutChartFinance = ({ selectedMonth, selectedYear, selectedDay }) => {
         const immobilisation = immobilisationRes.data;
 
         // Process data
-        const currentYear = selectedYear || new Date().getFullYear().toString();
+        const currentYear = selectedYear || null;
         const currentMonth = selectedMonth ? parseInt(selectedMonth) - 1 : null;
 
         const processedData = processFinancialData(
@@ -90,7 +90,7 @@ const DonutChartFinance = ({ selectedMonth, selectedYear, selectedDay }) => {
     droits.forEach((item) => {
       const date = new Date(item.createdAt || item.date);
       if (
-        date.getFullYear().toString() === year &&
+        (!year || date.getFullYear().toString() === year) &&
         (month === null || date.getMonth() === month)
       ) {
         soldeEnCaisse += parseFloat(item.montantPaye || 0);
@@ -100,7 +100,7 @@ const DonutChartFinance = ({ selectedMonth, selectedYear, selectedDay }) => {
     frais.forEach((item) => {
       const date = new Date(item.createdAt || item.date);
       if (
-        date.getFullYear().toString() === year &&
+        (!year || date.getFullYear().toString() === year) &&
         (month === null || date.getMonth() === month)
       ) {
         soldeEnCaisse += parseFloat(item.montantPayer || 0);
@@ -111,7 +111,7 @@ const DonutChartFinance = ({ selectedMonth, selectedYear, selectedDay }) => {
       if (item.natureSortie === "externe") {
         const date = new Date(item.createdAt || item.date);
         if (
-          date.getFullYear().toString() === year &&
+          (!year || date.getFullYear().toString() === year) &&
           (month === null || date.getMonth() === month)
         ) {
           soldeEnCaisse += parseFloat(item.prixTotal || 0);
@@ -120,17 +120,14 @@ const DonutChartFinance = ({ selectedMonth, selectedYear, selectedDay }) => {
     });
 
     ecolage.forEach((item) => {
-      const montantParMois = parseFloat(item.montantParMois || 0);
-      if (item.moisEffectuer && Array.isArray(item.moisEffectuer)) {
-        item.moisEffectuer.forEach((moisInfo) => {
-          const date = new Date(moisInfo.date);
-          if (
-            date.getFullYear().toString() === year &&
-            (month === null || date.getMonth() === month)
-          ) {
-            soldeEnCaisse += montantParMois;
-          }
-        });
+      const date = new Date(item.updatedAt || item.createdAt);
+      if (
+        (!year || date.getFullYear().toString() === year) &&
+        (month === null || date.getMonth() === month)
+      ) {
+        const montantParMois = parseFloat(item.montantParMois || 0);
+        const nbMois = item.moisEffectuer ? item.moisEffectuer.length : 0;
+        soldeEnCaisse += montantParMois * nbMois;
       }
     });
 
@@ -138,7 +135,7 @@ const DonutChartFinance = ({ selectedMonth, selectedYear, selectedDay }) => {
     paiements.forEach((item) => {
       const date = new Date(item.createdAt || item.date);
       if (
-        date.getFullYear().toString() === year &&
+        (!year || date.getFullYear().toString() === year) &&
         (month === null || date.getMonth() === month)
       ) {
         depense += parseFloat(item.montant || 0);
@@ -148,7 +145,7 @@ const DonutChartFinance = ({ selectedMonth, selectedYear, selectedDay }) => {
     fournitures.forEach((item) => {
       const date = new Date(item.createdAt || item.date);
       if (
-        date.getFullYear().toString() === year &&
+        (!year || date.getFullYear().toString() === year) &&
         (month === null || date.getMonth() === month)
       ) {
         depense += parseFloat(item.prixTotal || 0);
@@ -158,7 +155,7 @@ const DonutChartFinance = ({ selectedMonth, selectedYear, selectedDay }) => {
     autreDepenses.forEach((item) => {
       const date = new Date(item.createdAt || item.date);
       if (
-        date.getFullYear().toString() === year &&
+        (!year || date.getFullYear().toString() === year) &&
         (month === null || date.getMonth() === month)
       ) {
         depense += parseFloat(item.montant || 0);
@@ -169,7 +166,7 @@ const DonutChartFinance = ({ selectedMonth, selectedYear, selectedDay }) => {
     immobilisation.forEach((item) => {
       const date = new Date(item.createdAt || item.date);
       if (
-        date.getFullYear().toString() === year &&
+        (!year || date.getFullYear().toString() === year) &&
         (month === null || date.getMonth() === month)
       ) {
         immobilisationTotal += parseFloat(item.montant || 0);
@@ -190,7 +187,7 @@ const DonutChartFinance = ({ selectedMonth, selectedYear, selectedDay }) => {
   const series = [
     financialData.soldeEnCaisse,
     financialData.depense,
-    financialData.beneficeBrut,
+    Math.max(0, financialData.beneficeBrut),
     financialData.immobilisation,
   ];
 

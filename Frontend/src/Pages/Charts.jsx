@@ -396,12 +396,12 @@ function Charts() {
                 value={selectedYear}
                 onChange={handleYearChange}
               >
-                <option value="">Tous les Années</option>
-                {Array.from({ length: 10 }, (_, i) => {
-                  const currentYear = new Date().getFullYear();
+                <option value="">Toutes les Années</option>
+                {Array.from({ length: 5 }, (_, i) => {
+                  const startYear = 2024;
                   return (
-                    <option key={i} value={currentYear + i}>
-                      {currentYear + i}
+                    <option key={i} value={startYear + i}>
+                      {startYear + i}
                     </option>
                   );
                 })}

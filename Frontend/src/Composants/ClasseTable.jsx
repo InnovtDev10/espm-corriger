@@ -462,7 +462,7 @@ function ClasseTable() {
         <table className="noteo-table">
           <thead>
             <tr>
-              <th>Numéro de Facture</th>{" "}
+              <th>Numéro de Facture</th>
               {/* Nouvelle colonne pour le numéro de facture */}
               <th>Matricule</th>
               <th>Nom</th>
@@ -472,6 +472,7 @@ function ClasseTable() {
               <th>Droit d'inscription</th>
               <th>Déja payer</th>
               <th>Reste à payer</th>
+              <th>Date de paiement</th>
               <th>Action</th>
             </tr>
           </thead>
@@ -497,6 +498,7 @@ function ClasseTable() {
                 const invoiceNumber = `D00 ${
                   Math.floor(Math.random() * 10000) + 1
                 }`;
+                const paymentDate = new Date(payment.createdAt).toLocaleDateString("fr-FR");
                 return (
                   <tr key={index}>
                     <td>{invoiceNumber}</td>{" "}
@@ -509,6 +511,7 @@ function ClasseTable() {
                     <td>{payment.droit} Ar</td>
                     <td>{payment.montantPaye} Ar</td>
                     <td>{payment.montantReste} Ar</td>
+                    <td>{paymentDate}</td>
                     <td>
                       {payment.montantReste > 0 && (
                         <Button

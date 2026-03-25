@@ -233,7 +233,7 @@ function StageHistorique() {
     <div className="historique-table mt-2">
       <div className="d-flex justify-content-between align-items-center">
         <h5 className="fw-bold">
-          Historique des stages ({filteredStages.length} étudiants)
+          Historique des stages ({filteredStages.length} stages)
         </h5>
         <div className="d-flex align-items-center">
           <span className="me-5 fw-bold">

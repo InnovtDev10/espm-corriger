@@ -179,9 +179,9 @@ exports.getAllEtudiants = async (req, res) => {
 
 exports.countEtudiants = async (req, res) => {
   try {
-    const countInfirmier = await Etudiant.count({ where: { filiere: "Infirmier généraliste" } });
-    const countSageFemme = await Etudiant.count({ where: { filiere: "Sage-femme" } });
-    const countBioTechnicien = await Etudiant.count({ where: { filiere: "Bio Technicien d'analyses Médicales" } });
+    const countInfirmier = await Etudiant.count({ where: { filiere: "Technicien de laboratoire" } });
+    const countSageFemme = await Etudiant.count({ where: { filiere: "Sciences infirmières" } });
+    const countBioTechnicien = await Etudiant.count({ where: { filiere: "Maieutique" } });
 
     return res.status(200).json({
       totalInfirmiers: countInfirmier,

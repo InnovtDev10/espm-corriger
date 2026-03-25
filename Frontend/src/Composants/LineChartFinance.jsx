@@ -101,7 +101,7 @@ const LineChartFinance = ({ selectedYear }) => {
     // Process each dataset by month
     droits.forEach((item) => {
       const date = new Date(item.createdAt || item.date);
-      if (date.getFullYear().toString() === year) {
+      if (!year || date.getFullYear().toString() === year) {
         const month = date.getMonth();
         soldeEnCaisse[month] += parseFloat(item.montantPaye || 0);
       }
@@ -109,7 +109,7 @@ const LineChartFinance = ({ selectedYear }) => {
 
     frais.forEach((item) => {
       const date = new Date(item.createdAt || item.date);
-      if (date.getFullYear().toString() === year) {
+      if (!year || date.getFullYear().toString() === year) {
         const month = date.getMonth();
         soldeEnCaisse[month] += parseFloat(item.montantPayer || 0);
       }
@@ -118,7 +118,7 @@ const LineChartFinance = ({ selectedYear }) => {
     venteMateriel.forEach((item) => {
       if (item.natureSortie === "externe") {
         const date = new Date(item.createdAt || item.date);
-        if (date.getFullYear().toString() === year) {
+        if (!year || date.getFullYear().toString() === year) {
           const month = date.getMonth();
           soldeEnCaisse[month] += parseFloat(item.prixTotal || 0);
         }
@@ -126,22 +126,19 @@ const LineChartFinance = ({ selectedYear }) => {
     });
 
     ecolage.forEach((item) => {
-      const montantParMois = parseFloat(item.montantParMois || 0);
-      if (item.moisEffectuer && Array.isArray(item.moisEffectuer)) {
-        item.moisEffectuer.forEach((moisInfo) => {
-          const date = new Date(moisInfo.date);
-          if (date.getFullYear().toString() === year) {
-            const month = date.getMonth();
-            soldeEnCaisse[month] += montantParMois;
-          }
-        });
+      const date = new Date(item.updatedAt || item.createdAt);
+      if (!year || date.getFullYear().toString() === year) {
+        const month = date.getMonth();
+        const montantParMois = parseFloat(item.montantParMois || 0);
+        const nbMois = item.moisEffectuer ? item.moisEffectuer.length : 0;
+        soldeEnCaisse[month] += montantParMois * nbMois;
       }
     });
 
     // Process expenses
     paiements.forEach((item) => {
       const date = new Date(item.createdAt || item.date);
-      if (date.getFullYear().toString() === year) {
+      if (!year || date.getFullYear().toString() === year) {
         const month = date.getMonth();
         depense[month] += parseFloat(item.montant || 0);
       }
@@ -149,7 +146,7 @@ const LineChartFinance = ({ selectedYear }) => {
 
     fournitures.forEach((item) => {
       const date = new Date(item.createdAt || item.date);
-      if (date.getFullYear().toString() === year) {
+      if (!year || date.getFullYear().toString() === year) {
         const month = date.getMonth();
         depense[month] += parseFloat(item.prixTotal || 0);
       }
@@ -157,7 +154,7 @@ const LineChartFinance = ({ selectedYear }) => {
 
     autreDepenses.forEach((item) => {
       const date = new Date(item.createdAt || item.date);
-      if (date.getFullYear().toString() === year) {
+      if (!year || date.getFullYear().toString() === year) {
         const month = date.getMonth();
         depense[month] += parseFloat(item.montant || 0);
       }
@@ -166,7 +163,7 @@ const LineChartFinance = ({ selectedYear }) => {
     // Process immobilisation
     immobilisation.forEach((item) => {
       const date = new Date(item.createdAt || item.date);
-      if (date.getFullYear().toString() === year) {
+      if (!year || date.getFullYear().toString() === year) {
         const month = date.getMonth();
         immobilisationData[month] += parseFloat(item.montant || 0);
       }
