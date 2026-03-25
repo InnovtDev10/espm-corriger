@@ -32,7 +32,8 @@ router.put('/update/:id', (req, res, next) => {
 }, updateEtudiant);
 
 // Correction: utiliser 'photo' au lieu de 'photo_profil' pour la cohérence
-router.put('/update/by/:matricule', (req, res, next) => {
+// Correction: utiliser 'photo' au lieu de 'photo_profil' pour la cohérence
+router.put('/update', (req, res, next) => {
   upload.single('photo')(req, res, (err) => {
     if (err) {
       console.error('Erreur upload:', err);

@@ -94,7 +94,7 @@ const StudentTableDossier = ({
     if (result.isConfirmed) {
       try {
         await axios.put(
-          `${url}/api/etudiant/update/by/${student.matricule}`,
+          `${url}/api/etudiant/update?matricule=${encodeURIComponent(student.matricule)}`,
           { [field]: newValue }
         );
 

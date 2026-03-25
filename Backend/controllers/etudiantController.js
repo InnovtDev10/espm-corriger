@@ -197,7 +197,7 @@ exports.countEtudiants = async (req, res) => {
 // Modifier un étudiant en utilisant le matricule
 exports.updateEtudiantByMatricule = async (req, res) => {
   try {
-      const { matricule } = req.params;
+      const { matricule } = req.query;
 
       // Chercher l'étudiant par son matricule
       const etudiant = await Etudiant.findOne({ where: { matricule } });
